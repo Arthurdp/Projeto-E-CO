@@ -34,10 +34,6 @@ public class Pessoa {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
-		result = prime * result + ((estado == null) ? 0 : estado.hashCode());
-		result = prime * result + ((interresses == null) ? 0 : interresses.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((partido == null) ? 0 : partido.hashCode());
 		return result;
 	}
 
@@ -54,26 +50,6 @@ public class Pessoa {
 			if (other.dni != null)
 				return false;
 		} else if (!dni.equals(other.dni))
-			return false;
-		if (estado == null) {
-			if (other.estado != null)
-				return false;
-		} else if (!estado.equals(other.estado))
-			return false;
-		if (interresses == null) {
-			if (other.interresses != null)
-				return false;
-		} else if (!interresses.equals(other.interresses))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (partido == null) {
-			if (other.partido != null)
-				return false;
-		} else if (!partido.equals(other.partido))
 			return false;
 		return true;
 	}
