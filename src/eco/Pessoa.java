@@ -7,6 +7,7 @@ public class Pessoa {
 	private String estado;
 	private String[] interresses;
 	private String partido;
+	private Funcao funcao;
 	
 	public Pessoa(String nome, String dni, String estado, String interresses) {
 		validaEntrada(nome, "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo");
@@ -29,7 +30,11 @@ public class Pessoa {
 		this.interresses = interresses.split(",");
 		this.partido = partido;
 	}
-
+	
+	public void virouBandido(String data) {
+		this.funcao = new Deputado(data);
+	}
+	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
