@@ -2,11 +2,11 @@ package eco;
 
 public class Pessoa {
 
-	private String nome;
-	private String dni;
-	private String estado;
-	private String[] interresses;
-	private String partido;
+	protected String nome;
+	protected String dni;
+	protected String estado;
+	protected String[] interresses;
+	protected String partido;
 	private Funcao funcao;
 	
 	public Pessoa(String nome, String dni, String estado, String interresses) {
@@ -33,6 +33,11 @@ public class Pessoa {
 	
 	public void virouBandido(String data) {
 		this.funcao = new Deputado(data);
+	}
+	
+	public String exibirPessoa(String dni) {
+		if (funcao.getClass() != Deputado.class);
+			return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " this.partido + " - " this.interresses;
 	}
 	
 	public int hashCode() {
