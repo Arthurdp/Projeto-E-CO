@@ -5,8 +5,19 @@ public class Pessoa {
 	private String nome;
 	private String dni;
 	private String estado;
-	private String interresses;
+	private String[] interresses;
 	private String partido;
+	
+	public Pessoa(String nome, String dni, String estado, String interresses) {
+		validaEntrada(nome, "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo");
+		validaEntrada(dni, "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo");
+		validaEntrada(estado, "Erro ao cadastrar pessoa: estado nao pode ser vazio ou nulo");
+		this.nome = nome;
+		this.dni = dni;
+		this.estado = estado;
+		this.interresses = interresses.split(",");
+		
+	}
 	
 	public Pessoa(String nome, String dni, String estado, String interresses, String partido) {
 		validaEntrada(nome, "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo");
@@ -15,20 +26,9 @@ public class Pessoa {
 		this.nome = nome;
 		this.dni = dni;
 		this.estado = estado;
-		this.interresses = interresses;
+		this.interresses = interresses.split(",");
 		this.partido = partido;
 	}
-
-	public Pessoa(String nome, String dni, String estado, String interresses) {
-		validaEntrada(nome, "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo");
-		validaEntrada(dni, "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo");
-		validaEntrada(estado, "Erro ao cadastrar pessoa: estado nao pode ser vazio ou nulo");
-		this.nome = nome;
-		this.dni = dni;
-		this.estado = estado;
-		this.interresses = interresses;
-	}
-
 
 	public int hashCode() {
 		final int prime = 31;
@@ -36,7 +36,6 @@ public class Pessoa {
 		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
 		return result;
 	}
-
 
 	public boolean equals(Object obj) {
 		if (this == obj)
