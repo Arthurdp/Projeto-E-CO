@@ -24,6 +24,7 @@ public class Deputado extends Pessoa implements Funcao{
 	} 
 	
 	public String exibirPessoa() {
+		eco.Pessoa.validaDni(dni, "Erro ao exibir pessoa: dni invalido");
 		return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " + this.partido + " - " + exibirInteresses();
 	}
 }

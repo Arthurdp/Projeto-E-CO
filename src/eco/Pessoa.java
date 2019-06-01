@@ -13,7 +13,7 @@ public class Pessoa {
 		validaEntrada(nome, "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo");
 		validaEntrada(dni, "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo");
 		validaEntrada(estado, "Erro ao cadastrar pessoa: estado nao pode ser vazio ou nulo");
-		validaDni(dni);
+		validaDni(dni, "Erro ao cadastrar pessoa: dni invalido");
 		this.nome = nome;
 		this.dni = dni;
 		this.estado = estado;
@@ -24,7 +24,7 @@ public class Pessoa {
 		validaEntrada(nome, "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo");
 		validaEntrada(dni, "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo");
 		validaEntrada(estado, "Erro ao cadastrar pessoa: estado nao pode ser vazio ou nulo");
-		validaDni(dni);
+		validaDni(dni, "Erro ao cadastrar pessoa: dni invalido");
 		this.nome = nome;
 		this.dni = dni;
 		this.estado = estado;
@@ -79,15 +79,14 @@ public class Pessoa {
 			throw new NullPointerException(mensagem);
 	}
 	
-	public void validaDni(String dni) {
-		String msm = "Erro ao cadastrar pessoa: dni invalido";
+	static void validaDni(String dni, String msg) {
 		if(dni.trim().length() > 11 || dni.trim().length() < 11 )
-			throw new IllegalArgumentException(msm);
+			throw new IllegalArgumentException(msg);
 		String[] dados = dni.split("");
 		for(String digito : dados) {
 			if(!digito.equals("-")) {
 				if(!digito.matches("[0-9]"))
-					throw new IllegalArgumentException(msm);
+					throw new IllegalArgumentException(msg);
 			}
 				
 		}

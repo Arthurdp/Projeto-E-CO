@@ -12,8 +12,10 @@ public class ControllerPessoa {
 	
 	public String exibirPessoa(String dni) {
 		if (!pessoas.containsKey(dni)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Erro ao exibir pessoa: pessoa nao existe");
 		}
+		eco.Pessoa.validaDni(dni, "Erro ao exibir pessoa: dni invalido");
+		
 		return pessoas.get(dni).exibirPessoa(dni);
 	}
 }
