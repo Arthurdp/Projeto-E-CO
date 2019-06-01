@@ -1,14 +1,13 @@
 package eco;
 
-public class Deputado extends Pessoa implements Funcao{
+public class Deputado implements Funcao{
 	
 	private String data;
 	private int leisAprovadas;
 
-	public Deputado(String nome, String dni, String estado, String interresses, String data, int leisAprovadas, String partido) {
-		super(nome, dni, estado, interresses, partido);
+	public Deputado(String data) {
 		this.data = data;
-		this.leisAprovadas = leisAprovadas;
+		this.leisAprovadas = 0;
 	}
 	
 	public String getData() {
@@ -21,10 +20,5 @@ public class Deputado extends Pessoa implements Funcao{
 
 	public void setLeisAprovadas(int leisAprovadas) {
 		this.leisAprovadas = leisAprovadas;
-	} 
-	
-	public String exibirPessoa() {
-		eco.Pessoa.validaDni(dni, "Erro ao exibir pessoa: dni invalido");
-		return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " + this.partido + " - " + exibirInteresses();
 	}
 }

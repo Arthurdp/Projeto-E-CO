@@ -1,5 +1,6 @@
 package eco;
 
 public interface Funcao {
-	public String exibirPessoa();
+	public String getData();
+	public int getLeisAprovadas();
 }

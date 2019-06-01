@@ -39,16 +39,29 @@ public class Pessoa {
 	protected String exibirInteresses() {
 		String interesses = "";
 		for (String e : this.interesses) {
-			interesses += e + ",";
+			interesses += e + ", ";
 		}
-		return interesses;
+		return interesses.substring(0, interesses.length() - 2);
 	}
 	
 	public String exibirPessoa(String dni) {
-		if (funcao.getClass() != Deputado.class) {
-			return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " + this.partido + " - " + exibirInteresses();
+		if (funcao == null) {
+			if(this.partido == null) {
+				if(this.interesses[0].trim().equals("")) {
+					return this.nome + " - " + this.dni + "(" + this.estado + ")";
+				}
+				else
+					return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " + " - " + exibirInteresses();
+			}
+			else
+				return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " + this.partido + " - " + exibirInteresses();
 		}
-		else return funcao.exibirPessoa();
+		else {
+			if(this.interesses[0].trim().equals(""))
+				return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " + this.partido + " - " + exibirInteresses() + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas();									
+			else
+				return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " + this.partido + " - " + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas();									
+		}
 	}
 	
 	public int hashCode() {
