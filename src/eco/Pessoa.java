@@ -5,7 +5,7 @@ public class Pessoa {
 	protected String nome;
 	protected String dni;
 	protected String estado;
-	protected String[] interresses;
+	protected String[] interesses;
 	protected String partido;
 	private Funcao funcao;
 	
@@ -17,8 +17,7 @@ public class Pessoa {
 		this.nome = nome;
 		this.dni = dni;
 		this.estado = estado;
-		this.interresses = interresses.split(",");
-		
+		this.interesses = interresses.split(",");		
 	}
 	
 	public Pessoa(String nome, String dni, String estado, String interresses, String partido) {
@@ -29,7 +28,7 @@ public class Pessoa {
 		this.nome = nome;
 		this.dni = dni;
 		this.estado = estado;
-		this.interresses = interresses.split(",");
+		this.interesses = interresses.split(",");
 		this.partido = partido;
 	}
 	
@@ -37,9 +36,19 @@ public class Pessoa {
 		this.funcao = new Deputado(data);
 	}
 	
+	protected String exibirInteresses() {
+		String interesses = "";
+		for (String e : this.interesses) {
+			interesses += e + ",";
+		}
+		return interesses;
+	}
+	
 	public String exibirPessoa(String dni) {
-		if (funcao.getClass() != Deputado.class);
-			return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " this.partido + " - " this.interresses;
+		if (funcao.getClass() != Deputado.class) {
+			return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " + this.partido + " - " + exibirInteresses();
+		}
+		else return funcao.exibirPessoa();
 	}
 	
 	public int hashCode() {

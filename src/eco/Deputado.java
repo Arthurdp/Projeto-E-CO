@@ -1,6 +1,6 @@
 package eco;
 
-public class Deputado extends Pessoa{
+public class Deputado extends Pessoa implements Funcao{
 	
 	private String data;
 	private int leisAprovadas;
@@ -24,6 +24,6 @@ public class Deputado extends Pessoa{
 	} 
 	
 	public String exibirPessoa() {
-		return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " partido + " - " interresses ;
+		return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " + this.partido + " - " + exibirInteresses();
 	}
 }

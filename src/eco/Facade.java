@@ -2,6 +2,12 @@ package eco;
 
 public class Facade {
 	
+	private ControllerPessoa controllerPessoa;
+	
+	public Facade() {
+		controllerPessoa = new ControllerPessoa();
+	}
+	
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {
 		
 	}
@@ -19,7 +25,7 @@ public class Facade {
 	}
 	
 	public String exibirPessoa(String DNI) {
-		return "";
+		return controllerPessoa.exibirPessoa(DNI);
 	}
 	
 	public String exibirBase() {
