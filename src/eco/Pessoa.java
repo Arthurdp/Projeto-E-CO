@@ -44,27 +44,27 @@ public class Pessoa {
 		return interesses.substring(0, interesses.length() - 2);
 	}
 	
-	public String exibirPessoa(String dni) {
+	public String exibirPessoa() {
 		if (funcao == null) {
 			if(this.partido == null) {
 				if(this.interesses[0].trim().equals("")) {
-					return this.nome + " - " + this.dni + "(" + this.estado + ")";
+					return this.nome + " - " + this.dni + " (" + this.estado + ")";
 				}
 				else
-					return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " + exibirInteresses();
+					return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + exibirInteresses();
 			}
 			else
 				if(this.interesses[0].trim().contentEquals(""))
-					return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " + this.partido;
+					return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido;
 				
 				else
-					return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " + this.partido + " - " + exibirInteresses();
+					return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + exibirInteresses();
 		}
 		else {
 			if(this.interesses[0].trim().equals(""))
-				return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " + this.partido + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas();									
+				return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas();									
 			else
-				return this.nome + " - " + this.dni + "(" + this.estado + ")" + " - " + this.partido + " - " + exibirInteresses() + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas();									
+				return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + exibirInteresses() + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas();									
 		}
 	}
 	

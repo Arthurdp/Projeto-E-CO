@@ -9,10 +9,13 @@ import eco.Partido;
 import eco.Pessoa;
 
 class TestePessoa {
+	Pessoa pessoa1;
+	Pessoa pessoa2;
+	
 	@BeforeEach
 	void criarPessoas() {
-		Pessoa pessoa1 = new Pessoa("robervaldo", "12345678911", "RJ", "trafico,caixa2,sonegação,lavagem de dinheiro");
-		Pessoa pessoa2 = new Pessoa("Tiririca", "21345678911", "CE", "abestado,fazer menino,comer farinha", new Partido("PCB"));
+		pessoa1 = new Pessoa("Robervaldo", "12345678911", "RJ", "trafico,caixa2,sonegação,lavagem de dinheiro");
+		pessoa2 = new Pessoa("Tiririca", "21345678911", "CE", "abestado,fazer menino,comer farinha", new Partido("PCB"));
 	}
 	
 	@Test
@@ -55,6 +58,9 @@ class TestePessoa {
 	
 	@Test
 	void testeExibirPessoa() {
+		assertEquals("Robervaldo - 12345678911 (RJ) - interesses: trafico, caixa2, sonegação, lavagem de dinheiro", pessoa1.exibirPessoa());
+		assertEquals("Tiririca - 21345678911 (CE) - PCB - interesses: abestado, fazer menino, comer farinha", pessoa2.exibirPessoa());
+		pessoa2.virouDeputado("11112016");
 		
 	}
 

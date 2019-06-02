@@ -16,6 +16,6 @@ public class ControllerPessoa {
 		}
 		eco.Pessoa.validaDni(dni, "Erro ao exibir pessoa: dni invalido");
 		
-		return pessoas.get(dni).exibirPessoa(dni);
+		return pessoas.get(dni).exibirPessoa();
 	}
 }
