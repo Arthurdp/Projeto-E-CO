@@ -32,7 +32,7 @@ public class Pessoa {
 		this.partido = partido;
 	}
 	
-	public void virouBandido(String data) {
+	public void virouDeputado(String data) {
 		this.funcao = new Deputado(data);
 	}
 	
@@ -92,8 +92,11 @@ public class Pessoa {
 	}
 
 	public static void validaEntrada(String parametro, String mensagem) {
-		if (parametro == null || parametro.trim().equals(""))
+		if (parametro == null)
 			throw new NullPointerException(mensagem);
+		
+		if (parametro.trim().equals(""))
+			throw new IllegalArgumentException(mensagem);
 	}
 	
 	static void validaDni(String dni, String msg) {
