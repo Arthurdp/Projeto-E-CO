@@ -91,7 +91,7 @@ public class Pessoa {
 	 * @param dni identificação da pessoa ou deputado.
 	 * @return
 	 */
-	public String exibirPessoa(String dni) {
+	public String exibirPessoa() {
 		if (funcao == null) {
 			if(this.partido == null) {
 				if(this.interesses[0].trim().equals("")) {

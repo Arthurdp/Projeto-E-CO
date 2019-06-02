@@ -61,7 +61,6 @@ class TestePessoa {
 		assertEquals("Robervaldo - 12345678911 (RJ) - interesses: trafico, caixa2, sonegação, lavagem de dinheiro", pessoa1.exibirPessoa());
 		assertEquals("Tiririca - 21345678911 (CE) - PCB - interesses: abestado, fazer menino, comer farinha", pessoa2.exibirPessoa());
 		pessoa2.virouDeputado("11112016");
-		
 	}
 
 }
