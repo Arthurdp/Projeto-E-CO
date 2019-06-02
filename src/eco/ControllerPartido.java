@@ -19,7 +19,8 @@ public class ControllerPartido {
 	
 	public String exibirBase() {
 		String saida = "";
-		List<Partido> lista = new ArrayList<>(this.baseGovernista);
+		List<Partido> lista = new ArrayList<>();
+		lista.addAll(this.baseGovernista);
 		Collections.sort(lista);
 		for(Partido p : lista) {
 			saida += p.toString() + ",";

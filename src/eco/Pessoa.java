@@ -6,7 +6,7 @@ public class Pessoa {
 	protected String dni;
 	protected String estado;
 	protected String[] interesses;
-	protected String partido;
+	protected Partido partido;
 	private Funcao funcao;
 	
 	public Pessoa(String nome, String dni, String estado, String interresses) {
@@ -20,7 +20,7 @@ public class Pessoa {
 		this.interesses = interresses.split(",");		
 	}
 	
-	public Pessoa(String nome, String dni, String estado, String interresses, String partido) {
+	public Pessoa(String nome, String dni, String estado, String interresses, Partido partido) {
 		validaEntrada(nome, "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo");
 		validaEntrada(dni, "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo");
 		validaEntrada(estado, "Erro ao cadastrar pessoa: estado nao pode ser vazio ou nulo");
