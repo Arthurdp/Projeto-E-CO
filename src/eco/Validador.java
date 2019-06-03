@@ -9,7 +9,6 @@ public class Validador {
 	public Validador() {
 		
 	}
-
 	
 	/**
 	 * verifica se a entrada é vazia ou nula.
@@ -23,6 +22,7 @@ public class Validador {
 		if (parametro.trim().equals(""))
 			throw new IllegalArgumentException(mensagem);
 	}
+	
 	/**
 	 * verifica se o dni passado na construção de uma nova pessoa é valido.
 	 * @param dni dni a ser avaliado.
@@ -38,10 +38,8 @@ public class Validador {
 			if(!digito.equals("-")) {
 				if(!digito.matches("[0-9]"))
 					throw new IllegalArgumentException(msg);
-			}
-				
-		}
-		
+			}	
+		}		
 	}
 	
 	public void validaData(String data1, String msg) {

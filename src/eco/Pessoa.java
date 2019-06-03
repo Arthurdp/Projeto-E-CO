@@ -23,7 +23,7 @@ public class Pessoa {
 	/**
 	 * array de interesses da pessoa
 	 */
-	private String[] interesses;
+	private String interesses;
 	/**
 	 * partido ao qual a pessoa é filiada.
 	 */
@@ -48,7 +48,7 @@ public class Pessoa {
 		this.nome = nome;
 		this.dni = dni;
 		this.estado = estado;
-		this.interesses = interesses.split(",");		
+		this.interesses += interesses;		
 	}
 	
 	/**
@@ -67,7 +67,7 @@ public class Pessoa {
 		this.nome = nome;
 		this.dni = dni;
 		this.estado = estado;
-		this.interesses = interesses.split(",");
+		this.interesses += interesses;
 		this.partido = partido;
 	}
 	
@@ -78,17 +78,6 @@ public class Pessoa {
 	public void virouDeputado(String data) {
 		this.funcao = new Deputado(data);
 	}
-	/**
-	 * Retorna uma string com todos os interesses da pessoa.
-	 * @return
-	 */
-	public String exibirInteresses() {
-		String interesses = "interesses: ";
-		for (String e : this.interesses) {
-			interesses += e + ", ";
-		}
-		return interesses.substring(0, interesses.length() - 2);
-	}
 	
 	/**
 	 * exibe as informações de uma pessoa ou de um deputado.
@@ -98,24 +87,24 @@ public class Pessoa {
 	public String exibirPessoa() {
 		if (funcao == null) {
 			if(this.partido == null) {
-				if(this.interesses[0].trim().equals("")) {
+				if(this.interesses.trim().equals("")) {
 					return this.nome + " - " + this.dni + " (" + this.estado + ")";
 				}
 				else
-					return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + exibirInteresses();
+					return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.interesses;
 			}
 			else
-				if(this.interesses[0].trim().contentEquals(""))
+				if(this.interesses.trim().contentEquals(""))
 					return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido;
 				
 				else
-					return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + exibirInteresses();
+					return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + this.interesses;
 		}
 		else {
-			if(this.interesses[0].trim().equals(""))
+			if(this.interesses.trim().equals(""))
 				return "POL: " + this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas();									
 			else
-				return "POL: " + this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + exibirInteresses() + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas();									
+				return "POL: " + this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + this.interesses + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas();									
 		}
 	}
 	
@@ -154,7 +143,7 @@ public class Pessoa {
 		return estado;
 	}
 
-	public String[] getInteresses() {
+	public String getInteresses() {
 		return interesses;
 	}
 
