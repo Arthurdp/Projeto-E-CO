@@ -15,7 +15,7 @@ class TestePessoa {
 	@BeforeEach
 	void criarPessoas() {
 		pessoa1 = new Pessoa("Robervaldo", "12345678911", "RJ", "trafico,caixa2,sonegação,lavagem de dinheiro");
-		pessoa2 = new Pessoa("Tiririca", "21345678911", "CE", "abestado,fazer menino,comer farinha", new Partido("PCB"));
+		pessoa2 = new Pessoa("Tiririca", "21345678911", "CE", "abestado,fazer menino,comer farinha", "PCB");
 	}
 	
 	@Test
