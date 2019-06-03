@@ -4,6 +4,10 @@ package eco;
  */
 public class Partido implements Comparable<Partido> {
 	/**
+	 * inicia um novo validador de pessoa;
+	 */
+	Validador validador = new Validador();
+	/**
 	 * nome do partido.
 	 */
 	private String nome;
@@ -12,6 +16,7 @@ public class Partido implements Comparable<Partido> {
 	 * @param nome nome do novo partido.
 	 */
 	public Partido(String nome) {
+		
 		this.nome = nome;
 	}
 	

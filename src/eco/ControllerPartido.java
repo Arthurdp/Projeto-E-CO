@@ -11,6 +11,10 @@ import java.util.Set;
  */
 public class ControllerPartido {
 	/**
+	 * inicia um novo validador;
+	 */
+	Validador validador = new Validador();
+	/**
 	 * Conjunto de partidos que compõem a base governista.
 	 */
 	private Set<Partido> baseGovernista;
@@ -25,6 +29,7 @@ public class ControllerPartido {
 	 * @param partido partido a ser adicionado na base governista.
 	 */
 	public void cadastrarPartido(String partido) {
+		validador.validaEntrada(partido, "Erro ao cadastrar partido: partido nao pode ser vazio ou nulo");
 		this.baseGovernista.add(new Partido(partido));
 	}
 	/**

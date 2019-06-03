@@ -5,25 +5,29 @@ package eco;
  */
 public class Pessoa {
 	/**
+	 * inicia um novo validador;
+	 */
+	Validador validador = new Validador();
+	/**
 	 * nome da pessoa.
 	 */
-	protected String nome;
+	private String nome;
 	/**
 	 * numero de identificação da da pessoa.
 	 */
-	protected String dni;
+	private String dni;
 	/**
 	 * estado de origem da pessoa.
 	 */
-	protected String estado;
+	private String estado;
 	/**
 	 * array de interesses da pessoa
 	 */
-	protected String[] interesses;
+	private String[] interesses;
 	/**
 	 * partido ao qual a pessoa é filiada.
 	 */
-	protected Partido partido;
+	private String partido;
 	/**
 	 * função exercida pela pessoa.
 	 */
@@ -36,15 +40,15 @@ public class Pessoa {
 	 * @param estado estado de origem da nova pessoa.
 	 * @param interresses interesses da nova pessoa.
 	 */
-	public Pessoa(String nome, String dni, String estado, String interresses) {
-		validaEntrada(nome, "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo");
-		validaEntrada(dni, "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo");
-		validaEntrada(estado, "Erro ao cadastrar pessoa: estado nao pode ser vazio ou nulo");
-		validaDni(dni, "Erro ao cadastrar pessoa: dni invalido");
+	public Pessoa(String nome, String dni, String estado, String interesses) {
+		validador.validaEntrada(nome, "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo");
+		validador.validaEntrada(dni, "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo");
+		validador.validaEntrada(estado, "Erro ao cadastrar pessoa: estado nao pode ser vazio ou nulo");
+		validador.validaDni(dni, "Erro ao cadastrar pessoa: dni invalido");
 		this.nome = nome;
 		this.dni = dni;
 		this.estado = estado;
-		this.interesses = interresses.split(",");		
+		this.interesses = interesses.split(",");		
 	}
 	
 	/**
@@ -55,15 +59,15 @@ public class Pessoa {
 	 * @param interresses interesses da nova pessoa.
 	 * @param partido partido ao qual a nova pessoa é filiada.
 	 */
-	public Pessoa(String nome, String dni, String estado, String interresses, Partido partido) {
-		validaEntrada(nome, "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo");
-		validaEntrada(dni, "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo");
-		validaEntrada(estado, "Erro ao cadastrar pessoa: estado nao pode ser vazio ou nulo");
-		validaDni(dni, "Erro ao cadastrar pessoa: dni invalido");
+	public Pessoa(String nome, String dni, String estado, String interesses,String partido) {
+		validador.validaEntrada(nome, "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo");
+		validador.validaEntrada(dni, "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo");
+		validador.validaEntrada(estado, "Erro ao cadastrar pessoa: estado nao pode ser vazio ou nulo");
+		validador.validaDni(dni, "Erro ao cadastrar pessoa: dni invalido");
 		this.nome = nome;
 		this.dni = dni;
 		this.estado = estado;
-		this.interesses = interresses.split(",");
+		this.interesses = interesses.split(",");
 		this.partido = partido;
 	}
 	
@@ -78,7 +82,7 @@ public class Pessoa {
 	 * Retorna uma string com todos os interesses da pessoa.
 	 * @return
 	 */
-	protected String exibirInteresses() {
+	public String exibirInteresses() {
 		String interesses = "interesses: ";
 		for (String e : this.interesses) {
 			interesses += e + ", ";
@@ -137,38 +141,31 @@ public class Pessoa {
 			return false;
 		return true;
 	}
-	/**
-	 * verifica se a entrada é vazia ou nula.
-	 * @param parametro parametro a ser avaliado.
-	 * @param mensagem mensagem de erro.
-	 */
-	public static void validaEntrada(String parametro, String mensagem) {
-		if (parametro == null)
-			throw new NullPointerException(mensagem);
-		
-		if (parametro.trim().equals(""))
-			throw new IllegalArgumentException(mensagem);
+
+	public String getNome() {
+		return nome;
 	}
-	/**
-	 * verifica se o dni passado na construção de uma nova pessoa é valido.
-	 * @param dni dni a ser avaliado.
-	 * @param msg mensagem de erro.
-	 */
-	static void validaDni(String dni, String msg) {
-		if(dni.trim().length() > 11 || dni.trim().length() < 11 )
-			throw new IllegalArgumentException(msg);
-		if(!dni.split("")[9].equals("-"))
-			throw new IllegalArgumentException(msg);
-		String[] dados = dni.split("");
-		for(String digito : dados) {
-			if(!digito.equals("-")) {
-				if(!digito.matches("[0-9]"))
-					throw new IllegalArgumentException(msg);
-			}
-				
-		}
-		
+
+	public String getDni() {
+		return dni;
 	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public String[] getInteresses() {
+		return interesses;
+	}
+
+	public String getPartido() {
+		return partido;
+	}
+
+	public Funcao getFuncao() {
+		return funcao;
+	}
+	
 	
 }
 
