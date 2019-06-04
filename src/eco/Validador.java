@@ -8,6 +8,11 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Date;
 
+/**
+ * classe criada para validar diversos metodos do sistema
+ * @author renan
+ *
+ */
 public class Validador {
 	
 	public Validador() {
@@ -46,6 +51,11 @@ public class Validador {
 		}
 	}
 	
+	/**
+	 * metodo criado para validar uma string com o intuito de conter as informacoes de data.
+	 * @param data1 parametro que contem os numeros referentes aos dados da data
+	 * @param msg mensagem de excecao de erro.
+	 */
 	public void validaData(String data1, String msg) {
 		if(data1.length() != 8)
 			throw new IllegalArgumentException(msg);
@@ -54,13 +64,17 @@ public class Validador {
 			throw new IllegalArgumentException(msg);
 		
 		String[] numeros = data1.split("");
-		for(String digito : numeros) {
-			if(!digito.equals("-")) 
-				if(!digito.matches("[0-9]"))
-					throw new IllegalArgumentException(msg);
+		for(String digito : numeros) { 
+			if(!digito.matches("[0-9]"))
+				throw new IllegalArgumentException(msg);
 		}
 	}
 	
+	/**
+	 * metodo que verifica se a string passada detem as informacoes de uma data futura
+	 * @param data1 string q detem as informacoes da data
+	 * @param msg mensagem de excecao de erro.
+	 */
 	public void validaDataFutura(String data1, String msg) {
 		Date hoje = new Date();
 		Date data2 = null;
@@ -74,6 +88,12 @@ public class Validador {
 			throw new IllegalArgumentException(msg);
 	}
 	
+	/**
+	 * verifica se a string passada como parametro detem as informacoes de uma data que nao condiz com
+	 * numeros reais de uma data.
+	 * @param data string que possui as informacoes da data
+	 * @return true caso os valores sejam condizentes com os valores de uma data real, false, caso contrario.
+	 */
 	public static boolean validaData2(String data) {
 	    String dateFormat = "ddMMuuuu";
 	    DateTimeFormatter dtf = DateTimeFormatter
