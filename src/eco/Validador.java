@@ -42,10 +42,8 @@ public class Validador {
 			if(!digito.equals("-")) {
 				if(!digito.matches("[0-9]"))
 					throw new IllegalArgumentException(msg);
-			}
-				
+			}		
 		}
-		
 	}
 	
 	public void validaData(String data1, String msg) {

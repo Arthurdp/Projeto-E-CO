@@ -36,6 +36,13 @@ public class ControllerPessoa {
 		return pessoas.get(dni).exibirPessoa();
 	}
 	
+	/**
+	 * adiciona um objeto do tipo pessoa em pessoas.(sem partido)
+	 * @param nome é o nome da pessoa que sera adicionada
+	 * @param dni é o dni da pessoa que sera adicionada
+	 * @param estado é o estado da pessoa que sera adicionada
+	 * @param interesses sao os interesses da pessoa que sera adicionada
+	 */
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {
 		Pessoa nova = new Pessoa(nome, dni, estado, interesses);
 		if(this.pessoas.containsKey(dni))
@@ -44,6 +51,13 @@ public class ControllerPessoa {
 		
 	}
 	
+	/**
+	 * adiciona um objeto do tipo pessoa em pessoas.(com partido)
+	 * @param nome é o nome da pessoa que sera adicionada
+	 * @param dni é o dni da pessoa que sera adicionada
+	 * @param estado é o estado da pessoa que sera adicionada
+	 * @param interesses sao os interesses da pessoa que sera adicionada
+	 */
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses, String partido) {
 		Pessoa nova = new Pessoa(nome, dni, estado, interesses, partido);
 		if(this.pessoas.containsKey(dni))
@@ -51,7 +65,11 @@ public class ControllerPessoa {
 		pessoas.put(dni, nova);
 	}
 	
-	
+	/**
+	 * com base em uma pessoa pre existente, o objeto Deputado é criado e introduzido dentro do objeto pessoa.
+	 * @param dni da pessoa a ser selecionada
+	 * @param data é a data do momento em que a pessoa se tornou deputado.
+	 */
 	public void cadastraDeputado(String dni, String data) {
 		
 		validador.validaEntrada(dni, "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo");
