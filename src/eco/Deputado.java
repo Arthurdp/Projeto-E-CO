@@ -42,7 +42,7 @@ public class Deputado implements Funcao{
 	
 	public String getData() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		return sdf.format(data);
+		return sdf.format(this.data);
 	}
 
 	public int getLeisAprovadas() {
