@@ -30,7 +30,7 @@ public class Deputado implements Funcao{
 		validador.validaEntrada(data, "Erro ao cadastrar deputado: data nao pode ser vazio ou nulo");
 		validador.validaData(data,"Erro ao cadastrar deputado: data invalida");
 		validador.validaDataFutura(data, "Erro ao cadastrar deputado: data futura");
-		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			this.data2 = sdf.parse(data);
 			this.data = sdf.format(data2);
