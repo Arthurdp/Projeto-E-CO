@@ -102,9 +102,9 @@ public class Pessoa {
 		}
 		else {
 			if(this.interesses.trim().equals(""))
-				return "POL: " + this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas();									
+				return "POL: " + this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas() + " Leis";									
 			else
-				return "POL: " + this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - Interesses: " + this.interesses + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas();									
+				return "POL: " + this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - Interesses: " + this.interesses + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas() + " Leis";									
 		}
 	}
 	
