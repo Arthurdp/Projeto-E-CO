@@ -48,7 +48,7 @@ public class Pessoa {
 		this.nome = nome;
 		this.dni = dni;
 		this.estado = estado;
-		this.interesses += interesses;		
+		this.interesses += interesses;
 	}
 	
 	/**
@@ -91,20 +91,20 @@ public class Pessoa {
 					return this.nome + " - " + this.dni + " (" + this.estado + ")";
 				}
 				else
-					return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.interesses;
+					return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - interesses: " + this.interesses;
 			}
 			else
 				if(this.interesses.trim().contentEquals(""))
 					return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido;
 				
 				else
-					return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + this.interesses;
+					return this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - interesses: " + this.interesses;
 		}
 		else {
 			if(this.interesses.trim().equals(""))
 				return "POL: " + this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas();									
 			else
-				return "POL: " + this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + this.interesses + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas();									
+				return "POL: " + this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - interesses: " + this.interesses + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas();									
 		}
 	}
 	

@@ -36,11 +36,6 @@ class TestePessoa {
 		}catch(NullPointerException e) {}
 		
 		try {
-			Pessoa pessoa = new Pessoa("AL", "222222222-2", "fdsfsdf,safsasa,dadas", null);
-			fail("Deveria lançar excessão!");
-		}catch(NullPointerException e) {}
-		
-		try {
 			Pessoa pessoa = new Pessoa("", "111111111-1", "PB", "mnbdbf,fsdfsdf,fdsfsdf");
 			fail("Deveria lançar excessão!");
 		}catch(IllegalArgumentException e) {}
