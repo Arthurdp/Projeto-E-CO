@@ -2,6 +2,10 @@ package eco;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Date;
 
 public class Validador {
@@ -9,6 +13,7 @@ public class Validador {
 	public Validador() {
 		
 	}
+
 	
 	/**
 	 * verifica se a entrada é vazia ou nula.
@@ -22,7 +27,6 @@ public class Validador {
 		if (parametro.trim().equals(""))
 			throw new IllegalArgumentException(mensagem);
 	}
-	
 	/**
 	 * verifica se o dni passado na construção de uma nova pessoa é valido.
 	 * @param dni dni a ser avaliado.
@@ -38,12 +42,17 @@ public class Validador {
 			if(!digito.equals("-")) {
 				if(!digito.matches("[0-9]"))
 					throw new IllegalArgumentException(msg);
-			}	
-		}		
+			}
+				
+		}
+		
 	}
 	
 	public void validaData(String data1, String msg) {
 		if(data1.length() != 8)
+			throw new IllegalArgumentException(msg);
+		
+		if(!validaData2(data1))
 			throw new IllegalArgumentException(msg);
 		
 		String[] numeros = data1.split("");
@@ -67,4 +76,16 @@ public class Validador {
 			throw new IllegalArgumentException(msg);
 	}
 	
+	public static boolean validaData2(String data) {
+	    String dateFormat = "ddMMuuuu";
+	    DateTimeFormatter dtf = DateTimeFormatter
+	    .ofPattern(dateFormat)
+	    .withResolverStyle(ResolverStyle.STRICT);
+	    try {
+	        LocalDate date = LocalDate.parse(data, dtf);
+	        return true;
+	    } catch (DateTimeParseException e) {
+	       return false;
+	    } 
+	}
 }
