@@ -54,7 +54,7 @@ class TestePessoa {
 	@Test
 	void testeExibirPessoa() {
 		assertEquals("Robervaldo - 123456789-1 (RJ) - interesses: trafico,caixa2,sonegação,lavagem de dinheiro", pessoa1.exibirPessoa());
-		assertEquals("Tiririca - 213456789-1 (CE) - PCB - interesses: abestado, fazer menino, comer farinha", pessoa2.exibirPessoa());
+		assertEquals("Tiririca - 213456789-1 (CE) - PCB - interesses: abestado,fazer menino,comer farinha", pessoa2.exibirPessoa());
 		pessoa2.virouDeputado("11112016");
 	}
 

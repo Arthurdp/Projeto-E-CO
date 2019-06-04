@@ -48,7 +48,7 @@ public class Pessoa {
 		this.nome = nome;
 		this.dni = dni;
 		this.estado = estado;
-		this.interesses += interesses;
+		this.interesses = interesses;
 	}
 	
 	/**
@@ -67,7 +67,7 @@ public class Pessoa {
 		this.nome = nome;
 		this.dni = dni;
 		this.estado = estado;
-		this.interesses += interesses;
+		this.interesses = interesses;
 		this.partido = partido;
 	}
 	
