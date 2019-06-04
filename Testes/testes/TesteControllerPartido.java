@@ -29,7 +29,7 @@ class TesteControllerPartido {
 		
 		try {
 			this.partidos.cadastrarPartido("");
-			fail("Deveria lançar excecao!");
+			fail("Deveria lancar excecao!");
 		}catch(IllegalArgumentException e) {}
 	}
 
