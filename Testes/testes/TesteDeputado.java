@@ -14,7 +14,7 @@ class TesteDeputado {
 
 	@BeforeEach
 	void criarPessoas() {
-		pessoa1 = new Pessoa("Robervaldo", "123456781-1", "RJ", "trafico,caixa2,sonegação,lavagem de dinheiro");
+		pessoa1 = new Pessoa("Robervaldo", "123456781-1", "RJ", "trafico,caixa2,sonegacaoo,lavagem de dinheiro");
 		pessoa2 = new Pessoa("Tiririca", "213456781-1", "CE", "abestado,fazer menino,comer farinha", "PCB");
 	}
 
@@ -25,7 +25,7 @@ class TesteDeputado {
 		
 		try {
 			pessoa2.virouDeputado(null);
-			fail("Deveria lançar excessão!");
+			fail("Deveria lancar excessao!");
 		}catch(NullPointerException e) {}
 		
 		try {
