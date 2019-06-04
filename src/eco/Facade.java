@@ -10,6 +10,18 @@ public class Facade {
 		controllerPartido = new ControllerPartido();
 	}
 	
+	public void limparSistema() {
+		
+	}
+	
+	public void salvarSistema() {
+		
+	}
+	
+	public void carregarSistema() {
+		
+	}
+	
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {
 		controllerPessoa.cadastrarPessoa(nome, dni, estado, interesses);
 	}
