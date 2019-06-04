@@ -70,7 +70,7 @@ public class ControllerPessoa {
 	 * @param dni da pessoa a ser selecionada
 	 * @param data é a data do momento em que a pessoa se tornou deputado.
 	 */
-	public void cadastraDeputado(String dni, String data) {
+	public void cadastraDeputado(String dni, String data) {hhhhhhhh
 		
 		validador.validaEntrada(dni, "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo");
 		validador.validaDni(dni, "Erro ao cadastrar deputado: dni invalido");

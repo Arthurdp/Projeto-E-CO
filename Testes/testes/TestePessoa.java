@@ -9,13 +9,20 @@ import eco.Partido;
 import eco.Pessoa;
 
 class TestePessoa {
+
 	Pessoa pessoa1;
 	Pessoa pessoa2;
+	Pessoa pessoa3;
+	Pessoa pessoa4;
+	Pessoa pessoa5;
 	
 	@BeforeEach
 	void criarPessoas() {
-		pessoa1 = new Pessoa("Robervaldo", "123456789-1", "RJ", "trafico,caixa2,sonegação,lavagem de dinheiro");
-		pessoa2 = new Pessoa("Tiririca", "213456789-1", "CE", "abestado,fazer menino,comer farinha", "PCB");
+		pessoa1 = new Pessoa("Tiririca", "213456781-1", "CE", "abestado,fazer menino,comer farinha", "PCB");
+		pessoa2 = new Pessoa("Robervaldo", "123456781-1", "RJ", "trafico,caixa2,sonegacaoo,lavagem de dinheiro");
+		pessoa3 = new Pessoa("Robervaldo", "123456781-2", "RJ", "");
+		pessoa4 = new Pessoa("Tiririca", "213456781-1", "CE", "", "PCB");
+		pessoa5 = new Pessoa("Eu", "913456781-1", "PB", "", null);
 	}
 	
 	@Test
@@ -53,9 +60,11 @@ class TestePessoa {
 	
 	@Test
 	void testeExibirPessoa() {
-		assertEquals("Robervaldo - 123456789-1 (RJ) - interesses: trafico,caixa2,sonegação,lavagem de dinheiro", pessoa1.exibirPessoa());
-		assertEquals("Tiririca - 213456789-1 (CE) - PCB - interesses: abestado,fazer menino,comer farinha", pessoa2.exibirPessoa());
-		pessoa2.virouDeputado("11112016");
+		assertEquals(pessoa1.exibirPessoa(), "Tiririca - 213456781-1 (CE) - PCB - Interesses: abestado,fazer menino,comer farinha");
+		assertEquals(pessoa2.exibirPessoa(), "Robervaldo - 123456781-1 (RJ) - Interesses: trafico,caixa2,sonegacaoo,lavagem de dinheiro");
+		assertEquals(pessoa3.exibirPessoa(), "Robervaldo - 123456781-2 (RJ)");
+		assertEquals(pessoa4.exibirPessoa(), "Tiririca - 213456781-1 (CE) - PCB");
+		assertEquals(pessoa5.exibirPessoa(), "Eu - 913456781-1 (PB)");
 	}
 
 }
