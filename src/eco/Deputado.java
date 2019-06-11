@@ -8,7 +8,7 @@ import java.util.Date;
  * representação de uma pessoa que exerce a função de deputado.
  *
  */
-public class Deputado implements Funcao{
+public class Deputado{
 	/**
 	 * inicia um novo validador;
 	 */

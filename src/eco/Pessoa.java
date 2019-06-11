@@ -31,7 +31,7 @@ public class Pessoa {
 	/**
 	 * função exercida pela pessoa.
 	 */
-	private Funcao funcao;
+	private Deputado deputado;
 	
 	/**
 	 * Constroi uma nova pessoa que não esteja filiada a nenhum partido.
@@ -76,7 +76,7 @@ public class Pessoa {
 	 * @param data data de inicio na vida publica.
 	 */
 	public void virouDeputado(String data) {
-		this.funcao = new Deputado(data);
+		this.deputado = new Deputado(data);
 	}
 	
 	/**
@@ -85,7 +85,7 @@ public class Pessoa {
 	 * @return
 	 */
 	public String exibirPessoa() {
-		if (funcao == null) {
+		if (deputado == null) {
 			if(this.partido == null) {
 				if(this.interesses.trim().equals("")) {
 					return this.nome + " - " + this.dni + " (" + this.estado + ")";
@@ -102,9 +102,9 @@ public class Pessoa {
 		}
 		else {
 			if(this.interesses.trim().equals(""))
-				return "POL: " + this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas() + " Leis";									
+				return "POL: " + this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - " + this.deputado.getData() + " - " + this.deputado.getLeisAprovadas() + " Leis";									
 			else
-				return "POL: " + this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - Interesses: " + this.interesses + " - " + this.funcao.getData() + " - " + this.funcao.getLeisAprovadas() + " Leis";									
+				return "POL: " + this.nome + " - " + this.dni + " (" + this.estado + ")" + " - " + this.partido + " - Interesses: " + this.interesses + " - " + this.deputado.getData() + " - " + this.deputado.getLeisAprovadas() + " Leis";									
 		}
 	}
 	
@@ -130,31 +130,9 @@ public class Pessoa {
 			return false;
 		return true;
 	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public String getDni() {
-		return dni;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public String getInteresses() {
-		return interesses;
-	}
-
+	
 	public String getPartido() {
-		return partido;
+		return this.partido;
 	}
-
-	public Funcao getFuncao() {
-		return funcao;
-	}
-	
-	
 }
 

@@ -2,12 +2,10 @@ package eco;
 
 public class Facade {
 	
-	private ControllerPessoa controllerPessoa;
-	private ControllerPartido controllerPartido;
+	private Controller controller;
 	
 	public Facade() {
-		controllerPessoa = new ControllerPessoa();
-		controllerPartido = new ControllerPartido();
+		this.controller = new Controller();
 	}
 	
 	public void limparSistema() {
@@ -23,27 +21,27 @@ public class Facade {
 	}
 	
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {
-		controllerPessoa.cadastrarPessoa(nome, dni, estado, interesses);
+		controller.cadastrarPessoa(nome, dni, estado, interesses);
 	}
 	
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses, String partido) {
-		controllerPessoa.cadastrarPessoa(nome, dni, estado, interesses, partido);
+		controller.cadastrarPessoa(nome, dni, estado, interesses, partido);
 	}
 	
 	public void cadastrarDeputado(String DNI, String dataDeInicio) {
-		controllerPessoa.cadastraDeputado(DNI, dataDeInicio);
+		controller.cadastraDeputado(DNI, dataDeInicio);
 	}
 	
 	public void cadastrarPartido(String partido) {
-		controllerPartido.cadastrarPartido(partido);
+		this.controller.cadastrarPartido(partido);
 	}
 	
 	public String exibirPessoa(String DNI) {
-		return controllerPessoa.exibirPessoa(DNI);
+		return controller.exibirPessoa(DNI);
 	}
 	
 	public String exibirBase() {
-		return controllerPartido.exibirBase();
+		return controller.exibirBase();
 	}
 	
 	
