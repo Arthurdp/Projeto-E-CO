@@ -72,7 +72,7 @@ public class Validador {
 	}
 	
 	public static boolean validaDataFormato(String data) {
-	    String dateFormat = "ddMMyyy";
+	    String dateFormat = "ddMMuuuu";
 	    DateTimeFormatter dtf = DateTimeFormatter
 	    .ofPattern(dateFormat)
 	    .withResolverStyle(ResolverStyle.STRICT);
