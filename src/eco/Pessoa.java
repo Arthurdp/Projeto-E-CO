@@ -52,7 +52,7 @@ public class Pessoa {
 	}
 	
 	/**
-	 * Constroi uma nova pessoa que esteja filiada a nenhum partido.
+	 * Constroi uma nova pessoa que esteja filiada a um partido.
 	 * @param nome nome da nova pessoa.
 	 * @param dni numero de identificação da nova pessoa.
 	 * @param estado estado de origem da nova pessoa.
