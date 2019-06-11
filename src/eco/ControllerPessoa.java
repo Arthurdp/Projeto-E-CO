@@ -69,14 +69,15 @@ public class ControllerPessoa {
 		validador.validaDni(dni, "Erro ao cadastrar deputado: dni invalido");
 		if(!pessoas.containsKey(dni))
 			throw new IllegalArgumentException("Erro ao cadastrar deputado: pessoa nao encontrada");
+		if(pessoas.get(dni).getPartido() == null)
+			throw new IllegalArgumentException("Erro ao cadastrar deputado: pessoa sem partido");
 		validador.validaEntrada(data, "Erro ao cadastrar deputado: data nao pode ser vazio ou nulo");
 		validador.validaData(data, "Erro ao cadastrar deputado: data invalida");
 		validador.validaDataFutura(data, "Erro ao cadastrar deputado: data futura");
-		if(!pessoas.containsKey(dni))
-			throw new IllegalArgumentException("Erro ao cadastrar deputado: pessoa nao encontrada");
 		
-		if(pessoas.get(dni).getPartido() == null)
-			throw new IllegalArgumentException("Erro ao cadastrar deputado: pessoa sem partido");
+		
+		
+		
 		
 		Pessoa pessoa = pessoas.get(dni);
 		pessoa.virouDeputado(data);

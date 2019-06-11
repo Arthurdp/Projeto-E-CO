@@ -21,7 +21,7 @@ class TesteDeputado {
 	@Test
 	void testDeputado() {
 		pessoa2.virouDeputado("02062019");
-		assertEquals("POL: Tiririca - 213456781-1 (CE) - PCB - Interesses: abestado,fazer menino,comer farinha - 02/06/2019 - 0", pessoa2.exibirPessoa());
+		assertEquals("POL: Tiririca - 213456781-1 (CE) - PCB - Interesses: abestado,fazer menino,comer farinha - 02/06/2019 - 0 Leis", pessoa2.exibirPessoa());
 		
 		try {
 			pessoa2.virouDeputado(null);
