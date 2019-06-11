@@ -10,11 +10,6 @@ import java.util.Date;
 
 public class Validador {
 	
-	public Validador() {
-		
-	}
-
-	
 	/**
 	 * verifica se a entrada é vazia ou nula.
 	 * @param parametro parametro a ser avaliado.
@@ -52,7 +47,7 @@ public class Validador {
 		if(data1.length() != 8)
 			throw new IllegalArgumentException(msg);
 		
-		if(!validaData2(data1))
+		if(!validaDataFormato(data1))
 			throw new IllegalArgumentException(msg);
 		
 		String[] numeros = data1.split("");
@@ -76,8 +71,8 @@ public class Validador {
 			throw new IllegalArgumentException(msg);
 	}
 	
-	public static boolean validaData2(String data) {
-	    String dateFormat = "ddMMuuuu";
+	public static boolean validaDataFormato(String data) {
+	    String dateFormat = "ddMMyyy";
 	    DateTimeFormatter dtf = DateTimeFormatter
 	    .ofPattern(dateFormat)
 	    .withResolverStyle(ResolverStyle.STRICT);

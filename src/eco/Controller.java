@@ -49,17 +49,11 @@ public class Controller {
 	 * @param data é a data do momento em que a pessoa se tornou deputado.
 	 */
 	public void cadastraDeputado(String dni, String data) {
-		validador.validaEntrada(dni, "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo");
-		validador.validaDni(dni, "Erro ao cadastrar deputado: dni invalido");
-		validador.validaEntrada(data, "Erro ao cadastrar deputado: data nao pode ser vazio ou nulo");
-		validador.validaData(data, "Erro ao cadastrar deputado: data invalida");
-		validador.validaDataFutura(data, "Erro ao cadastrar deputado: data futura");
-		
 		controllerPessoa.cadastraDeputado(dni, data);
 	}
 	
 	public void cadastrarPartido(String partido) {
-		
+		validador.validaEntrada(partido,"Erro ao cadastrar partido: partido nao pode ser vazio ou nulo");
 		this.partidos.add(partido);
 	}
 	

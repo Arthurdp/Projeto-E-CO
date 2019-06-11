@@ -7,7 +7,7 @@ public class Pessoa {
 	/**
 	 * inicia um novo validador;
 	 */
-	Validador validador = new Validador();
+	private Validador validador = new Validador();
 	/**
 	 * nome da pessoa.
 	 */
