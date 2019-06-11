@@ -7,10 +7,6 @@ import java.util.HashMap;
  */
 public class ControllerPessoa {
 	/**
-	 * inicia um novo validador;
-	 */
-	Validador validador = new Validador();
-	/**
 	 * Mapa de pessoas existentes.
 	 */
 	private HashMap<String, Pessoa> pessoas;
@@ -26,13 +22,9 @@ public class ControllerPessoa {
 	 * @return retorna uma string com os dados da pessoa.
 	 */
 	public String exibirPessoa(String dni) {
-		validador.validaEntrada(dni,"Erro ao exibir pessoa: dni nao pode ser vazio ou nulo");
-		validador.validaDni(dni, "Erro ao exibir pessoa: dni invalido");
 		if (!pessoas.containsKey(dni)) {
 			throw new IllegalArgumentException("Erro ao exibir pessoa: pessoa nao encontrada");
 		}
-		
-		
 		return pessoas.get(dni).exibirPessoa();
 	}
 	
@@ -71,14 +63,9 @@ public class ControllerPessoa {
 	 * @param data é a data do momento em que a pessoa se tornou deputado.
 	 */
 	public void cadastraDeputado(String dni, String data) {
-		
-		validador.validaEntrada(dni, "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo");
-		validador.validaDni(dni, "Erro ao cadastrar deputado: dni invalido");
 		if(!pessoas.containsKey(dni))
 			throw new IllegalArgumentException("Erro ao cadastrar deputado: pessoa nao encontrada");
-		validador.validaEntrada(data, "Erro ao cadastrar deputado: data nao pode ser vazio ou nulo");
-		validador.validaData(data, "Erro ao cadastrar deputado: data invalida");
-		validador.validaDataFutura(data, "Erro ao cadastrar deputado: data futura");
+		
 		if(pessoas.get(dni).getPartido() == null)
 			throw new IllegalArgumentException("Erro ao cadastrar deputado: pessoa sem partido");
 		

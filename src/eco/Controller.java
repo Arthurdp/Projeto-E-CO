@@ -5,15 +5,19 @@ import java.util.Collections;
 import java.util.List;
 
 public class Controller {
+	private Validador validador;
 	private ControllerPessoa controllerPessoa;
 	private List<String> partidos;
 	
 	public Controller() {
 		this.controllerPessoa = new ControllerPessoa();
 		this.partidos = new ArrayList<>();
+		this.validador = new Validador();
 	}
 	
 	public String exibirPessoa(String dni) {
+		validador.validaEntrada(dni,"Erro ao exibir pessoa: dni nao pode ser vazio ou nulo");
+		validador.validaDni(dni, "Erro ao exibir pessoa: dni invalido");
 		return controllerPessoa.exibirPessoa(dni);
 	}
 	
@@ -45,10 +49,17 @@ public class Controller {
 	 * @param data é a data do momento em que a pessoa se tornou deputado.
 	 */
 	public void cadastraDeputado(String dni, String data) {
+		validador.validaEntrada(dni, "Erro ao cadastrar pessoa: dni nao pode ser vazio ou nulo");
+		validador.validaDni(dni, "Erro ao cadastrar deputado: dni invalido");
+		validador.validaEntrada(data, "Erro ao cadastrar deputado: data nao pode ser vazio ou nulo");
+		validador.validaData(data, "Erro ao cadastrar deputado: data invalida");
+		validador.validaDataFutura(data, "Erro ao cadastrar deputado: data futura");
+		
 		controllerPessoa.cadastraDeputado(dni, data);
 	}
 	
 	public void cadastrarPartido(String partido) {
+		
 		this.partidos.add(partido);
 	}
 	
