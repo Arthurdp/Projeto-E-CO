@@ -44,6 +44,12 @@ public class Facade {
 		return controller.exibirBase();
 	}
 	
+	public void cadastrarComissao(String tema, String politicos) {
+		this.controller.cadastrarComissao(tema, politicos);
+	}
 	
+	public void salvarSistem() {
+		
+	}
 
 }

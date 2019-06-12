@@ -12,6 +12,7 @@ public class ControllerPessoa {
 	 * mapa de pessoas cadastradas.
 	 */
 	private HashMap<String, Pessoa> pessoas;
+
 	/**
 	 * inicia o mapa de pessoas.
 	 */
@@ -79,4 +80,30 @@ public class ControllerPessoa {
 		}
 		return pessoas.get(dni).exibirPessoa();
 	}
+	/**
+	 * Informa se uma pessoa existe no mapa de pessoas
+	 * @param dni dni da pessoa
+	 * @return true se existe, false se não existe
+	 */
+	public boolean contains(String dni) {
+		if(this.pessoas.containsKey(dni)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	/**
+	 * Informa se uma pessoa eh um deputado
+	 * @param dni dni da pessoa
+	 * @return true se for deputado, false se não.
+	 */
+	public boolean isDeputado(String dni){
+		if(this.pessoas.get(dni).getDeputado() == null) {
+			return false;
+		}else {
+			return true;
+		}
+		
+	}
+			
 }

@@ -2,6 +2,7 @@ package eco;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 /**
  * classe responsavel por controlar todo o sistema. controla o cadastro de pessoas,
@@ -12,11 +13,13 @@ public class Controller {
 	private Validador validador;
 	private ControllerPessoa controllerPessoa;
 	private List<String> partidos;
+	private HashMap<String, Comissao> comissoes = new HashMap<>();
 	
 	public Controller() {
 		this.controllerPessoa = new ControllerPessoa();
 		this.partidos = new ArrayList<>();
 		this.validador = new Validador();
+		
 	}
 	
 	/**
@@ -85,4 +88,34 @@ public class Controller {
 		else
 			return saida;
 	}
+	/**
+	 * Cadastra uma nova comissao inserindo-a no mapa de comissoes
+	 * @param tema tema da comissao
+	 * @param politicos string contendo os dni dos politicos participantes da comissao
+	 */
+	public void cadastrarComissao(String tema, String politicos){
+		
+		validador.validaEntrada(tema, "Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo");
+		validador.validaEntrada(politicos, "Erro ao cadastrar comissao: lista de politicos nao pode ser vazio ou nulo");
+		if(comissoes.containsKey(tema))
+			throw new IllegalArgumentException("Erro ao cadastrar comissao: tema existente");
+		String[] politics = politicos.split(",");
+		for(String dni : politics) {
+			validador.validaDni(dni, "Erro ao cadastrar comissao: dni invalido");
+			if(!controllerPessoa.contains(dni)) 
+				throw new NullPointerException("Erro ao cadastrar comissao: pessoa inexistente");
+			if(!controllerPessoa.isDeputado(dni))
+				throw new IllegalArgumentException("Erro ao cadastrar comissao: pessoa nao eh deputado");
+		}
+		Comissao nova = new Comissao(tema, politicos);
+		comissoes.put(tema, nova);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 }

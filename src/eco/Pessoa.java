@@ -138,5 +138,9 @@ public class Pessoa {
 	public String getPartido() {
 		return this.partido;
 	}
+
+	public Deputado getDeputado() {
+		return deputado;
+	}
 }
 
