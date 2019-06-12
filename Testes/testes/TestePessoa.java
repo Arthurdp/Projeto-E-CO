@@ -27,32 +27,32 @@ class TestePessoa {
 	void TesteConstrutor() {
 		try {
 			Pessoa pessoa = new Pessoa(null, "222222222-2","AL", "fdsfsdf,safsasa,dadas");
-			fail("Deveria lançar excessão!");
+			fail("Deveria lancar excecao!");
 		}catch(NullPointerException e) {}
 		
 		try {
 			Pessoa pessoa = new Pessoa("22222222222", null, "AL", "fdsfsdf,safsasa,dadas");
-			fail("Deveria lançar excessão!");
+			fail("Deveria lancar excecao!");
 		}catch(NullPointerException e) {}
 		
 		try {
 			Pessoa pessoa = new Pessoa("AL", "222222222-2", null, "fdsfsdf,safsasa,dadas");
-			fail("Deveria lançar excessão!");
+			fail("Deveria lancar excecao!");
 		}catch(NullPointerException e) {}
 		
 		try {
 			Pessoa pessoa = new Pessoa("", "111111111-1", "PB", "mnbdbf,fsdfsdf,fdsfsdf");
-			fail("Deveria lançar excessão!");
+			fail("Deveria lancar excecao!");
 		}catch(IllegalArgumentException e) {}
 		
 		try {
 			Pessoa pessoa = new Pessoa("hdjsh", "", "CE", "kjghdkjgxdk,sddxvxf,vfcvcf");
-			fail("Deveria lançar excessão!");
+			fail("Deveria lancar excecao!");
 		}catch(IllegalArgumentException e) {}
 		
 		try {
 			Pessoa pessoa = new Pessoa("hdjsh", "333333333-3", "", "kjghdkjgxdk,sddxvxf,vfcvcf");
-			fail("Deveria lançar excessão!");
+			fail("Deveria lancar excecao!");
 		}catch(IllegalArgumentException e) {}
 	}
 	

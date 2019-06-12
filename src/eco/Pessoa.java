@@ -1,7 +1,7 @@
 package eco;
 /**
- * Representação de uma pessoa.
- *
+ * classe que representa uma pessoa no sistema.
+ * responsavel por seus atributos e metodos.
  */
 public class Pessoa {
 	/**
@@ -13,7 +13,7 @@ public class Pessoa {
 	 */
 	private String nome;
 	/**
-	 * numero de identificação da da pessoa.
+	 * numero de identificacao da da pessoa.
 	 */
 	private String dni;
 	/**
@@ -25,18 +25,18 @@ public class Pessoa {
 	 */
 	private String interesses;
 	/**
-	 * partido ao qual a pessoa é filiada.
+	 * partido ao qual a pessoa eh filiada.
 	 */
 	private String partido;
 	/**
-	 * função exercida pela pessoa.
+	 * cargo exercido pela pessoa.
 	 */
 	private Deputado deputado;
 	
 	/**
-	 * Constroi uma nova pessoa que não esteja filiada a nenhum partido.
+	 * Constroi uma nova pessoa que nao esteja filiada a nenhum partido.
 	 * @param nome nome da nova pessoa.
-	 * @param dni numero de identificação da nova pessoa.
+	 * @param dni numero de identificacao da nova pessoa.
 	 * @param estado estado de origem da nova pessoa.
 	 * @param interresses interesses da nova pessoa.
 	 */
@@ -54,10 +54,10 @@ public class Pessoa {
 	/**
 	 * Constroi uma nova pessoa que esteja filiada a um partido.
 	 * @param nome nome da nova pessoa.
-	 * @param dni numero de identificação da nova pessoa.
+	 * @param dni numero de identificacao da nova pessoa.
 	 * @param estado estado de origem da nova pessoa.
 	 * @param interresses interesses da nova pessoa.
-	 * @param partido partido ao qual a nova pessoa é filiada.
+	 * @param partido partido ao qual a nova pessoa eh filiada.
 	 */
 	public Pessoa(String nome, String dni, String estado, String interesses,String partido) {
 		validador.validaEntrada(nome, "Erro ao cadastrar pessoa: nome nao pode ser vazio ou nulo");
@@ -72,7 +72,7 @@ public class Pessoa {
 	}
 	
 	/**
-	 * Transforma a pessoa em um deputado.
+	 * transforma a pessoa em um deputado.
 	 * @param data data de inicio na vida publica.
 	 */
 	public void virouDeputado(String data) {
@@ -80,9 +80,9 @@ public class Pessoa {
 	}
 	
 	/**
-	 * exibe as informações de uma pessoa ou de um deputado.
-	 * @param dni identificação da pessoa ou deputado.
-	 * @return
+	 * exibe as informacoes de uma pessoa ou de um deputado.
+	 * @param dni identificacao da pessoa ou deputado.
+	 * @return retorna a representacao de pessoa.
 	 */
 	public String exibirPessoa() {
 		if (deputado == null) {
@@ -131,6 +131,10 @@ public class Pessoa {
 		return true;
 	}
 	
+	/**
+	 * permite ver o partido da pessoa.
+	 * @return uma string que representa um partido.
+	 */
 	public String getPartido() {
 		return this.partido;
 	}

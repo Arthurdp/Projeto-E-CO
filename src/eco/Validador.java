@@ -11,7 +11,7 @@ import java.util.Date;
 public class Validador {
 	
 	/**
-	 * verifica se a entrada é vazia ou nula.
+	 * verifica se a entrada eh vazia ou nula.
 	 * @param parametro parametro a ser avaliado.
 	 * @param mensagem mensagem de erro.
 	 */
@@ -23,7 +23,7 @@ public class Validador {
 			throw new IllegalArgumentException(mensagem);
 	}
 	/**
-	 * verifica se o dni passado na construção de uma nova pessoa é valido.
+	 * verifica se o dni passado na construcao de uma nova pessoa eh valido.
 	 * @param dni dni a ser avaliado.
 	 * @param msg mensagem de erro.
 	 */
@@ -42,7 +42,11 @@ public class Validador {
 		}
 		
 	}
-	
+	/**
+	 * verifica se a data eh valida.
+	 * @param data1 data a ser verificada.
+	 * @param msg mensagem de erro.
+	 */
 	public void validaData(String data1, String msg) {
 		if(data1.length() != 8)
 			throw new IllegalArgumentException(msg);
@@ -58,6 +62,11 @@ public class Validador {
 		}
 	}
 	
+	/**
+	 * verifica se a data eh futura.
+	 * @param data1 data a ser verificada.
+	 * @param msg mensagem de erro.
+	 */
 	public void validaDataFutura(String data1, String msg) {
 		Date hoje = new Date();
 		Date data2 = null;
@@ -71,6 +80,11 @@ public class Validador {
 			throw new IllegalArgumentException(msg);
 	}
 	
+	/**
+	 * verifica se o formato da data eh valido.
+	 * @param data data a ser verificada.
+	 * @return retorna true se for valido.
+	 */
 	public static boolean validaDataFormato(String data) {
 	    String dateFormat = "ddMMuuuu";
 	    DateTimeFormatter dtf = DateTimeFormatter

@@ -25,22 +25,22 @@ class TesteDeputado {
 		
 		try {
 			pessoa2.virouDeputado(null);
-			fail("Deveria lancar excessao!");
+			fail("Deveria lancar excecao!");
 		}catch(NullPointerException e) {}
 		
 		try {
 			pessoa2.virouDeputado("");
-			fail("Deveria lançar excessão!");
+			fail("Deveria lancar excecao!");
 		}catch(IllegalArgumentException e) {}
 		
 		try {
 			pessoa2.virouDeputado("20072019");
-			fail("Deveria lançar excessão!");
+			fail("Deveria lancar excecao!");
 		}catch(IllegalArgumentException e) {}
 		
 		try {
 			pessoa2.virouDeputado("33072019");
-			fail("Deveria lançar excessão!");
+			fail("Deveria lancaar excecao!");
 		}catch(IllegalArgumentException e) {}
 	}
 
