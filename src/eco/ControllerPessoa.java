@@ -85,7 +85,7 @@ public class ControllerPessoa {
 	 * @param dni dni da pessoa
 	 * @return true se existe, false se não existe
 	 */
-	public boolean contains(String dni) {
+	public boolean contem(String dni) {
 		if(this.pessoas.containsKey(dni)) {
 			return true;
 		}else {
@@ -97,7 +97,7 @@ public class ControllerPessoa {
 	 * @param dni dni da pessoa
 	 * @return true se for deputado, false se não.
 	 */
-	public boolean isDeputado(String dni){
+	public boolean eDeputado(String dni){
 		if(this.pessoas.get(dni).getDeputado() == null) {
 			return false;
 		}else {

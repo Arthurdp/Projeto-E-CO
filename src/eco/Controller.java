@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 /**
  * classe responsavel por controlar todo o sistema. controla o cadastro de pessoas,
  * deputados e partidos, e as representacoes de pessoas e partidos cadastrados.
@@ -14,11 +15,19 @@ public class Controller {
 	private ControllerPessoa controllerPessoa;
 	private List<String> partidos;
 	private HashMap<String, Comissao> comissoes = new HashMap<>();
+	private Map<String, ProjetoDeLei> projetosDeLei;
+	private int contadorPL;
+	private int contadorPLP;
+	private int contadorPEC;
 	
 	public Controller() {
 		this.controllerPessoa = new ControllerPessoa();
 		this.partidos = new ArrayList<>();
 		this.validador = new Validador();
+		this.projetosDeLei = new HashMap<>();
+		this.contadorPL = 1;
+		this.contadorPLP = 1;
+		this.contadorPEC = 1;
 		
 	}
 	
@@ -102,9 +111,9 @@ public class Controller {
 		String[] politics = politicos.split(",");
 		for(String dni : politics) {
 			validador.validaDni(dni, "Erro ao cadastrar comissao: dni invalido");
-			if(!controllerPessoa.contains(dni)) 
+			if(!controllerPessoa.contem(dni)) 
 				throw new NullPointerException("Erro ao cadastrar comissao: pessoa inexistente");
-			if(!controllerPessoa.isDeputado(dni))
+			if(!controllerPessoa.eDeputado(dni))
 				throw new IllegalArgumentException("Erro ao cadastrar comissao: pessoa nao eh deputado");
 		}
 		Comissao nova = new Comissao(tema, politicos);
@@ -112,7 +121,20 @@ public class Controller {
 		
 	}
 	
+	public void cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo) {
+		this.projetosDeLei.put("PL " + this.contadorPL + "/" + ano, new PL(dni, ano, this.contadorPL, ementa, interesses, url, conclusivo));
+		this.contadorPL++;
+	}
 	
+	public void cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos) {
+		this.projetosDeLei.put("PLP " + this.contadorPLP + "/" + ano, new PLP(dni, ano, this.contadorPLP, ementa, interesses, url, artigos));
+		this.contadorPLP++;
+	}
+	
+	public void cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos) {
+		this.projetosDeLei.put("PEC " + this.contadorPEC + "/" + ano, new PEC(dni, ano, this.contadorPEC, ementa, interesses, url, artigos));
+		this.contadorPEC++;
+	}
 	
 	
 	
