@@ -7,4 +7,8 @@ public class PLP extends ProjetosConstitucionais{
 		super(autor, ano, "PLP " + numeracao + "/" + ano, ementa, interessesRelacionados, endereçoDoDocumento, artigos);
 	}
 	
+	@Override
+	public String toString() {
+		return "Projeto de Lei Complementar - " + getCodigo() + " - " + getAutor()  + " - " + getEmenta() + " - " + getArtigos() + " - " + getSituaçãoAtual();
+	}
 }
