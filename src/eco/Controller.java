@@ -136,7 +136,9 @@ public class Controller {
 		this.contadorPEC++;
 	}
 	
-	
+	public String exibirProjeto(String codigo) {
+		return this.projetosDeLei.get(codigo).toString();
+	}
 	
 	
 	

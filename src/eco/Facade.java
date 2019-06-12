@@ -48,6 +48,22 @@ public class Facade {
 		this.controller.cadastrarComissao(tema, politicos);
 	}
 	
+	public void cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo) {
+		controller.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
+	}
+	
+	public void cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos) {
+		this.controller.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
+	}
+	
+	public void cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos) {
+		this.controller.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
+	}
+	
+	public String exibirProjeto(String codigo) {
+		return this.controller.exibirProjeto(codigo);
+	}
+	
 	public void salvarSistem() {
 		
 	}

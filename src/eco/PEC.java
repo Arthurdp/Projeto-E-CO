@@ -9,7 +9,7 @@ public class PEC extends ProjetosConstitucionais{
 
 	@Override
 	public String toString() {
-		return "Projeto de Emenda Constitucional - " + getCodigo() + " - " + getAutor()  + " - " + getEmenta() + " - " + getArtigos() + " - " + getSituaçãoAtual();
+		return "Projeto de Emenda Constitucional - " + getCodigo() + " - " + getAutor()  + " - " + getEmenta() + " - " + getArtigos().replace(",", ", ") + " - " + getSituaçãoAtual();
 	}
 	
 }

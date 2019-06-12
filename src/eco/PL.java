@@ -11,7 +11,7 @@ public class PL extends ProjetoDeLei{
 
 	@Override
 	public String toString() {
-		return "Projeto de Lei - " + getCodigo() + " - " + getAutor()  + " - " + getEmenta() + " - " + this.tramitacaoConclusiava + " - " + getSituaçãoAtual();
+		return (this.tramitacaoConclusiava == true) ? "Projeto de Lei - " + getCodigo() + " - " + getAutor()  + " - " + getEmenta() + " - Conclusiva - " + getSituaçãoAtual() : "Projeto de Lei - " + getCodigo() + " - " + getAutor()  + " - " + getEmenta() + " - " + getSituaçãoAtual();
 	}
 	
 	
