@@ -11,7 +11,7 @@ public class ControllerPessoa {
 	/**
 	 * mapa de pessoas cadastradas.
 	 */
-	private HashMap<String, Pessoa> pessoas;
+	private static HashMap<String, Pessoa> pessoas;
 
 	/**
 	 * inicia o mapa de pessoas.
@@ -29,7 +29,7 @@ public class ControllerPessoa {
 	 */
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {
 		Pessoa nova = new Pessoa(nome, dni, estado, interesses);
-		if(this.pessoas.containsKey(dni))
+		if(pessoas.containsKey(dni))
 			throw new IllegalArgumentException("Erro ao cadastrar pessoa: dni ja cadastrado");
 		pessoas.put(dni, nova);
 		
@@ -44,7 +44,7 @@ public class ControllerPessoa {
 	 */
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses, String partido) {
 		Pessoa nova = new Pessoa(nome, dni, estado, interesses, partido);
-		if(this.pessoas.containsKey(dni))
+		if(pessoas.containsKey(dni))
 			throw new IllegalArgumentException("Erro ao cadastrar pessoa: dni ja cadastrado");
 		pessoas.put(dni, nova);
 	}
@@ -75,6 +75,8 @@ public class ControllerPessoa {
 	 * @return a representacao textual de uma pessoa cadastrada.
 	 */
 	public String exibirPessoa(String dni) {
+			validador.validaEntrada(dni,"Erro ao exibir pessoa: dni nao pode ser vazio ou nulo");
+			validador.validaDni(dni, "Erro ao exibir pessoa: dni invalido");
 		if (!pessoas.containsKey(dni)) {
 			throw new IllegalArgumentException("Erro ao exibir pessoa: pessoa nao encontrada");
 		}
@@ -85,8 +87,8 @@ public class ControllerPessoa {
 	 * @param dni dni da pessoa
 	 * @return true se existe, false se não existe
 	 */
-	public boolean contem(String dni) {
-		if(this.pessoas.containsKey(dni)) {
+	public static boolean contem(String dni) {
+		if(pessoas.containsKey(dni)) {
 			return true;
 		}else {
 			return false;
@@ -97,8 +99,8 @@ public class ControllerPessoa {
 	 * @param dni dni da pessoa
 	 * @return true se for deputado, false se não.
 	 */
-	public boolean eDeputado(String dni){
-		if(this.pessoas.get(dni).getDeputado() == null) {
+	public static boolean eDeputado(String dni){
+		if(pessoas.get(dni).getDeputado() == null) {
 			return false;
 		}else {
 			return true;

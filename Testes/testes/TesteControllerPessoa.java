@@ -23,7 +23,7 @@ class TesteControllerPessoa {
 	void testExibirPessoa() {
 		assertThrows(IllegalArgumentException.class, ()-> controllerPessoa.exibirPessoa("0000000000-0"), "Erro ao exibir pessoa: pessoa nao encontrada");
 		assertThrows(IllegalArgumentException.class, ()-> controllerPessoa.exibirPessoa(""), "Erro ao exibir pessoa: dni nao pode ser vazio ou nulo");
-		assertThrows(IllegalArgumentException.class, ()-> controllerPessoa.exibirPessoa(null), "Erro ao exibir pessoa: dni nao pode ser vazio ou nulo");
+		assertThrows(NullPointerException.class, ()-> controllerPessoa.exibirPessoa(null), "Erro ao exibir pessoa: dni nao pode ser vazio ou nulo");
 		assertThrows(IllegalArgumentException.class, ()-> controllerPessoa.exibirPessoa("0000000000,0"), "Erro ao exibir pessoa: pessoa nao encontrada");
 		
 	}	
