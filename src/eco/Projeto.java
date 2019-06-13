@@ -1,6 +1,6 @@
 package eco;
 
-abstract class ProjetoDeLei{
+abstract class Projeto{
 	private String autor;
 	private int ano;
 	private String codigo;
@@ -9,7 +9,7 @@ abstract class ProjetoDeLei{
 	private String situaçãoAtual;
 	private String endereçoDoDocumento;
 	
-	public ProjetoDeLei(String autor, int ano, String codigo, String ementa, String interessesRelacionados, String endereçoDoDocumento) {
+	public Projeto(String autor, int ano, String codigo, String ementa, String interessesRelacionados, String endereçoDoDocumento) {
 		super();
 		this.autor = autor;
 		this.ano = ano;

@@ -15,7 +15,7 @@ public class Controller {
 	private ControllerPessoa controllerPessoa;
 	private List<String> partidos;
 	private HashMap<String, Comissao> comissoes = new HashMap<>();
-	private Map<String, ProjetoDeLei> projetosDeLei;
+	private Map<String, Projeto> projetos;
 	private int contadorPL;
 	private int contadorPLP;
 	private int contadorPEC;
@@ -24,7 +24,7 @@ public class Controller {
 		this.controllerPessoa = new ControllerPessoa();
 		this.partidos = new ArrayList<>();
 		this.validador = new Validador();
-		this.projetosDeLei = new HashMap<>();
+		this.projetos = new HashMap<>();
 		this.contadorPL = 1;
 		this.contadorPLP = 1;
 		this.contadorPEC = 1;
@@ -135,7 +135,7 @@ public class Controller {
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
 		if(ano > 2019)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano posterior ao ano atual");
-		this.projetosDeLei.put("PL " + this.contadorPL + "/" + ano, new PL(dni, ano, this.contadorPL, ementa, interesses, url, conclusivo));
+		this.projetos.put("PL " + this.contadorPL + "/" + ano, new PL(dni, ano, this.contadorPL, ementa, interesses, url, conclusivo));
 		this.contadorPL++;
 	}
 	
@@ -154,7 +154,7 @@ public class Controller {
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
 		if(ano > 2019)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano posterior ao ano atual");
-		this.projetosDeLei.put("PLP " + this.contadorPLP + "/" + ano, new PLP(dni, ano, this.contadorPLP, ementa, interesses, url, artigos));
+		this.projetos.put("PLP " + this.contadorPLP + "/" + ano, new PLP(dni, ano, this.contadorPLP, ementa, interesses, url, artigos));
 		this.contadorPLP++;
 	}
 	
@@ -173,12 +173,12 @@ public class Controller {
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
 		if(ano > 2019)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano posterior ao ano atual");
-		this.projetosDeLei.put("PEC " + this.contadorPEC + "/" + ano, new PEC(dni, ano, this.contadorPEC, ementa, interesses, url, artigos));
+		this.projetos.put("PEC " + this.contadorPEC + "/" + ano, new PEC(dni, ano, this.contadorPEC, ementa, interesses, url, artigos));
 		this.contadorPEC++;
 	}
 	
 	public String exibirProjeto(String codigo) {
-		return this.projetosDeLei.get(codigo).toString();
+		return this.projetos.get(codigo).toString();
 	}
 	
 	

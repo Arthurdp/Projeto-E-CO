@@ -1,6 +1,6 @@
 package eco;
 
-public class PL extends ProjetoDeLei{
+public class PL extends Projeto{
 	private boolean tramitacaoConclusiava;
 
 	public PL(String autor, int ano, int numeracao, String ementa, String interessesRelacionados,

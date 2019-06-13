@@ -1,6 +1,6 @@
 package eco;
 
-abstract class ProjetosConstitucionais extends ProjetoDeLei {
+abstract class ProjetosConstitucionais extends Projeto {
 	private String artigos;
 
 	public ProjetosConstitucionais(String autor, int ano, String codigo, String ementa, String interessesRelacionados,
