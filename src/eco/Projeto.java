@@ -1,7 +1,7 @@
 package eco;
 
 abstract class Projeto{
-	private String autor;
+	private String dni;
 	private int ano;
 	private String codigo;
 	private String ementa;
@@ -9,9 +9,8 @@ abstract class Projeto{
 	private String situaçãoAtual;
 	private String endereçoDoDocumento;
 	
-	public Projeto(String autor, int ano, String codigo, String ementa, String interessesRelacionados, String endereçoDoDocumento) {
-		super();
-		this.autor = autor;
+	public Projeto(String dni, int ano, String codigo, String ementa, String interessesRelacionados, String endereçoDoDocumento) {
+		this.dni = dni;
 		this.ano = ano;
 		this.codigo = codigo;
 		this.ementa = ementa;
@@ -21,7 +20,7 @@ abstract class Projeto{
 	}
 
 	public String getAutor() {
-		return autor;
+		return dni;
 	}
 
 	public String getCodigo() {
