@@ -11,13 +11,14 @@ import java.util.List;
  *
  */
 public class Controller {
+	
 	private Validador validador;
 	private List<String> partidos;
-	private HashMap<String, Comissao> comissoes = new HashMap<>();
+	private HashMap<String, Comissao> comissoes; 
 	
 	
 	public Controller() {
-		new ControllerPessoa();
+		this.comissoes = new HashMap<>();
 		this.partidos = new ArrayList<>();
 		this.validador = new Validador();
 	}
