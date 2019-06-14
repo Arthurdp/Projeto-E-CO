@@ -3,9 +3,9 @@ package eco;
 public class PL extends Projeto{
 	private boolean tramitacaoConclusiva;
 
-	public PL(String autor, int ano, int numeracao, String ementa, String interessesRelacionados,
-			String enderecoDoDocumento, boolean conclusivo) {
-		super(autor, ano, "PL " + numeracao + "/" + ano, ementa, interessesRelacionados, enderecoDoDocumento);
+	public PL(String dni, int ano, int numeracao, String ementa, String interesses,
+			String url, boolean conclusivo) {
+		super(dni, ano, "PL " + numeracao + "/" + ano, ementa, interesses, url);
 		this.tramitacaoConclusiva = conclusivo;
 	}
 

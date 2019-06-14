@@ -69,5 +69,13 @@ public class Controller {
 		comissoes.put(tema, nova);
 		
 	}
+
+	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
+		switch (statusGovernista) {
+		case ("GOVERNISTA"):
+			
+		}
+		return false;
+	}
 	
 }
