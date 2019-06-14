@@ -68,6 +68,9 @@ public class Facade {
 		return this.controllerProjeto.exibirProjeto(codigo);
 	}
 	
+	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
+		return this.controller.votarComissao(codigo, statusGovernista, proximoLocal);
+	}
 	public void salvarSistem() {
 		
 	}
