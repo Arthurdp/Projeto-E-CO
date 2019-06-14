@@ -3,9 +3,9 @@ package eco;
 abstract class ProjetosConstitucionais extends Projeto {
 	private String artigos;
 
-	public ProjetosConstitucionais(String autor, int ano, String codigo, String ementa, String interessesRelacionados,
-			String endereçoDoDocumento, String artigos) {
-		super(autor, ano, codigo, ementa, interessesRelacionados, endereçoDoDocumento);
+	public ProjetosConstitucionais(String dni, int ano, String codigo, String ementa, String interesses,
+			String url, String artigos) {
+		super(dni, ano, codigo, ementa, interesses, url);
 		this.artigos = artigos;
 	}
 

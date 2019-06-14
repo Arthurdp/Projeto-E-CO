@@ -1,26 +1,26 @@
 package eco;
 
 abstract class Projeto{
-	private String autor;
+	private String dni;
 	private int ano;
 	private String codigo;
 	private String ementa;
-	private String interessesRelacionados;
+	private String interesses;
 	private String situacaoAtual;
-	private String enderecoDoDocumento;
+	private String url;
 	
-	public Projeto(String autor, int ano, String codigo, String ementa, String interessesRelacionados, String enderecoDoDocumento) {
-		this.autor = autor;
+	public Projeto(String dni, int ano, String codigo, String ementa, String interesses, String url) {
+		this.dni = dni;
 		this.ano = ano;
 		this.codigo = codigo;
 		this.ementa = ementa;
-		this.interessesRelacionados = interessesRelacionados;
+		this.interesses = interesses;
 		this.situacaoAtual = "EM VOTACAO (CCJC)";
-		this.enderecoDoDocumento = enderecoDoDocumento;
+		this.url = url;
 	}
 
-	public String getAutor() {
-		return autor;
+	public String getDni() {
+		return dni;
 	}
 
 	public String getCodigo() {
