@@ -6,7 +6,9 @@ import java.util.HashMap;
  * controla o cadastro de pessoas e deputados.
  */
 public class ControllerPessoa {
-	
+	/**
+	 * inicia um novo validador;
+	 */
 	private Validador validador = new Validador();
 	/**
 	 * mapa de pessoas cadastradas.
