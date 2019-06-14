@@ -1,7 +1,7 @@
 package eco;
 
 abstract class Projeto{
-	private String dni;
+	private String autor;
 	private int ano;
 	private String codigo;
 	private String ementa;
@@ -9,8 +9,8 @@ abstract class Projeto{
 	private String situacaoAtual;
 	private String url;
 	
-	public Projeto(String dni, int ano, String codigo, String ementa, String interesses, String url) {
-		this.dni = dni;
+	public Projeto(String autor, int ano, String codigo, String ementa, String interesses, String url) {
+		this.autor = autor;
 		this.ano = ano;
 		this.codigo = codigo;
 		this.ementa = ementa;
@@ -18,9 +18,9 @@ abstract class Projeto{
 		this.situacaoAtual = "EM VOTACAO (CCJC)";
 		this.url = url;
 	}
-
-	public String getDni() {
-		return dni;
+	
+	public String getAutor() {
+		return autor;
 	}
 
 	public String getCodigo() {
@@ -31,7 +31,7 @@ abstract class Projeto{
 		return ementa;
 	}
 
-	public String getSituaçãoAtual() {
+	public String getSituacaoAtual() {
 		return situacaoAtual;
 	}
 	

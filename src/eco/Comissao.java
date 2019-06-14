@@ -4,7 +4,7 @@ public class Comissao {
 	
 	private Validador validador = new Validador();
 	/**
-	 * tema da comissão
+	 * tema da comissao
 	 */
 	private String tema;
 	/**
@@ -14,7 +14,7 @@ public class Comissao {
 	
 	/**
 	 * Constroi uma nova comissao
-	 * @param tema tema da comissão
+	 * @param tema tema da comissao
 	 * @param politicos string contendo os dni dos politicos participantes da comissao
 	 */
 	public Comissao(String tema, String politicos) {

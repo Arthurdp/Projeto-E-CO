@@ -6,21 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * classe responsavel por controlar partidos e comissoes, e as representacoes de partidos cadastrados.
+ * classe responsavel por controlar todo o sistema. controla o cadastro de pessoas,
+ * deputados e partidos, e as representacoes de pessoas e partidos cadastrados.
  *
  */
 public class Controller {
-	/**
-	 * inicia um novo validador;
-	 */
 	private Validador validador;
-	/**
-	 * Lista contendo todos os partidos cadastrados.
-	 */
 	private List<String> partidos;
-	/**
-	 * mapa contendo todas as comissoes cadastradas
-	 */
 	private HashMap<String, Comissao> comissoes = new HashMap<>();
 	
 	
@@ -77,6 +69,5 @@ public class Controller {
 		comissoes.put(tema, nova);
 		
 	}
-	
 	
 }
