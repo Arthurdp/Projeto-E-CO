@@ -33,7 +33,9 @@ public class ControllerProjeto {
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
 		if(ano > 2019)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano posterior ao ano atual");
-		this.projetos.put("PL " + this.contadorPL + "/" + ano, new PL(dni, ano, this.contadorPL, ementa, interesses, url, conclusivo));
+		String key = "PL " + this.contadorPL + "/" + ano;
+		Projeto novoProjeto = new PL(dni, ano, this.contadorPL, ementa, interesses, url, conclusivo);
+		this.projetos.put(key,novoProjeto );
 		this.contadorPL++;
 	}
 	
@@ -52,7 +54,9 @@ public class ControllerProjeto {
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
 		if(ano > 2019)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano posterior ao ano atual");
-		this.projetos.put("PLP " + this.contadorPLP + "/" + ano, new PLP(dni, ano, this.contadorPLP, ementa, interesses, url, artigos));
+		String key = "PLP " + this.contadorPLP + "/" + ano;
+		Projeto novoProjeto = new PLP(dni, ano, this.contadorPLP, ementa, interesses, url, artigos);
+		this.projetos.put(key, novoProjeto);
 		this.contadorPLP++;
 	}
 	
@@ -71,7 +75,9 @@ public class ControllerProjeto {
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
 		if(ano > 2019)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano posterior ao ano atual");
-		this.projetos.put("PEC " + this.contadorPEC + "/" + ano, new PEC(dni, ano, this.contadorPEC, ementa, interesses, url, artigos));
+		String key = "PEC " + this.contadorPEC + "/" + ano;
+		Projeto novoProjeto = new PEC(dni, ano, this.contadorPEC, ementa, interesses, url, artigos);
+		this.projetos.put(key, novoProjeto);
 		this.contadorPEC++;
 	}
 	
