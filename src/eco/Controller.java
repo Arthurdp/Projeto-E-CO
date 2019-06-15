@@ -104,11 +104,11 @@ public class Controller {
 		return false;
 	}
 	
-	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
+	public int contaVotos(String codigo, String statusGovernista, String politicos) {
 		int votosAprovar = 0;
-		int votosReprovar = 0;
-		String[] presents = presentes.split(",");
-		for (String dni : presents){
+
+		String politcs[]  = politicos.split(",");
+		for (String dni : politcs){
 			validador.validaDni(dni, "Erro ao votar proposta: dni invalido");
 			if(!ControllerPessoa.contem(dni)) 
 				throw new NullPointerException("Erro ao votar proposta: pessoa inexistente");
@@ -117,16 +117,17 @@ public class Controller {
 
 			if(statusGovernista.equals("GOVERNISTA") && eDaBase(dni))
 				votosAprovar += 1;
-			if(statusGovernista.equals("OPOSICAO") && eDaBase(dni))
-				votosReprovar += 1;
+			if(statusGovernista.equals("OPOSICAO") && !eDaBase(dni))
+				votosAprovar += 1;
 			if(statusGovernista.equals("LIVRE")){
 				if(interessesComuns(cPessoa.getPessoa(dni).getInteresses(), cProjeto.getProjeto(codigo).getInteresses()))
 					votosAprovar += 1;
-				else
-					votosReprovar += 1;
 			}
-						
-			}
+		}
+		return votosAprovar;
+	}
+	
+	public boolean votarPlenario(String codigo, String statusGovernista, String politicos) {	
 		if (votosAprovar >= (presents.length / 2) + 1)
 			return true;
 		else
