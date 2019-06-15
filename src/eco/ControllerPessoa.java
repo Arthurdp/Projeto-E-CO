@@ -87,19 +87,18 @@ public class ControllerPessoa {
 	/**
 	 * Informa se uma pessoa existe no mapa de pessoas
 	 * @param dni dni da pessoa
-	 * @return true se existe, false se não existe
+	 * @return true se existe, false se nao existe
 	 */
 	public static boolean contem(String dni) {
-		if(pessoas.containsKey(dni)) {
+		if(pessoas.containsKey(dni)) 
 			return true;
-		}else {
-			return false;
-		}
+		
+		return false;
 	}
 	/**
 	 * Informa se uma pessoa eh um deputado
 	 * @param dni dni da pessoa
-	 * @return true se for deputado, false se não.
+	 * @return true se for deputado, false se nao.
 	 */
 	public static boolean eDeputado(String dni){
 		if(pessoas.get(dni).getDeputado() == null) {
@@ -109,5 +108,8 @@ public class ControllerPessoa {
 		}
 		
 	}
-			
+	public Pessoa getPessoa(String dni) {
+		return pessoas.get(dni);
+	}
+	
 }

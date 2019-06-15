@@ -142,5 +142,9 @@ public class Pessoa {
 	public Deputado getDeputado() {
 		return deputado;
 	}
+	
+	public String getInteresses() {
+		return this.interesses;
+	}
 }
 

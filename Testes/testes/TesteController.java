@@ -6,12 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import eco.Controller;
 import eco.ControllerPessoa;
+import eco.ControllerProjeto;
 
 class TesteController {
 	
 	
 	Controller controller = new Controller();
 	ControllerPessoa controllerPessoa= new ControllerPessoa();
+	ControllerProjeto controllerProjeto = new ControllerProjeto();
 	@Test
 	void testCadastrarPartido() {
 		assertThrows(IllegalArgumentException.class, ()-> controller.cadastrarPartido(" "),"Erro ao cadastrar partido: partido nao pode ser vazio ou nulo");
@@ -48,6 +50,25 @@ class TesteController {
 		assertThrows(NullPointerException.class, ()-> controller.cadastrarComissao("bonde3", "111111111-1,111111111-2,111111111-9"),"Erro ao cadastrar comissao: pessoa inexistente");
 		assertThrows(IllegalArgumentException.class, ()-> controller.cadastrarComissao("bonde4", "111111111-1,111111111-2,111111111-4"),"Erro ao cadastrar comissao: pessoa nao eh deputado");
 
+		
+	}
+	
+	@Test
+	void testVotarPlenario() {
+		controllerPessoa.cadastrarPessoa("Eu", "111111111-1", "PB", "desviar coisas", "PPP");
+		controllerPessoa.cadastrarPessoa("Tu", "111111111-2", "RJ", "Nenhum", "PPP");
+		controllerPessoa.cadastrarPessoa("nois", "111111111-3", "SP", "Nenhum", "PPP");
+		controllerPessoa.cadastrarPessoa("botanela", "111111111-4", "RN", "Nenhum", "PPL");
+		controllerPessoa.cadastraDeputado("111111111-1","03112012");
+		controllerPessoa.cadastraDeputado("111111111-2","12122012");
+		controllerPessoa.cadastraDeputado("111111111-3","05052005");
+		controllerPessoa.cadastraDeputado("111111111-4","02072006");
+		controller.cadastrarPartido("PPP");
+		controllerProjeto.cadastrarPL("111111111-1", 2001, "nada nada nada", "desviar coisas", "https://example.net/jogos%40aposta", true);
+		
+		boolean test = true;
+		boolean ver = controller.votarPlenario("PL 1/2001", "GOVERNISTA", "111111111-1,111111111-2,111111111-3,111111111-4");
+		assertEquals(test, ver);
 		
 	}
 

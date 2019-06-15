@@ -15,12 +15,16 @@ public class Controller {
 	private Validador validador;
 	private List<String> partidos;
 	private HashMap<String, Comissao> comissoes; 
+	private ControllerPessoa cPessoa;
+	private ControllerProjeto cProjeto;
 	
 	
 	public Controller() {
 		this.comissoes = new HashMap<>();
 		this.partidos = new ArrayList<>();
 		this.validador = new Validador();
+		this.cPessoa = new ControllerPessoa();
+		this.cProjeto = new ControllerProjeto();
 	}
 	
 	/**
@@ -79,4 +83,53 @@ public class Controller {
 		return false;
 	}
 	
+	public boolean interessesComuns(String interesses1, String interesses2) {
+		String[] i1 = interesses1.split(",");
+		String[] i2 = interesses2.split(",");
+		
+		for (String i : i1) {
+			for(String j : i2) {
+				if (i.equals(j))
+					return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean eDaBase(String dni) {
+		for (String p : this.partidos) {
+			if (cPessoa.getPessoa(dni).getPartido().equals(p))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
+		int votosAprovar = 0;
+		int votosReprovar = 0;
+		String[] presents = presentes.split(",");
+		for (String dni : presents){
+			validador.validaDni(dni, "Erro ao votar proposta: dni invalido");
+			if(!ControllerPessoa.contem(dni)) 
+				throw new NullPointerException("Erro ao votar proposta: pessoa inexistente");
+			if(!ControllerPessoa.eDeputado(dni))
+				throw new IllegalArgumentException("Erro ao votar proposta: pessoa nao eh deputado");
+
+			if(statusGovernista.equals("GOVERNISTA") && eDaBase(dni))
+				votosAprovar += 1;
+			if(statusGovernista.equals("OPOSICAO") && eDaBase(dni))
+				votosReprovar += 1;
+			if(statusGovernista.equals("LIVRE")){
+				if(interessesComuns(cPessoa.getPessoa(dni).getInteresses(), cProjeto.getProjeto(codigo).getInteresses()))
+					votosAprovar += 1;
+				else
+					votosReprovar += 1;
+			}
+						
+			}
+		if (votosAprovar >= (presents.length / 2) + 1)
+			return true;
+		else
+			return false;
+	}	
 }

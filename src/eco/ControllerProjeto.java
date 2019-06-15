@@ -127,7 +127,9 @@ public class ControllerProjeto {
 		return this.projetos.get(codigo).toString();
 	}
 	
-	
+	public Projeto getProjeto(String codigo) {
+		return this.projetos.get(codigo);
+	}
 	
 
 }

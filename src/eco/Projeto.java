@@ -35,5 +35,8 @@ abstract class Projeto{
 		return situacaoAtual;
 	}
 	
+	public String getInteresses() {
+		return interesses;
+	}
 	
 }
