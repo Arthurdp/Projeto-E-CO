@@ -128,7 +128,6 @@ public class Controller {
 	}
 	
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {	
-		
 		int votosAprovar = contaVotos(codigo, statusGovernista, presentes);
 		String presents[]  = presentes.split(",");
 		int deputados = 0;
@@ -142,13 +141,23 @@ public class Controller {
 			if (votosAprovar >= Math.floor((presents.length / 2) + 1))
 				return true;
 			
-		}else if(codigo.substring(0,3).equals("PLP")) {
-			if(votosAprovar  >= (deputados/ 2) + 1)
-				return true;
-	
-		}else if(codigo.substring(0,3).equals("PEC")) {
-			if(votosAprovar  >= (deputados * 5 / 3) + 1)
-				return true;
+		}else if (!ControllerProjeto.getProjeto(codigo).getTurno().equals("finalizado")) {
+				if (codigo.substring(0,3).equals("PLP")) {
+					if(ControllerProjeto.getProjeto(codigo).getTurno().equals("1o turno"))
+						ControllerProjeto.getProjeto(codigo).setTurno("2o turno");
+					else if(ControllerProjeto.getProjeto(codigo).getTurno().equals("2o turno"))
+						ControllerProjeto.getProjeto(codigo).setTurno("finalizado");
+					if(votosAprovar  >= (deputados/ 2) + 1)
+						return true;
+		
+			}else if(codigo.substring(0,3).equals("PEC")) {
+				if(ControllerProjeto.getProjeto(codigo).getTurno().equals("1o turno"))
+					ControllerProjeto.getProjeto(codigo).setTurno("2o turno");
+				else if(ControllerProjeto.getProjeto(codigo).getTurno().equals("2o turno"))
+					ControllerProjeto.getProjeto(codigo).setTurno("finalizado");
+				if(votosAprovar  >= (deputados * 5 / 3) + 1)
+					return true;
+		}
 		}		
 		return false;
 	}

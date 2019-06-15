@@ -15,6 +15,4 @@ public class PL extends Projeto{
 		return (this.tramitacaoConclusiva == true) ? "Projeto de Lei - " + getCodigo() + " - " + getAutor()  + " - " + getEmenta() + " - Conclusiva - " + 
 				getSituacaoAtual() : "Projeto de Lei - " + getCodigo() + " - " + getAutor()  + " - " + getEmenta() + " - " + getSituacaoAtual();
 	}
-	
-	
 }
