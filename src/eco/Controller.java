@@ -120,7 +120,7 @@ public class Controller {
 			if(statusGovernista.equals("OPOSICAO") && !eDaBase(dni))
 				votosAprovar += 1;
 			if(statusGovernista.equals("LIVRE")){
-				if(interessesComuns(cPessoa.getPessoa(dni).getInteresses(), cProjeto.getProjeto(codigo).getInteresses()))
+				if(interessesComuns(ControllerPessoa.getPessoa(dni).getInteresses(), ControllerProjeto.getProjeto(codigo).getInteresses()))
 					votosAprovar += 1;
 			}
 		}

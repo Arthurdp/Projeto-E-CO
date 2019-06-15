@@ -108,7 +108,7 @@ public class ControllerPessoa {
 		}
 		
 	}
-	public Pessoa getPessoa(String dni) {
+	public static Pessoa getPessoa(String dni) {
 		return pessoas.get(dni);
 	}
 

@@ -11,7 +11,7 @@ public class ControllerProjeto {
 	/**
 	 * Mapa contendo todos os projetos cadastrados.
 	 */
-	private Map<String, Projeto> projetos;
+	private static Map<String, Projeto> projetos;
 	/**
 	 * Contador de projetos de lei.
 	 */
@@ -26,7 +26,7 @@ public class ControllerProjeto {
 	private int contadorPEC;
 	
 	public ControllerProjeto(){
-		this.projetos = new HashMap<>();
+		projetos = new HashMap<>();
 		this.contadorPL = 1;
 		this.contadorPLP = 1;
 		this.contadorPEC = 1;
@@ -124,11 +124,11 @@ public class ControllerProjeto {
 	 * @return String com as informacoes do projeto de lei
 	 */
 	public String exibirProjeto(String codigo) {
-		return this.projetos.get(codigo).toString();
+		return projetos.get(codigo).toString();
 	}
 	
-	public Projeto getProjeto(String codigo) {
-		return this.projetos.get(codigo);
+	public static Projeto getProjeto(String codigo) {
+		return projetos.get(codigo);
 	}
 	
 

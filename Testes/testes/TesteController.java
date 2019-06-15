@@ -67,8 +67,12 @@ class TesteController {
 		controllerProjeto.cadastrarPL("111111111-1", 2001, "nada nada nada", "desviar coisas", "https://example.net/jogos%40aposta", true);
 		
 		boolean test = true;
-		boolean ver = controller.votarPlenario("PL 1/"+2001, "LIVRE", "111111111-1,111111111-2,111111111-3,111111111-4");
+		boolean ver = controller.votarPlenario("PL 1/2001", "LIVRE", "111111111-1,111111111-2,111111111-3,111111111-4");
+		boolean ver1 = controller.votarPlenario("PL 1/2001", "GOVERNISTA", "111111111-1,111111111-2,111111111-3,111111111-4");
+		boolean ver2 = controller.votarPlenario("PL 1/2001", "OPOSICAO", "111111111-1,111111111-2,111111111-3,111111111-4");
 		assertEquals(test, ver);
+		assertEquals(test, ver1);
+		assertEquals(!test, ver2);
 		
 	}
 
