@@ -16,6 +16,8 @@ public class PEC extends ProjetosConstitucionais{
 	public PEC(String dni, int ano, int numeracao, String ementa, String interesses,
 			String url, String artigos) {
 		super(dni, ano, "PEC " + numeracao + "/" + ano, ementa, interesses, url, artigos);
+		super.turno = "1o turno";
+		super.tipo = "PEC";
 	}
 
 	@Override

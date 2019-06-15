@@ -7,6 +7,7 @@ public class PL extends Projeto{
 			String url, boolean conclusivo) {
 		super(dni, ano, "PL " + numeracao + "/" + ano, ementa, interesses, url);
 		this.tramitacaoConclusiva = conclusivo;
+		super.tipo = "PL";
 	}
 
 	@Override

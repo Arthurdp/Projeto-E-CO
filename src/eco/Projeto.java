@@ -8,6 +8,8 @@ abstract class Projeto{
 	private String interesses;
 	private String situacaoAtual;
 	private String url;
+	protected String turno;
+	protected String tipo;
 	
 	public Projeto(String autor, int ano, String codigo, String ementa, String interesses, String url) {
 		this.autor = autor;
@@ -39,4 +41,15 @@ abstract class Projeto{
 		return interesses;
 	}
 	
+	public String getTurno() {
+		return this.turno;
+	}
+	
+	public void setTurno(String novoTurno) {
+		this.turno = novoTurno;
+	}
+	
+	public String getTipo() {
+		return this.tipo;
+	}
 }

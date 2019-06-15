@@ -16,6 +16,8 @@ public class PLP extends ProjetosConstitucionais{
 	public PLP(String dni, int ano, int numeracao, String ementa, String interesses,
 			String url, String artigos) {
 		super(dni, ano, "PLP " + numeracao + "/" + ano, ementa, interesses, url, artigos);
+		super.turno = "1o turno";
+		super.tipo = "PLP";
 	}
 	
 	@Override

@@ -111,5 +111,9 @@ public class ControllerPessoa {
 	public Pessoa getPessoa(String dni) {
 		return pessoas.get(dni);
 	}
+
+	public HashMap<String, Pessoa> getPessoas() {
+		return pessoas;
+	}
 	
 }

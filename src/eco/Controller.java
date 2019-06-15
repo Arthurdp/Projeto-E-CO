@@ -127,10 +127,30 @@ public class Controller {
 		return votosAprovar;
 	}
 	
-	public boolean votarPlenario(String codigo, String statusGovernista, String politicos) {	
-		if (votosAprovar >= (presents.length / 2) + 1)
-			return true;
-		else
-			return false;
-	}	
+	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {	
+		
+		int votosAprovar = contaVotos(codigo, statusGovernista, presentes);
+		String presents[]  = presentes.split(",");
+		int deputados = 0;
+		for(String i : cPessoa.getPessoas().keySet()) {
+			if(ControllerPessoa.eDeputado(i)) {
+				deputados += 1;
+			}
+		}
+		
+		if (codigo.substring(0,3).equals("PL ")) {
+			if (votosAprovar >= Math.floor((presents.length / 2) + 1))
+				return true;
+			
+		}else if(codigo.substring(0,3).equals("PLP")) {
+			if(votosAprovar  >= (deputados/ 2) + 1)
+				return true;
+	
+		}else if(codigo.substring(0,3).equals("PEC")) {
+			if(votosAprovar  >= (deputados * 5 / 3) + 1)
+				return true;
+		}		
+		return false;
+	}
 }
+

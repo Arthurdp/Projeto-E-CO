@@ -56,8 +56,8 @@ class TesteController {
 	@Test
 	void testVotarPlenario() {
 		controllerPessoa.cadastrarPessoa("Eu", "111111111-1", "PB", "desviar coisas", "PPP");
-		controllerPessoa.cadastrarPessoa("Tu", "111111111-2", "RJ", "Nenhum", "PPP");
-		controllerPessoa.cadastrarPessoa("nois", "111111111-3", "SP", "Nenhum", "PPP");
+		controllerPessoa.cadastrarPessoa("Tu", "111111111-2", "RJ", "desviar coisas", "PPP");
+		controllerPessoa.cadastrarPessoa("nois", "111111111-3", "SP", "desviar coisas", "PPP");
 		controllerPessoa.cadastrarPessoa("botanela", "111111111-4", "RN", "Nenhum", "PPL");
 		controllerPessoa.cadastraDeputado("111111111-1","03112012");
 		controllerPessoa.cadastraDeputado("111111111-2","12122012");
@@ -67,7 +67,7 @@ class TesteController {
 		controllerProjeto.cadastrarPL("111111111-1", 2001, "nada nada nada", "desviar coisas", "https://example.net/jogos%40aposta", true);
 		
 		boolean test = true;
-		boolean ver = controller.votarPlenario("PL 1/2001", "GOVERNISTA", "111111111-1,111111111-2,111111111-3,111111111-4");
+		boolean ver = controller.votarPlenario("PL 1/"+2001, "LIVRE", "111111111-1,111111111-2,111111111-3,111111111-4");
 		assertEquals(test, ver);
 		
 	}
