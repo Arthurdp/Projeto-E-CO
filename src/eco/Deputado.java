@@ -62,7 +62,7 @@ public class Deputado{
 	 * metodo que permite alterar a quantidade de leis aprovadas por um deputado.
 	 * @param leisAprovadas nova quantidade de leis aprovadas.
 	 */
-	public void setLeisAprovadas(int leisAprovadas) {
-		this.leisAprovadas = leisAprovadas;
+	public void aprovouUmaLei() {
+		this.leisAprovadas ++;
 	}
 }

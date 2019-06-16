@@ -68,6 +68,13 @@ abstract class Projeto{
 	public void setLocalAtual(String localAtual) {
 		this.localAtual = localAtual;
 	}
+
+	/**
+	 * @param situacaoAtual the situacaoAtual to set
+	 */
+	public void setSituacaoAtual(String situacaoAtual) {
+		this.situacaoAtual = situacaoAtual;
+	}
 	
 	
 }

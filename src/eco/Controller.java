@@ -343,16 +343,31 @@ public class Controller {
 	}
 	
 	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
-		if (comissoes.get(projetos.get(codigo).getLocalAtual()).getProjetosVotados().contains(codigo)) {
-			int votosAprovados = contaVotos(codigo, statusGovernista, comissoes.get("CCJC").getPoliticos());
-			String politicosCCJC[]  = comissoes.get("CCJC").getPoliticos().split(",");
-			if (votosAprovados >= politicosCCJC.length / 2 + 1) {
-				comissoes.get(projetos.get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
-				projetos.get(codigo).setLocalAtual(proximoLocal);
-				pessoas.get(projetos.get(codigo).getAutor()).getDeputado().setLeisAprovadas((pessoas.get(projetos.get(codigo).getAutor()).getDeputado().getLeisAprovadas()) + 1);
-				return true;				
-		} 
+		if (proximoLocal.equals("plenario"))
+			throw new IllegalArgumentException("");
+		if (comissoes.get(projetos.get(codigo).getLocalAtual()).getProjetosVotados().contains(codigo)) 
+			throw new IllegalArgumentException("");
+		if (projetos.get(codigo).getLocalAtual().equals("-")) 
+			throw new IllegalArgumentException("");
+		
+		
+		int votosAprovados = contaVotos(codigo, statusGovernista, comissoes.get(projetos.get(codigo).getLocalAtual()).getPoliticos());
+		String politicos[]  = comissoes.get(projetos.get(codigo).getLocalAtual()).getPoliticos().split(",");
+		if (votosAprovados >= politicos.length / 2 + 1) {
+			comissoes.get(projetos.get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+			projetos.get(codigo).setLocalAtual(proximoLocal);
+			if (proximoLocal.equals("-")) {
+				projetos.get(codigo).setSituacaoAtual("concluido");
+				pessoas.get(projetos.get(codigo).getAutor()).getDeputado().aprovouUmaLei();
+				return true;
+			}
+			projetos.get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+			return true;
+			
 		}
+		projetos.get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+		comissoes.get(projetos.get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+		projetos.get(codigo).setLocalAtual(proximoLocal);
 		return false;
 	}
 }
