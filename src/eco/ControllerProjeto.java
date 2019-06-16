@@ -8,12 +8,4 @@ public class ControllerProjeto {
 	public ControllerProjeto(){
 		
 	}
-	
-	
-	
-	//public static Projeto getProjeto(String codigo) {
-		//return projetos.get(codigo);
-	//}
-	
-
 }
