@@ -14,7 +14,7 @@ public class Comissao {
 	 * string contendo os dni dos politicos participantes da comissao
 	 */
 	private String politicos;
-	private static Set<String> projetosVotados;
+	private Set<String> projetosVotados;
 	/**
 	 * Constroi uma nova comissao
 	 * @param tema tema da comissao
@@ -25,7 +25,7 @@ public class Comissao {
 		validador.validaEntrada(politicos, "Erro ao cadastrar comissao: lista de politicos nao pode ser vazio ou nulo");
 		this.tema = tema;
 		this.politicos = politicos;
-		projetosVotados = new HashSet<>();
+		this.projetosVotados = new HashSet<>();
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public class Comissao {
 	/**
 	 * @return the projetosVotados
 	 */
-	public static Set<String> getProjetosVotados() {
+	public Set<String> getProjetosVotados() {
 		return projetosVotados;
 	}
 	
