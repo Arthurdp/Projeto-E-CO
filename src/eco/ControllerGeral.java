@@ -39,18 +39,71 @@ public class ControllerGeral {
 	}
 	
 	public void cadastrarComissao(String tema, String politicos) {
+		validador.validaEntrada(tema, "Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo");
+		validador.validaEntrada(politicos, "Erro ao cadastrar comissao: lista de politicos nao pode ser vazio ou nulo");
+		if(controller.getComissoes().containsKey(tema))
+			throw new IllegalArgumentException("Erro ao cadastrar comissao: tema existente");
+		String[] politics = politicos.split(",");
+		for(String dni : politics) {
+			validador.validaDni(dni, "Erro ao cadastrar comissao: dni invalido");
+			if(!controllerPessoa.getPessoas().containsKey(dni)) 
+				throw new NullPointerException("Erro ao cadastrar comissao: pessoa inexistente");
+			if(controllerPessoa.getPessoas().get(dni).getDeputado() == null)
+				throw new IllegalArgumentException("Erro ao cadastrar comissao: pessoa nao eh deputado");
+		}
 		this.controller.cadastrarComissao(tema, politicos);
 	}
 	
 	public void cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo) {
+		validador.validaEntrada(dni, "Erro ao cadastrar projeto: autor nao pode ser vazio ou nulo");
+		validador.validaEntrada(ementa, "Erro ao cadastrar projeto: ementa nao pode ser vazia ou nula");
+		validador.validaEntrada(interesses, "Erro ao cadastrar projeto: interesse nao pode ser vazio ou nulo");
+		validador.validaEntrada(url, "Erro ao cadastrar projeto: url nao pode ser vazio ou nulo");
+		validador.validaDni(dni, "Erro ao cadastrar projeto: dni invalido");
+		if(!controllerPessoa.getPessoas().containsKey(dni)) 
+			throw new NullPointerException("Erro ao cadastrar projeto: pessoa inexistente");
+		if(controllerPessoa.getPessoas().get(dni).getDeputado() == null)
+			throw new IllegalArgumentException("Erro ao cadastrar projeto: pessoa nao eh deputado");
+		if(ano < 1988)
+			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
+		if(ano > 2019)
+			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano posterior ao ano atual");
 		controllerProjeto.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
 	}
 	
 	public void cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos) {
+		validador.validaEntrada(dni, "Erro ao cadastrar projeto: autor nao pode ser vazio ou nulo");
+		validador.validaEntrada(ementa, "Erro ao cadastrar projeto: ementa nao pode ser vazia ou nula");
+		validador.validaEntrada(interesses, "Erro ao cadastrar projeto: interesse nao pode ser vazio ou nulo");
+		validador.validaEntrada(url, "Erro ao cadastrar projeto: url nao pode ser vazio ou nulo");
+		validador.validaEntrada(artigos, "Erro ao cadastrar projeto: artigo nao pode ser vazio ou nulo");
+		validador.validaDni(dni, "Erro ao cadastrar projeto: dni invalido");
+		if(!controllerPessoa.getPessoas().containsKey(dni)) 
+			throw new NullPointerException("Erro ao cadastrar projeto: pessoa inexistente");
+		if(controllerPessoa.getPessoas().get(dni).getDeputado() == null)
+			throw new IllegalArgumentException("Erro ao cadastrar projeto: pessoa nao eh deputado");
+		if(ano < 1988)
+			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
+		if(ano > 2019)
+			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano posterior ao ano atual");
 		this.controllerProjeto.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
 	}
 	
 	public void cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos) {
+		validador.validaEntrada(dni, "Erro ao cadastrar projeto: autor nao pode ser vazio ou nulo");
+		validador.validaEntrada(ementa, "Erro ao cadastrar projeto: ementa nao pode ser vazia ou nula");
+		validador.validaEntrada(interesses, "Erro ao cadastrar projeto: interesse nao pode ser vazio ou nulo");
+		validador.validaEntrada(url, "Erro ao cadastrar projeto: url nao pode ser vazio ou nulo");
+		validador.validaEntrada(artigos, "Erro ao cadastrar projeto: artigo nao pode ser vazio ou nulo");
+		validador.validaDni(dni, "Erro ao cadastrar projeto: dni invalido");
+		if(!controllerPessoa.getPessoas().containsKey(dni))
+			throw new NullPointerException("Erro ao cadastrar projeto: pessoa inexistente");
+		if(controllerPessoa.getPessoas().get(dni).getDeputado() == null)
+			throw new IllegalArgumentException("Erro ao cadastrar projeto: pessoa nao eh deputado");
+		if(ano < 1988)
+			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
+		if(ano > 2019)
+			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano posterior ao ano atual");
 		this.controllerProjeto.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
 	}
 	
@@ -72,7 +125,7 @@ public class ControllerGeral {
 	}
 	
 	public boolean eDaBase(String dni) {
-		for (String p : controller.getPartidos) {
+		for (String p : controller.getPartidos()) {
 			if (controllerPessoa.getPessoas().get(dni).getPartido().equals(p))
 				return true;
 		}
@@ -138,16 +191,31 @@ public class ControllerGeral {
 	}
 	
 	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
-		if (controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().contains(codigo)) {
-			int votosAprovados = contaVotos(codigo, statusGovernista, controller.getComissoes().get("CCJC").getPoliticos());
-			String politicosCCJC[]  = controller.getComissoes().get("CCJC").getPoliticos().split(",");
-			if (votosAprovados >= politicosCCJC.length / 2 + 1) {
-				controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
-				controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
-				controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().setLeisAprovadas((controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().getLeisAprovadas()) + 1);
-				return true;				
-		} 
+		if (proximoLocal.equals("plenario"))
+			throw new IllegalArgumentException("");
+		if (controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().contains(codigo)) 
+			throw new IllegalArgumentException("");
+		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) 
+			throw new IllegalArgumentException("");
+		
+		
+		int votosAprovados = contaVotos(codigo, statusGovernista, controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getPoliticos());
+		String politicos[]  = controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getPoliticos().split(",");
+		if (votosAprovados >= politicos.length / 2 + 1) {
+			controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+			controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+			if (proximoLocal.equals("-")) {
+				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("concluido");
+				controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
+				return true;
+			}
+			controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+			return true;
+			
 		}
+		controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+		controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+		controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
 		return false;
 	}
 

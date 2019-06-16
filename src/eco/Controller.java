@@ -57,6 +57,14 @@ public class Controller {
 		
 	}
 	
+	public HashMap<String, Comissao> getComissoes() {
+		return comissoes;
+	}
+
+	public List<String> getPartidos() {
+		return partidos;
+	}
+
 	/**
 	 * cadastra uma nova pessoa sem partido no sistema, adicionando um objeto do tipo pessoa no mapa de pessoas.
 	 * @param nome nome da pessoa que sera adicionada.
@@ -245,19 +253,6 @@ public class Controller {
 	 * @param politicos string contendo os dni dos politicos participantes da comissao
 	 */
 	public void cadastrarComissao(String tema, String politicos){
-		
-		validador.validaEntrada(tema, "Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo");
-		validador.validaEntrada(politicos, "Erro ao cadastrar comissao: lista de politicos nao pode ser vazio ou nulo");
-		if(comissoes.containsKey(tema))
-			throw new IllegalArgumentException("Erro ao cadastrar comissao: tema existente");
-		String[] politics = politicos.split(",");
-		for(String dni : politics) {
-			validador.validaDni(dni, "Erro ao cadastrar comissao: dni invalido");
-			if(!pessoas.containsKey(dni)) 
-				throw new NullPointerException("Erro ao cadastrar comissao: pessoa inexistente");
-			if(pessoas.get(dni).getDeputado() == null)
-				throw new IllegalArgumentException("Erro ao cadastrar comissao: pessoa nao eh deputado");
-		}
 		Comissao nova = new Comissao(tema, politicos);
 		comissoes.put(tema, nova);
 		
