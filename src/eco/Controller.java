@@ -14,13 +14,13 @@ public class Controller {
 	
 	private Validador validador;
 	private List<String> partidos;
-	private HashMap<String, Comissao> comissoes; 
+	private static HashMap<String, Comissao> comissoes; 
 	private ControllerPessoa cPessoa;
 	private ControllerProjeto cProjeto;
 	
 	
 	public Controller() {
-		this.comissoes = new HashMap<>();
+		comissoes = new HashMap<>();
 		this.partidos = new ArrayList<>();
 		this.validador = new Validador();
 		this.cPessoa = new ControllerPessoa();
@@ -74,14 +74,6 @@ public class Controller {
 		comissoes.put(tema, nova);
 		
 	}
-
-	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
-		switch (statusGovernista) {
-		case ("GOVERNISTA"):
-			
-		}
-		return false;
-	}
 	
 	public boolean interessesComuns(String interesses1, String interesses2) {
 		String[] i1 = interesses1.split(",");
@@ -98,7 +90,7 @@ public class Controller {
 	
 	public boolean eDaBase(String dni) {
 		for (String p : this.partidos) {
-			if (cPessoa.getPessoa(dni).getPartido().equals(p))
+			if (ControllerPessoa.getPessoa(dni).getPartido().equals(p))
 				return true;
 		}
 		return false;
@@ -159,6 +151,21 @@ public class Controller {
 					return true;
 		}
 		}		
+		return false;
+	}
+	
+	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
+		if (comissoes.get(ControllerProjeto.getProjeto(codigo).getLocalAtual()).getProjetosVotados().contains(codigo)) {
+			int votosAprovados = contaVotos(codigo, statusGovernista, comissoes.get("CCJC").getPoliticos());
+			String politicosCCJC[]  = comissoes.get("CCJC").getPoliticos().split(",");
+			if (votosAprovados >= politicosCCJC.length / 2 + 1) {
+				comissoes.get(ControllerProjeto.getProjeto(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+				ControllerProjeto.getProjeto(codigo).setLocalAtual(proximoLocal);
+				ControllerPessoa.getPessoa(ControllerProjeto.getProjeto(codigo).getAutor()).getDeputado().setLeisAprovadas(ControllerPessoa.getPessoa(ControllerProjeto.getProjeto(codigo).getAutor()).getDeputado().getLeisAprovadas() + 1);
+				return true;
+				
+		} 
+		}
 		return false;
 	}
 }

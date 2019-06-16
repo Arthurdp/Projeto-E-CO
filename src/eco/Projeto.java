@@ -10,6 +10,7 @@ abstract class Projeto{
 	private String url;
 	protected String turno;
 	protected String tipo;
+	private String localAtual;
 	
 	public Projeto(String autor, int ano, String codigo, String ementa, String interesses, String url) {
 		this.autor = autor;
@@ -19,6 +20,7 @@ abstract class Projeto{
 		this.interesses = interesses;
 		this.situacaoAtual = "EM VOTACAO (CCJC)";
 		this.url = url;
+		this.localAtual = "CCJC";
 	}
 	
 	public String getAutor() {
@@ -52,4 +54,20 @@ abstract class Projeto{
 	public String getTipo() {
 		return this.tipo;
 	}
+
+	/**
+	 * @return the localAtual
+	 */
+	public String getLocalAtual() {
+		return localAtual;
+	}
+
+	/**
+	 * @param localAtual the localAtual to set
+	 */
+	public void setLocalAtual(String localAtual) {
+		this.localAtual = localAtual;
+	}
+	
+	
 }
