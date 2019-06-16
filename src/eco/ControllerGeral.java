@@ -125,7 +125,7 @@ public class ControllerGeral {
 	}
 	
 	public boolean eDaBase(String dni) {
-		for (String p : controller.getPartidos()) {
+		for (String p : this.controller.getPartidos()) {
 			if (controllerPessoa.getPessoas().get(dni).getPartido().equals(p))
 				return true;
 		}
@@ -218,5 +218,4 @@ public class ControllerGeral {
 		controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
 		return false;
 	}
-
 }
