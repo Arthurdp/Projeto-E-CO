@@ -12,16 +12,6 @@ import java.util.Map;
  *
  */
 public class Controller {
-	/**
-	 * mapa de pessoas cadastradas.
-	 */
-	private HashMap<String, Pessoa> pessoas;
-	private List<String> partidos;
-	private HashMap<String, Comissao> comissoes;
-	/**
-	 * Mapa contendo todos os projetos cadastrados.
-	 */
-	private Map<String, Projeto> projetos;
 	
 	/**
 	 * inicia um novo validador;
@@ -29,23 +19,37 @@ public class Controller {
 	private Validador validador = new Validador();
 	
 	/**
+	 * mapa de pessoas cadastradas.
+	 */
+	private HashMap<String, Pessoa> pessoas;
+	private List<String> partidos;
+	private HashMap<String, Comissao> comissoes;
+	
+	/**
+	 * Mapa contendo todos os projetos cadastrados.
+	 */
+	private Map<String, Projeto> projetos;
+	
+	/**
 	 * Contador de projetos de lei.
 	 */
 	private int contadorPL;
+	
 	/**
 	 * contador de Projetos de Lei Complementares.
 	 */
 	private int contadorPLP;
+	
 	/**
 	 * contador de Projetos de Emenda Constitucional.
 	 */
 	private int contadorPEC;		 
 	
 	public Controller() {
-		this.pessoas = new HashMap<String, Pessoa>();
+		this.validador = new Validador();
+		this.pessoas = new HashMap<>();
 		this.comissoes = new HashMap<>();
 		this.partidos = new ArrayList<>();
-		this.validador = new Validador();
 		this.projetos = new HashMap<>();
 		this.contadorPL = 1;
 		this.contadorPLP = 1;
