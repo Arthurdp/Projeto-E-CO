@@ -2,10 +2,10 @@ package eco;
 
 public class Facade {
 	
-	private Controller controller;
+	private ControllerGeral controllerGeral;
 	
 	public Facade() {
-		this.controller = new Controller();
+		this.controllerGeral = new ControllerGeral();
 	}
 	
 	public void limparSistema() {
@@ -21,55 +21,55 @@ public class Facade {
 	}
 	
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {
-		controller.cadastrarPessoa(nome, dni, estado, interesses);
+		controllerGeral.cadastrarPessoa(nome, dni, estado, interesses);
 	}
 	
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses, String partido) {
-		controller.cadastrarPessoa(nome, dni, estado, interesses, partido);
+		controllerGeral.cadastrarPessoa(nome, dni, estado, interesses, partido);
 	}
 	
 	public void cadastrarDeputado(String DNI, String dataDeInicio) {
-		controller.cadastraDeputado(DNI, dataDeInicio);
+		controllerGeral.cadastrarDeputado(DNI, dataDeInicio);
 	}
 	
 	public void cadastrarPartido(String partido) {
-		this.controller.cadastrarPartido(partido);
+		this.controllerGeral.cadastrarPartido(partido);
 	}
 	
 	public String exibirPessoa(String DNI) {
-		return controller.exibirPessoa(DNI);
+		return controllerGeral.exibirPessoa(DNI);
 	}
 	
 	public String exibirBase() {
-		return controller.exibirBase();
+		return controllerGeral.exibirBase();
 	}
 	
 	public void cadastrarComissao(String tema, String politicos) {
-		this.controller.cadastrarComissao(tema, politicos);
+		this.controllerGeral.cadastrarComissao(tema, politicos);
 	}
 	
 	public void cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo) {
-		controller.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
+		controllerGeral.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
 	}
 	
 	public void cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos) {
-		this.controller.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
+		this.controllerGeral.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
 	}
 	
 	public void cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos) {
-		this.controller.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
+		this.controllerGeral.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
 	}
 	
 	public String exibirProjeto(String codigo) {
-		return this.controller.exibirProjeto(codigo);
+		return this.controllerGeral.exibirProjeto(codigo);
 	}
 	
 	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
-		return this.controller.votarComissao(codigo, statusGovernista, proximoLocal);
+		return this.controllerGeral.votarComissao(codigo, statusGovernista, proximoLocal);
 	}
 	
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {	
-		return this.controller.votarPlenario(codigo, statusGovernista, presentes);
+		return this.controllerGeral.votarPlenario(codigo, statusGovernista, presentes);
 	}
 	public void salvarSistem() {
 		
