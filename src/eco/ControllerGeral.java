@@ -173,8 +173,8 @@ public class ControllerGeral {
 		int votosAprovar = contaVotos(codigo, statusGovernista, presentes);
 		String presents[]  = presentes.split(",");
 		int deputados = 0;
-		for(String i : controllerPessoa.getPessoas().keySet()) {
-			if(!(controllerPessoa.getPessoas().get(i).getDeputado() == null)) {
+		for(Pessoa p : controllerPessoa.getPessoas().values()) {
+			if(p.getDeputado() != null) {
 				deputados += 1;
 			}
 		}
