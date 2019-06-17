@@ -9,7 +9,7 @@ public class ControllerProjeto {
 	 * Mapa contendo todos os projetos cadastrados.
 	 */
 	private Map<String, Projeto> projetos;
-	private Validador validador;
+	
 	/**
 	 * Contador de projetos de lei.
 	 */
@@ -27,7 +27,6 @@ public class ControllerProjeto {
 	
 	public ControllerProjeto(){
 		this.projetos = new HashMap<>();
-		this.validador = new Validador();
 		this.contadorPL = 1;
 		this.contadorPLP = 1;
 		this.contadorPEC = 1;
@@ -48,6 +47,7 @@ public class ControllerProjeto {
 	 * @param conclusivo informa se o projeto eh conclusivo ou nao
 	 */
 	public void cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo) {
+		
 		String key = "PL " + this.contadorPL + "/" + ano;
 		Projeto novoProjeto = new PL(dni, ano, this.contadorPL, ementa, interesses, url, conclusivo);
 		this.projetos.put(key,novoProjeto );
