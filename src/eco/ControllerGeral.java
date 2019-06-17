@@ -155,7 +155,22 @@ public class ControllerGeral {
 		return votosAprovar;
 	}
 	
-	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {	
+	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
+		validador.validaEntrada(codigo, "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
+		validador.validaEntrada(statusGovernista, "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
+		validador.validaEntrada(presentes, "Erro ao votar proposta: Deputados presentes nao pode ser vazio ou nulo");
+		for(String dni : presentes.split(",")) {
+			validador.validaDni(dni, "Erro ao votar proposta: dni invalido");
+		}
+		if(!controllerProjeto.getProjetos().containsKey(codigo))
+			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
+		for(String dni : presentes.split(",")) {
+			if(!controllerPessoa.getPessoas().containsKey(dni))
+				throw new IllegalArgumentException("Erro ao votar proposta: Deputado não cadastrado");
+		}
+		
+		
+		
 		int votosAprovar = contaVotos(codigo, statusGovernista, presentes);
 		String presents[]  = presentes.split(",");
 		int deputados = 0;
@@ -191,6 +206,15 @@ public class ControllerGeral {
 	}
 	
 	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
+		validador.validaEntrada(codigo, "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
+		validador.validaEntrada(statusGovernista, "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
+		validador.validaEntrada(proximoLocal, "Erro ao votar proposta: proximo local vazio");
+		if(!controllerProjeto.getProjetos().containsKey(codigo))
+			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
+		if(!controller.getComissoes().containsKey(controllerProjeto.getProjetos().get(codigo).getLocalAtual()))
+			throw new IllegalArgumentException("Erro ao votar proposta: CCJC nao cadastrada");
+		
+		
 		if (proximoLocal.equals("plenario"))
 			throw new IllegalArgumentException("");
 		if (controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().contains(codigo)) 
