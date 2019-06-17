@@ -54,7 +54,7 @@ public class ControllerGeral {
 		this.controller.cadastrarComissao(tema, politicos);
 	}
 	
-	public void cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo) {
+	public String cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo) {
 		validador.validaEntrada(dni, "Erro ao cadastrar projeto: autor nao pode ser vazio ou nulo");
 		validador.validaEntrada(ementa, "Erro ao cadastrar projeto: ementa nao pode ser vazia ou nula");
 		validador.validaEntrada(interesses, "Erro ao cadastrar projeto: interesse nao pode ser vazio ou nulo");
@@ -68,10 +68,10 @@ public class ControllerGeral {
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
 		if(ano > 2019)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano posterior ao ano atual");
-		controllerProjeto.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
+		return this.controllerProjeto.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
 	}
 	
-	public void cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos) {
+	public String cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos) {
 		validador.validaEntrada(dni, "Erro ao cadastrar projeto: autor nao pode ser vazio ou nulo");
 		validador.validaEntrada(ementa, "Erro ao cadastrar projeto: ementa nao pode ser vazia ou nula");
 		validador.validaEntrada(interesses, "Erro ao cadastrar projeto: interesse nao pode ser vazio ou nulo");
@@ -86,10 +86,10 @@ public class ControllerGeral {
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
 		if(ano > 2019)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano posterior ao ano atual");
-		this.controllerProjeto.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
+		return this.controllerProjeto.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
 	}
 	
-	public void cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos) {
+	public String cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos) {
 		validador.validaEntrada(dni, "Erro ao cadastrar projeto: autor nao pode ser vazio ou nulo");
 		validador.validaEntrada(ementa, "Erro ao cadastrar projeto: ementa nao pode ser vazia ou nula");
 		validador.validaEntrada(interesses, "Erro ao cadastrar projeto: interesse nao pode ser vazio ou nulo");
@@ -104,7 +104,7 @@ public class ControllerGeral {
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
 		if(ano > 2019)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano posterior ao ano atual");
-		this.controllerProjeto.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
+		return this.controllerProjeto.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
 	}
 	
 	public String exibirProjeto(String codigo) {
@@ -169,8 +169,6 @@ public class ControllerGeral {
 				throw new IllegalArgumentException("Erro ao votar proposta: Deputado não cadastrado");
 		}
 		
-		
-		
 		int votosAprovar = contaVotos(codigo, statusGovernista, presentes);
 		String presents[]  = presentes.split(",");
 		int deputados = 0;
@@ -198,7 +196,7 @@ public class ControllerGeral {
 					controllerProjeto.getProjetos().get(codigo).setTurno("2o turno");
 				else if(controllerProjeto.getProjetos().get(codigo).getTurno().equals("2o turno"))
 					controllerProjeto.getProjetos().get(codigo).setTurno("finalizado");
-				if(votosAprovar  >= (deputados * 5 / 3) + 1)
+				if(votosAprovar  >= (deputados * 5 / 3 + 1))
 					return true;
 		}
 		}		
@@ -228,14 +226,19 @@ public class ControllerGeral {
 		if (votosAprovados >= politicos.length / 2 + 1) {
 			controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
 			controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
-			if (proximoLocal.equals("-")) {
-				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("concluido");
+			if ("-".equals(proximoLocal)) {
+				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("APROVADO");
 				controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
 				return true;
 			}
 			controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
 			return true;
-			
+		}
+		if (proximoLocal.equals("-")) {
+			controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+			controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
+			controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+			return false;
 		}
 		controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
 		controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);

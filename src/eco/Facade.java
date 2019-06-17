@@ -48,16 +48,16 @@ public class Facade {
 		this.controllerGeral.cadastrarComissao(tema, politicos);
 	}
 	
-	public void cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo) {
-		controllerGeral.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
+	public String cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo) {
+		return this.controllerGeral.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
 	}
 	
-	public void cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos) {
-		this.controllerGeral.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
+	public String cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos) {
+		return this.controllerGeral.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
 	}
 	
-	public void cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos) {
-		this.controllerGeral.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
+	public String cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos) {
+		return this.controllerGeral.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
 	}
 	
 	public String exibirProjeto(String codigo) {
