@@ -13,9 +13,9 @@ public class PEC extends ProjetosConstitucionais{
 	 * @param url endereco eletronico da PEC
 	 * @param artigos Artigos da constituicao sendo emendados
 	 */
-	public PEC(String dni, int ano, int numeracao, String ementa, String interesses,
+	public PEC(String dni, int ano, String codigo, String ementa, String interesses,
 			String url, String artigos) {
-		super(dni, ano, "PEC " + numeracao + "/" + ano, ementa, interesses, url, artigos);
+		super(dni, ano, codigo, ementa, interesses, url, artigos);
 		super.turno = "1o turno";
 		super.tipo = "PEC";
 	}
@@ -25,7 +25,7 @@ public class PEC extends ProjetosConstitucionais{
 	 * Representacao  de uma PEC no formato String.
 	 */
 	public String toString() {
-		return "Projeto de Emenda Constitucional - " + getCodigo() + " - " + getAutor()  + " - " + getEmenta() + " - " + getArtigos().replace(",", ", ") + " - " + getSituacaoAtual();
+		return "Projeto de Emenda Constitucional - " + this.codigo + " - " + getAutor()  + " - " + getEmenta() + " - " + getArtigos().replace(",", ", ") + " - " + getSituacaoAtual();
 	}
 	
 }

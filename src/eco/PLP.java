@@ -13,9 +13,9 @@ public class PLP extends ProjetosConstitucionais{
 	 * @param url endereco eletronico do PLP
 	 * @param artigos Artigos da constituicao sendo complementados
 	 */
-	public PLP(String dni, int ano, int numeracao, String ementa, String interesses,
+	public PLP(String dni, int ano, String codigo, String ementa, String interesses,
 			String url, String artigos) {
-		super(dni, ano, "PLP " + numeracao + "/" + ano, ementa, interesses, url, artigos);
+		super(dni, ano, codigo, ementa, interesses, url, artigos);
 		super.turno = "1o turno";
 		super.tipo = "PLP";
 	}
@@ -25,6 +25,6 @@ public class PLP extends ProjetosConstitucionais{
 	 * Representacao  de um PLP no formato String.
 	 */
 	public String toString() {
-		return "Projeto de Lei Complementar - " + getCodigo() + " - " + getAutor()  + " - " + getEmenta() + " - " + getArtigos() + " - " + getSituacaoAtual();
+		return "Projeto de Lei Complementar - " + this.codigo + " - " + getAutor()  + " - " + getEmenta() + " - " + getArtigos() + " - " + getSituacaoAtual();
 	}
 }

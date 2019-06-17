@@ -117,6 +117,7 @@ public class ControllerGeral {
 		
 		for (String i : i1) {
 			for(String j : i2) {
+				System.out.println(j);
 				if (i.equals(j))
 					return true;
 			}
@@ -179,24 +180,30 @@ public class ControllerGeral {
 		}
 		
 		if (codigo.substring(0,3).equals("PL ")) {
-			if (votosAprovar >= Math.floor((presents.length / 2) + 1))
+			if (votosAprovar >= Math.floor((presents.length / 2)) + 1)
+				if (controllerProjeto.getProjetos().get(codigo).getTurno().equals("finalizado"))
+					controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
 				return true;
 			
 		}else if (!controllerProjeto.getProjetos().get(codigo).getTurno().equals("finalizado")) {
-				if (codigo.substring(0,3).equals("PLP")) {
-					if(controllerProjeto.getProjetos().get(codigo).getTurno().equals("1o turno"))
-						controllerProjeto.getProjetos().get(codigo).setTurno("2o turno");
-					else if(controllerProjeto.getProjetos().get(codigo).getTurno().equals("2o turno"))
-						controllerProjeto.getProjetos().get(codigo).setTurno("finalizado");
-					if(votosAprovar  >= (deputados/ 2) + 1)
-						return true;
-		
+			if (codigo.substring(0,3).equals("PLP")) {
+				if(controllerProjeto.getProjetos().get(codigo).getTurno().equals("1o turno"))
+					controllerProjeto.getProjetos().get(codigo).setTurno("2o turno");
+				else if(controllerProjeto.getProjetos().get(codigo).getTurno().equals("2o turno"))
+					controllerProjeto.getProjetos().get(codigo).setTurno("finalizado");
+				if(votosAprovar  >= Math.floor((deputados/ 2)) + 1)
+					if (controllerProjeto.getProjetos().get(codigo).getTurno().equals("finalizado"))
+						controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
+					return true;
+	
 			}else if(codigo.substring(0,3).equals("PEC")) {
 				if(controllerProjeto.getProjetos().get(codigo).getTurno().equals("1o turno"))
 					controllerProjeto.getProjetos().get(codigo).setTurno("2o turno");
 				else if(controllerProjeto.getProjetos().get(codigo).getTurno().equals("2o turno"))
 					controllerProjeto.getProjetos().get(codigo).setTurno("finalizado");
-				if(votosAprovar  >= (deputados * 5 / 3 + 1))
+				if(votosAprovar  >= Math.floor((3/5 * deputados)) + 1)
+					if (controllerProjeto.getProjetos().get(codigo).getTurno().equals("finalizado"))
+						controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
 					return true;
 		}
 		}		
@@ -214,7 +221,7 @@ public class ControllerGeral {
 		
 		
 		if (proximoLocal.equals("plenario"))
-			throw new IllegalArgumentException("");
+			throw new IllegalArgumentException("Erro ao votar proposta: proposta encaminhada ao plenario");
 		if (controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().contains(codigo)) 
 			throw new IllegalArgumentException("");
 		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) 

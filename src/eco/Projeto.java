@@ -3,7 +3,7 @@ package eco;
 abstract class Projeto{
 	private String autor;
 	private int ano;
-	private String codigo;
+	protected String codigo;
 	private String ementa;
 	private String interesses;
 	private String situacaoAtual;
