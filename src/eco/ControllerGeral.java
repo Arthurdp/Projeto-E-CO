@@ -165,8 +165,6 @@ public class ControllerGeral {
 				deputados += 1;
 			}
 		}
-		if ((controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("ARQUIVADO") || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("APROVADO"))
-			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
 		if (codigo.substring(0,3).equals("PL ") || (codigo.substring(0,3).equals("PLP"))) {
 			if(presents.length < Math.floor((deputados / 2)) + 1)
 				throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
@@ -175,6 +173,9 @@ public class ControllerGeral {
 			if(presents.length < Math.floor((3/5 * deputados)) + 1)
 				throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
 		}
+		if (controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("ARQUIVADO") || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("APROVADO"))
+			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
+
 		if(!controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("plenario"))
 			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao em comissao");
 		validador.validaEntrada(codigo, "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
@@ -193,8 +194,11 @@ public class ControllerGeral {
 		int votosAprovar = contaVotos(codigo, statusGovernista, presentes);
 
 		if (codigo.substring(0,3).equals("PL ")) {
-			if (votosAprovar >= Math.floor((presents.length / 2)) + 1)
+			if (votosAprovar >= Math.floor((presents.length / 2)) + 1) {
+				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("APROVADO");
+				controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
 				return true;
+			}
 		}
 		
 		if (codigo.substring(0,3).equals("PLP")) {
