@@ -159,6 +159,8 @@ public class ControllerGeral {
 	}
 	
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
+		if(!controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("plenario"))
+			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao em comissao");
 		validador.validaEntrada(codigo, "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
 		validador.validaEntrada(statusGovernista, "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
 		validador.validaEntrada(presentes, "Erro ao votar proposta: Deputados presentes nao pode ser vazio ou nulo");
@@ -180,16 +182,21 @@ public class ControllerGeral {
 				deputados += 1;
 			}
 		}
-		
 		if (codigo.substring(0,3).equals("PL ")) {
+			if(presents.length < Math.floor((deputados/ 2)) + 1)
+				throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
 			if (votosAprovar >= Math.floor((presents.length / 2)) + 1)
 				return true;
 		}
 		if (codigo.substring(0,3).equals("PLP")) {
+			if(presents.length < Math.floor((deputados/ 2)) + 1)
+				throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
 			if(votosAprovar  >= Math.floor((deputados/ 2)) + 1)
 				return true;
 		}
 		if(codigo.substring(0,3).equals("PEC")) {
+			if(presents.length < Math.floor((3/5 * deputados)) + 1)
+				throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
 			if(votosAprovar  >= Math.floor((3/5 * deputados)) + 1)
 				return true;
 		}	
