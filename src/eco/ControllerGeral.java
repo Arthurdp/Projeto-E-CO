@@ -131,7 +131,14 @@ public class ControllerGeral {
 		}
 		return false;
 	}
-	
+	/**
+	 * Conta os votos que foram aprovados recebendo um codigo de um projeto, um status e uma String com os dnis dos politicos.
+	 * Retorna um inteiro que representa a quantidade de votos aprovados.
+	 * @param codigo codigo de um projeto
+	 * @param statusGovernista status GOVERNISTA, LIVRE OU OPOSICAO
+	 * @param politicos String com dnis de politicos separados por virgula.
+	 * @return retorna um inteiro
+	 */
 	public int contaVotos(String codigo, String statusGovernista, String politicos) {
 		int votosAprovar = 0;
 		int votosReprovar = 0;
@@ -230,7 +237,14 @@ public class ControllerGeral {
 		
 		return false;
 	}
-	
+	/**
+	 * Simula um voto para uma comissao comecando pela CCJC e passando para o proximo local. recebo o codigo do projeto que sera votado, o status governista e o proximo local que sera votado.
+	 * Retorna True caso o projeto tenha sido aprovado, ou false caso contrario.
+	 * @param codigo codigo de um projeto
+	 * @param statusGovernista status GOVERNISTA, LIVRE OU OPOSICAO
+	 * @param proximoLocal proximo local que sera votado.
+	 * @return retorna um valor booleano
+	 */
 	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
 		validador.validaEntrada(codigo, "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
 		validador.validaEntrada(statusGovernista, "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
