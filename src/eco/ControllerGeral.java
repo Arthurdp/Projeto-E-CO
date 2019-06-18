@@ -258,7 +258,6 @@ public class ControllerGeral {
 					controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
 					if ("plenario".equals(proximoLocal)) {
 						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
-						controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
 						return true;
 					}
 				
@@ -309,7 +308,6 @@ public class ControllerGeral {
 			controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
 			if ("plenario".equals(proximoLocal)) {
 				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
-				controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
 				return true;
 			}
 		
