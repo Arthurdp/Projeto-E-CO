@@ -159,6 +159,21 @@ public class ControllerGeral {
 	}
 	
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
+		String presents[]  = presentes.split(",");
+		int deputados = 0;
+		for(Pessoa p : controllerPessoa.getPessoas().values()) {
+			if(p.getDeputado() != null) {
+				deputados += 1;
+			}
+		}
+		if (codigo.substring(0,3).equals("PL ") || (codigo.substring(0,3).equals("PLP"))) {
+			if(presents.length < Math.floor((deputados / 2)) + 1)
+				throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
+		}
+		if(codigo.substring(0,3).equals("PEC")) {
+			if(presents.length < Math.floor((3/5 * deputados)) + 1)
+				throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
+		}
 		if(!controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("plenario"))
 			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao em comissao");
 		validador.validaEntrada(codigo, "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
@@ -175,31 +190,34 @@ public class ControllerGeral {
 		}
 		
 		int votosAprovar = contaVotos(codigo, statusGovernista, presentes);
-		String presents[]  = presentes.split(",");
-		int deputados = 0;
-		for(Pessoa p : controllerPessoa.getPessoas().values()) {
-			if(p.getDeputado() != null) {
-				deputados += 1;
-			}
-		}
+
 		if (codigo.substring(0,3).equals("PL ")) {
-			if(presents.length < Math.floor((deputados/ 2)) + 1)
-				throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
 			if (votosAprovar >= Math.floor((presents.length / 2)) + 1)
 				return true;
 		}
+		
 		if (codigo.substring(0,3).equals("PLP")) {
-			if(presents.length < Math.floor((deputados/ 2)) + 1)
-				throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
-			if(votosAprovar  >= Math.floor((deputados/ 2)) + 1)
-				return true;
+				if(votosAprovar  >= Math.floor((deputados / 2)) + 1) {
+					if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)"))
+						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
+					if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)"))
+						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO - ARQUIVADO");
+					return true;
+				}
+				else 
+					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO - ARQUIVADO");
 		}
 		if(codigo.substring(0,3).equals("PEC")) {
-			if(presents.length < Math.floor((3/5 * deputados)) + 1)
-				throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
-			if(votosAprovar  >= Math.floor((3/5 * deputados)) + 1)
+			if(votosAprovar  >= Math.floor((3/5 * deputados)) + 1) {
+				if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)"))
+					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
+				if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)"))
+					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO - ARQUIVADO");
 				return true;
-		}	
+			}
+			else 
+				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO - ARQUIVADO");
+	}	
 		return false;
 	}
 	
