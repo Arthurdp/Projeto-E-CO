@@ -11,7 +11,7 @@ import java.util.Map;
  * deputados e partidos, e as representacoes de pessoas e partidos cadastrados.
  *
  */
-public class Controller {
+public class ControllerComissoes {
 	
 	/**
 	 * inicia um novo validador;
@@ -21,7 +21,7 @@ public class Controller {
 	private HashMap<String, Comissao> comissoes;
 	
 	
-	public Controller() {
+	public ControllerComissoes() {
 		this.validador = new Validador();
 		this.comissoes = new HashMap<>();
 		this.partidos = new ArrayList<>();

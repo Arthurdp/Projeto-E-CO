@@ -2,13 +2,13 @@ package eco;
 
 public class ControllerGeral {
 	
-	Controller controller;
+	ControllerComissoes controller;
 	ControllerPessoa controllerPessoa;
 	ControllerProjeto controllerProjeto;
 	Validador validador;
 	
 	public ControllerGeral() {
-		this.controller = new Controller();
+		this.controller = new ControllerComissoes();
 		this.controllerPessoa = new ControllerPessoa();
 		this.controllerProjeto = new ControllerProjeto();
 		this.validador = new Validador();
@@ -200,16 +200,19 @@ public class ControllerGeral {
 		validador.validaEntrada(codigo, "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
 		validador.validaEntrada(statusGovernista, "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
 		validador.validaEntrada(proximoLocal, "Erro ao votar proposta: proximo local vazio");
+		if (!statusGovernista.equals("GOVERNISTA") && !statusGovernista.equals("LIVRE") && !statusGovernista.equals("OPOSICAO"))
+			throw new IllegalArgumentException("Erro ao votar proposta: status invalido");
 		if(!controllerProjeto.getProjetos().containsKey(codigo))
 			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
-		if(!controller.getComissoes().containsKey(controllerProjeto.getProjetos().get(codigo).getLocalAtual()))
+		
+		
+		if(!controller.getComissoes().containsKey("CCJC"))
 			throw new IllegalArgumentException("Erro ao votar proposta: CCJC nao cadastrada");
 		
-		
-		if (proximoLocal.equals("plenario"))
-			throw new IllegalArgumentException("Erro ao votar proposta: proposta encaminhada ao plenario");
 		if (controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().contains(codigo)) 
 			throw new IllegalArgumentException("");
+		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("plenario")) 
+			throw new IllegalArgumentException("Erro ao votar proposta: proposta encaminhada ao plenario");
 		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) 
 			throw new IllegalArgumentException("");
 		
@@ -239,3 +242,4 @@ public class ControllerGeral {
 		return false;
 	}
 }
+

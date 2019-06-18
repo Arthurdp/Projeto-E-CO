@@ -1,6 +1,7 @@
 package eco;
 
 public class PL extends Projeto{
+	
 	private boolean tramitacaoConclusiva;
 
 	public PL(String autor, int ano, String codigo, String ementa, String interesses,
@@ -14,6 +15,13 @@ public class PL extends Projeto{
 	public String toString() {
 		return (this.tramitacaoConclusiva == true) ? "Projeto de Lei - " + this.codigo + " - " + getAutor()  + " - " + getEmenta() + " - Conclusiva - " + 
 				getSituacaoAtual() : "Projeto de Lei - " + this.codigo + " - " + getAutor()  + " - " + getEmenta() + " - " + getSituacaoAtual();
+	}
+
+	/**
+	 * @return the tramitacaoConclusiva
+	 */
+	public boolean isTramitacaoConclusiva() {
+		return tramitacaoConclusiva;
 	}
 	
 	

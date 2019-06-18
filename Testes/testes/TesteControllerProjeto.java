@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import eco.Controller;
+import eco.ControllerComissoes;
 import eco.ControllerGeral;
 import eco.ControllerPessoa;
 import eco.ControllerProjeto;
@@ -13,13 +13,13 @@ class TesteControllerProjeto {
 	
 	ControllerProjeto controllerProjeto;
 	ControllerPessoa controllerPessoa;
-	Controller controller;
+	ControllerComissoes controller;
 	ControllerGeral controllerGeral;
 
 	public TesteControllerProjeto() {
 		this.controllerProjeto = new ControllerProjeto();
 		this.controllerPessoa = new ControllerPessoa();
-		this.controller = new Controller();
+		this.controller = new ControllerComissoes();
 		this.controllerGeral = new ControllerGeral();
 	}
 
