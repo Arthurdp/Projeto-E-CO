@@ -8,6 +8,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/willy/eclipse-workspace/Projeto-E-CO/lib/easyaccept.jar"/>
+	<classpathentry kind="lib" path="C:/Users/victo/eclipse-workspace/Projeto-E-CO/lib/easyaccept.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

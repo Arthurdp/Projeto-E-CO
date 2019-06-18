@@ -135,7 +135,7 @@ public class ControllerGeral {
 	
 	public int contaVotos(String codigo, String statusGovernista, String politicos) {
 		int votosAprovar = 0;
-
+		int votosReprovar = 0;
 		String politcs[]  = politicos.split(",");
 		for (String dni : politcs){
 			validador.validaDni(dni, "Erro ao votar proposta: dni invalido");
@@ -146,11 +146,13 @@ public class ControllerGeral {
 
 			if(statusGovernista.equals("GOVERNISTA") && eDaBase(dni))
 				votosAprovar += 1;
-			if(statusGovernista.equals("OPOSICAO") && !eDaBase(dni))
-				votosAprovar += 1;
+			if(statusGovernista.equals("OPOSICAO") && eDaBase(dni))
+				votosReprovar += 1;
 			if(statusGovernista.equals("LIVRE")){
 				if(interessesComuns(controllerPessoa.getPessoas().get(dni).getInteresses(), controllerProjeto.getProjetos().get(codigo).getInteresses()))
 					votosAprovar += 1;
+				else
+					votosReprovar += 1;
 			}
 		}
 		return votosAprovar;
@@ -181,32 +183,16 @@ public class ControllerGeral {
 		
 		if (codigo.substring(0,3).equals("PL ")) {
 			if (votosAprovar >= Math.floor((presents.length / 2)) + 1)
-				if (controllerProjeto.getProjetos().get(codigo).getTurno().equals("finalizado"))
-					controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
 				return true;
-			
-		}else if (!controllerProjeto.getProjetos().get(codigo).getTurno().equals("finalizado")) {
-			if (codigo.substring(0,3).equals("PLP")) {
-				if(controllerProjeto.getProjetos().get(codigo).getTurno().equals("1o turno"))
-					controllerProjeto.getProjetos().get(codigo).setTurno("2o turno");
-				else if(controllerProjeto.getProjetos().get(codigo).getTurno().equals("2o turno"))
-					controllerProjeto.getProjetos().get(codigo).setTurno("finalizado");
-				if(votosAprovar  >= Math.floor((deputados/ 2)) + 1)
-					if (controllerProjeto.getProjetos().get(codigo).getTurno().equals("finalizado"))
-						controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
-					return true;
-	
-			}else if(codigo.substring(0,3).equals("PEC")) {
-				if(controllerProjeto.getProjetos().get(codigo).getTurno().equals("1o turno"))
-					controllerProjeto.getProjetos().get(codigo).setTurno("2o turno");
-				else if(controllerProjeto.getProjetos().get(codigo).getTurno().equals("2o turno"))
-					controllerProjeto.getProjetos().get(codigo).setTurno("finalizado");
-				if(votosAprovar  >= Math.floor((3/5 * deputados)) + 1)
-					if (controllerProjeto.getProjetos().get(codigo).getTurno().equals("finalizado"))
-						controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
-					return true;
 		}
-		}		
+		if (codigo.substring(0,3).equals("PLP")) {
+			if(votosAprovar  >= Math.floor((deputados/ 2)) + 1)
+				return true;
+		}
+		if(codigo.substring(0,3).equals("PEC")) {
+			if(votosAprovar  >= Math.floor((3/5 * deputados)) + 1)
+				return true;
+		}	
 		return false;
 	}
 	
