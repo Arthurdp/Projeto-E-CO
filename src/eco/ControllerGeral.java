@@ -117,7 +117,6 @@ public class ControllerGeral {
 		
 		for (String i : i1) {
 			for(String j : i2) {
-				System.out.println(j);
 				if (i.equals(j))
 					return true;
 			}
@@ -166,6 +165,8 @@ public class ControllerGeral {
 				deputados += 1;
 			}
 		}
+		if ((controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("ARQUIVADO") || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("APROVADO"))
+			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
 		if (codigo.substring(0,3).equals("PL ") || (codigo.substring(0,3).equals("PLP"))) {
 			if(presents.length < Math.floor((deputados / 2)) + 1)
 				throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
@@ -200,23 +201,26 @@ public class ControllerGeral {
 				if(votosAprovar  >= Math.floor((deputados / 2)) + 1) {
 					if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)"))
 						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
-					else if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)"))
-						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO - ARQUIVADO");
+					else if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)")) {
+						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("APROVADO");
+						controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
+					}
 					return true;
 				}
 				else 
-					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO - ARQUIVADO");
+					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
 		}
 		if(codigo.substring(0,3).equals("PEC")) {
 			if(votosAprovar  >= Math.floor((3/5 * deputados)) + 1) {
 				if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)"))
 					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
-				else if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)"))
-					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO - ARQUIVADO");
-				return true;
+				else if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)")) {
+					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("APROVADO");
+					controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
+				}return true;
 			}
 			else 
-				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO - ARQUIVADO");
+				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
 	}	
 		return false;
 	}
@@ -231,7 +235,7 @@ public class ControllerGeral {
 			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
 		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("plenario")) 
 			throw new IllegalArgumentException("Erro ao votar proposta: proposta encaminhada ao plenario");
-		if (controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)") || (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("ARQUIVADO") || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("APROVADO")){
+		if ((controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("ARQUIVADO") || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("APROVADO")){
 			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
 		}
 		if(!controller.getComissoes().containsKey("CCJC"))
