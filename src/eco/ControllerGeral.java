@@ -211,15 +211,17 @@ public class ControllerGeral {
 			throw new IllegalArgumentException("Erro ao votar proposta: status invalido");
 		if(!controllerProjeto.getProjetos().containsKey(codigo))
 			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
-		
-		
+		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("plenario")) 
+			throw new IllegalArgumentException("Erro ao votar proposta: proposta encaminhada ao plenario");
+		if (controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)") || (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("ARQUIVADO") || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("APROVADO")){
+			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
+		}
 		if(!controller.getComissoes().containsKey("CCJC"))
 			throw new IllegalArgumentException("Erro ao votar proposta: CCJC nao cadastrada");
 		
 		if (controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().contains(codigo)) 
 			throw new IllegalArgumentException("");
-		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("plenario")) 
-			throw new IllegalArgumentException("Erro ao votar proposta: proposta encaminhada ao plenario");
+		
 		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) 
 			throw new IllegalArgumentException("");
 		
@@ -274,7 +276,7 @@ public class ControllerGeral {
 					controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
 					return false;
 				}
-				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
 				controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
 				controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
 				return false;
