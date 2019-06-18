@@ -226,20 +226,76 @@ public class ControllerGeral {
 		
 		int votosAprovados = contaVotos(codigo, statusGovernista, controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getPoliticos());
 		String politicos[]  = controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getPoliticos().split(",");
+		if (codigo.substring(0,3).equals("PL ")) {
+			PL projetoPL = (PL) controllerProjeto.getProjetos().get(codigo);
+			if (projetoPL.isTramitacaoConclusiva() == false) {
+				if (votosAprovados >= politicos.length / 2 + 1) {
+					controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+					controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+					if ("plenario".equals(proximoLocal)) {
+						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
+						controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
+						return true;
+					}
+				
+					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+					return true;
+				}
+			
+				if (proximoLocal.equals("plenario")) {
+					controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
+					controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+					return false;
+				}
+				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+				controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+				controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+				return false;
+			
+		}
+			else {
+				if (votosAprovados >= politicos.length / 2 + 1) {
+					controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+					controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+					if ("-".equals(proximoLocal)) {
+						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("APROVADO");
+						controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
+						return true;
+					}
+				
+					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+					return true;
+				}
+			
+				if (proximoLocal.equals("-")) {
+					controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
+					controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+					return false;
+				}
+				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+				controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+				controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+				return false;
+			}
+	}else {
 		if (votosAprovados >= politicos.length / 2 + 1) {
 			controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
 			controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
-			if ("-".equals(proximoLocal)) {
-				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("APROVADO");
+			if ("plenario".equals(proximoLocal)) {
+				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
 				controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
 				return true;
 			}
+		
 			controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
 			return true;
 		}
-		if (proximoLocal.equals("-")) {
+	
+		if (proximoLocal.equals("plenario")) {
 			controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
-			controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
+			controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
 			controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
 			return false;
 		}
@@ -247,6 +303,7 @@ public class ControllerGeral {
 		controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
 		controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
 		return false;
+	}
 	}
 }
 
