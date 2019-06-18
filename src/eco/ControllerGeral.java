@@ -200,7 +200,7 @@ public class ControllerGeral {
 				if(votosAprovar  >= Math.floor((deputados / 2)) + 1) {
 					if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)"))
 						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
-					if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)"))
+					else if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)"))
 						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO - ARQUIVADO");
 					return true;
 				}
@@ -211,7 +211,7 @@ public class ControllerGeral {
 			if(votosAprovar  >= Math.floor((3/5 * deputados)) + 1) {
 				if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)"))
 					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
-				if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)"))
+				else if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)"))
 					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO - ARQUIVADO");
 				return true;
 			}
