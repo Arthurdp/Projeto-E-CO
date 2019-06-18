@@ -198,7 +198,8 @@ public class ControllerGeral {
 				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("APROVADO");
 				controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
 				return true;
-			}
+			}else 
+				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
 		}
 		
 		if (codigo.substring(0,3).equals("PLP")) {
@@ -226,6 +227,7 @@ public class ControllerGeral {
 			else 
 				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
 	}	
+		
 		return false;
 	}
 	
