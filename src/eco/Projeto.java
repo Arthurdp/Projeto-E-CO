@@ -1,6 +1,10 @@
 package eco;
 
+import java.util.List;
+import java.util.Map;
+
 abstract class Projeto{
+	private Validador validador;
 	private String autor;
 	private int ano;
 	protected String codigo;
@@ -13,6 +17,7 @@ abstract class Projeto{
 	private String localAtual;
 	
 	public Projeto(String autor, int ano, String codigo, String ementa, String interesses, String url) {
+		this.validador = new Validador();
 		this.autor = autor;
 		this.ano = ano;
 		this.codigo = codigo;
@@ -61,7 +66,7 @@ abstract class Projeto{
 	public String getLocalAtual() {
 		return localAtual;
 	}
-
+	
 	/**
 	 * @param localAtual the localAtual to set
 	 */
@@ -76,5 +81,35 @@ abstract class Projeto{
 		this.situacaoAtual = situacaoAtual;
 	}
 	
+	public boolean interessesComuns(String interesses1, String interesses2) {
+		String[] i1 = interesses1.split(",");
+		String[] i2 = interesses2.split(",");
+		
+		for (String i : i1) {
+			for(String j : i2) {
+				if (i.equals(j))
+					return true;
+			}
+		}
+		return false;
+	}
+	
+	public int contaVotos(String codigo, String statusGovernista, Map<String, Pessoa> politicos, List<String> partidos) {
+		int votosAprovar = 0;
+		for (Pessoa politico : politicos.values()){
+			if(statusGovernista.equals("GOVERNISTA")) {
+				for(String partido : partidos) {
+					if(partido.equals(politico.getPartido()))
+						votosAprovar += 1;
+				}
+			}
+			
+			if(statusGovernista.equals("LIVRE")){				
+				if(interessesComuns(politico.getInteresses(), interesses))
+					votosAprovar += 1;
+			}
+		}
+		return votosAprovar;
+	}
 	
 }

@@ -141,7 +141,6 @@ public class ControllerGeral {
 	 */
 	public int contaVotos(String codigo, String statusGovernista, String politicos) {
 		int votosAprovar = 0;
-		int votosReprovar = 0;
 		String politcs[]  = politicos.split(",");
 		for (String dni : politcs){
 			validador.validaDni(dni, "Erro ao votar proposta: dni invalido");
@@ -152,13 +151,9 @@ public class ControllerGeral {
 
 			if(statusGovernista.equals("GOVERNISTA") && eDaBase(dni))
 				votosAprovar += 1;
-			if(statusGovernista.equals("OPOSICAO") && eDaBase(dni))
-				votosReprovar += 1;
 			if(statusGovernista.equals("LIVRE")){
 				if(interessesComuns(controllerPessoa.getPessoas().get(dni).getInteresses(), controllerProjeto.getProjetos().get(codigo).getInteresses()))
 					votosAprovar += 1;
-				else
-					votosReprovar += 1;
 			}
 		}
 		return votosAprovar;
