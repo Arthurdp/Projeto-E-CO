@@ -111,19 +111,6 @@ public class ControllerGeral {
 		return this.controllerProjeto.exibirProjeto(codigo);
 	}
 	
-	public boolean interessesComuns(String interesses1, String interesses2) {
-		String[] i1 = interesses1.split(",");
-		String[] i2 = interesses2.split(",");
-		
-		for (String i : i1) {
-			for(String j : i2) {
-				if (i.equals(j))
-					return true;
-			}
-		}
-		return false;
-	}
-	
 	public boolean eDaBase(String dni) {
 		for (String p : this.controller.getPartidos()) {
 			if (controllerPessoa.getPessoas().get(dni).getPartido().equals(p))
@@ -139,25 +126,7 @@ public class ControllerGeral {
 	 * @param politicos String com dnis de politicos separados por virgula.
 	 * @return retorna um inteiro
 	 */
-	public int contaVotos(String codigo, String statusGovernista, String politicos) {
-		int votosAprovar = 0;
-		String politcs[]  = politicos.split(",");
-		for (String dni : politcs){
-			validador.validaDni(dni, "Erro ao votar proposta: dni invalido");
-			if(!controllerPessoa.getPessoas().containsKey(dni)) 
-				throw new NullPointerException("Erro ao votar proposta: pessoa inexistente");
-			if(controllerPessoa.getPessoas().get(dni).getDeputado() == null)
-				throw new IllegalArgumentException("Erro ao votar proposta: pessoa nao eh deputado");
 
-			if(statusGovernista.equals("GOVERNISTA") && eDaBase(dni))
-				votosAprovar += 1;
-			if(statusGovernista.equals("LIVRE")){
-				if(interessesComuns(controllerPessoa.getPessoas().get(dni).getInteresses(), controllerProjeto.getProjetos().get(codigo).getInteresses()))
-					votosAprovar += 1;
-			}
-		}
-		return votosAprovar;
-	}
 	
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
 		String presents[]  = presentes.split(",");

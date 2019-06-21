@@ -110,6 +110,6 @@ abstract class Projeto{
 			}
 		}
 		return votosAprovar;
-	}
+	} 
 	
 }
