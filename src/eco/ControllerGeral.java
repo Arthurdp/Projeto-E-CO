@@ -1,5 +1,8 @@
 package eco;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ControllerGeral {
 	
 	ControllerComissoes controller;
@@ -130,9 +133,11 @@ public class ControllerGeral {
 	
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
 		String presents[]  = presentes.split(",");
+		List<Pessoa> politicosPresentes = new ArrayList<>();
 		int deputados = 0;
 		for(Pessoa p : controllerPessoa.getPessoas().values()) {
 			if(p.getDeputado() != null) {
+				politicosPresentes.add(p);
 				deputados += 1;
 			}
 		}
@@ -162,7 +167,7 @@ public class ControllerGeral {
 				throw new IllegalArgumentException("Erro ao votar proposta: Deputado não cadastrado");
 		}
 		
-		int votosAprovar = contaVotos(codigo, statusGovernista, presentes);
+		int votosAprovar = controllerProjeto.getProjetos().get(codigo).contaVotos(codigo, statusGovernista, politicosPresentes, controller.getPartidos());
 
 		if (codigo.substring(0,3).equals("PL ")) {
 			if (votosAprovar >= Math.floor((presents.length / 2)) + 1) {
@@ -231,9 +236,12 @@ public class ControllerGeral {
 		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) 
 			throw new IllegalArgumentException("");
 		
-		
-		int votosAprovados = contaVotos(codigo, statusGovernista, controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getPoliticos());
+		List<Pessoa> deputados = new ArrayList<>();
 		String politicos[]  = controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getPoliticos().split(",");
+		for(String p : politicos) {
+			deputados.add(controllerPessoa.getPessoas().get(p));
+		}
+		int votosAprovados = controllerProjeto.getProjetos().get(codigo).contaVotos(codigo, statusGovernista, deputados, controller.getPartidos());
 		if (codigo.substring(0,3).equals("PL ")) {
 			PL projetoPL = (PL) controllerProjeto.getProjetos().get(codigo);
 			if (projetoPL.isTramitacaoConclusiva() == false) {

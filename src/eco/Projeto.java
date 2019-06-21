@@ -94,9 +94,9 @@ abstract class Projeto{
 		return false;
 	}
 	
-	public int contaVotos(String codigo, String statusGovernista, Map<String, Pessoa> politicos, List<String> partidos) {
+	public int contaVotos(String codigo, String statusGovernista, List<Pessoa> politicos, List<String> partidos) {
 		int votosAprovar = 0;
-		for (Pessoa politico : politicos.values()){
+		for (Pessoa politico : politicos){
 			if(statusGovernista.equals("GOVERNISTA")) {
 				for(String partido : partidos) {
 					if(partido.equals(politico.getPartido()))
