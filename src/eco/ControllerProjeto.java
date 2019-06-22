@@ -46,22 +46,30 @@ public class ControllerProjeto {
 		return projetos.get(codigo).votarPlenario(estatusGovernista, politicos, qntDeputados, partidos);
 	}
 	
-//	public boolean votarComissao(String codigo, String estatusGovernista) {
-//		if (!estatusGovernista.equals("GOVERNISTA") && !estatusGovernista.equals("LIVRE") && !estatusGovernista.equals("OPOSICAO"))
-//			throw new IllegalArgumentException("Erro ao votar proposta: status invalido");
-//		
-//		if(!projetos.containsKey(codigo))
-//			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
-//		
-//		if (projetos.get(codigo).getLocalAtual().equals("plenario")) 
-//			throw new IllegalArgumentException("Erro ao votar proposta: proposta encaminhada ao plenario");
-//		
-//		if ((projetos.get(codigo).getLocalAtual().equals("-")) || projetos.get(codigo).getSituacaoAtual().equals("ARQUIVADO") || projetos.get(codigo).getSituacaoAtual().equals("APROVADO"))
-//			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
-//		
-//		if (projetos.get(codigo).getLocalAtual().equals("-")) 
-//			throw new IllegalArgumentException("");
-//	}
+	public boolean votarComissao(String codigo, String estatusGovernista, List<Pessoa> deputados, List<String> partidos, Map<String, Comissao> comissoes, String proximoLocal) {
+		if (!estatusGovernista.equals("GOVERNISTA") && !estatusGovernista.equals("LIVRE") && !estatusGovernista.equals("OPOSICAO"))
+			throw new IllegalArgumentException("Erro ao votar proposta: status invalido");
+		
+		if(!projetos.containsKey(codigo))
+			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
+		
+		if (projetos.get(codigo).getLocalAtual().equals("plenario")) 
+			throw new IllegalArgumentException("Erro ao votar proposta: proposta encaminhada ao plenario");
+		
+		if ((projetos.get(codigo).getLocalAtual().equals("-")) || projetos.get(codigo).getSituacaoAtual().equals("ARQUIVADO") || projetos.get(codigo).getSituacaoAtual().equals("APROVADO"))
+			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
+		
+		if (projetos.get(codigo).getLocalAtual().equals("-")) 
+			throw new IllegalArgumentException("");
+		
+		if(comissoes.containsKey("CCJC"))
+			throw new IllegalArgumentException("Erro ao votar proposta: CCJC nao cadastrada");
+		
+		if (comissoes.get(projetos.get(codigo).getLocalAtual()).getProjetosVotados().contains(codigo)) 
+			throw new IllegalArgumentException("");
+		
+		return projetos.get(codigo).votarComissao(estatusGovernista, deputados, partidos, comissoes, proximoLocal);
+	}
 	
 
 	/**

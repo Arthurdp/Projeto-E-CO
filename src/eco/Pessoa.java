@@ -126,7 +126,7 @@ public class Pessoa {
 		if (dni == null) {
 			if (other.dni != null)
 				return false;
-		} else if (!dni.equals(other.dni))
+		}else if (!dni.equals(other.dni))
 			return false;
 		return true;
 	}
@@ -145,6 +145,10 @@ public class Pessoa {
 	
 	public String getInteresses() {
 		return this.interesses;
+	}
+	
+	public String getDni() {
+		return this.dni;
 	}
 }
 

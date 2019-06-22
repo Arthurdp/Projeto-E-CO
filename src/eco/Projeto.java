@@ -32,10 +32,6 @@ abstract class Projeto{
 		return autor;
 	}
 
-	public String getCodigo() {
-		return codigo;
-	}
-
 	public String getEmenta() {
 		return ementa;
 	}
@@ -46,18 +42,6 @@ abstract class Projeto{
 	
 	public String getInteresses() {
 		return interesses;
-	}
-	
-	public String getTurno() {
-		return this.turno;
-	}
-	
-	public void setTurno(String novoTurno) {
-		this.turno = novoTurno;
-	}
-	
-	public String getTipo() {
-		return this.tipo;
 	}
 
 	/**
@@ -114,4 +98,5 @@ abstract class Projeto{
 	
 	abstract boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, int qntDeputados, List<String> partidos);
 	
+	abstract boolean votarComissao(String estatusGovernista, List<Pessoa> deputados, List<String> partidos, Map<String, Comissao> comissoes, String proximoLocal);
 }

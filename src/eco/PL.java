@@ -1,6 +1,7 @@
 package eco;
 
 import java.util.List;
+import java.util.Map;
 
 public class PL extends Projeto{
 	
@@ -35,7 +36,64 @@ public class PL extends Projeto{
 		return false;
 	}
 	
-	//public boolean votarComissao(String estatusGovernista, List )
+	public boolean votarComissao(String estatusGovernista, List<Pessoa> deputados, List<String> partidos, Map<String, Comissao> comissoes, String proximoLocal) {
+		int votosAprovados = contaVotos(estatusGovernista, deputados, partidos);
+		
+		if(!tramitacaoConclusiva) {
+			if (votosAprovados >= deputados.size() / 2 + 1) {
+				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
+				setLocalAtual(proximoLocal);
+				if ("plenario".equals(proximoLocal)) {
+					setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
+					return true;
+				}
+			
+				setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+				return true;
+			}
+		
+			if (proximoLocal.equals("plenario")) {
+				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
+				setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
+				setLocalAtual(proximoLocal);
+				return false;
+			}
+			setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+			comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
+			setLocalAtual(proximoLocal);
+			return false;
+		}
+		
+		else {
+			if (votosAprovados >= deputados.size() / 2 + 1) {
+				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
+				setLocalAtual(proximoLocal);
+				if ("-".equals(proximoLocal)) {
+					setSituacaoAtual("APROVADO");
+					for(Pessoa deputado : deputados) {
+						if(deputado.getDni().equals(getAutor()))
+							deputado.getDeputado().aprovouUmaLei();
+					return true;
+					}
+				}
+			
+				setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+				return true;
+			}
+		
+			if (proximoLocal.equals("-")) {
+				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
+				setSituacaoAtual("ARQUIVADO");
+				setLocalAtual(proximoLocal);
+				return false;
+			}
+			setSituacaoAtual("ARQUIVADO");
+			comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
+			setLocalAtual(proximoLocal);
+			return false;
+		}
+		
+	}
 	
 	@Override
 	public String toString() {
