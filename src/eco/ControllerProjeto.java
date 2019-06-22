@@ -1,6 +1,7 @@
 package eco;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ControllerProjeto {
@@ -10,13 +11,14 @@ public class ControllerProjeto {
 	 */
 	private Map<String, Projeto> projetos;
 	
-
+	private Validador validador;
 	private Map<Integer, Integer> registradosPL;
 	private Map<Integer, Integer> registradosPLP;
 	private Map<Integer, Integer> registradosPEC;
 	
 	
 	public ControllerProjeto(){
+		this.validador = new Validador();
 		this.projetos = new HashMap<>();
 		this.registradosPL = new HashMap<>();
 		this.registradosPLP = new HashMap<>();
@@ -25,6 +27,23 @@ public class ControllerProjeto {
 
 	public Map<String, Projeto> getProjetos() {
 		return projetos;
+	}
+	
+	public boolean votarPlenario(String codigo, String statusGovernista, List<Pessoa> politicos, int qntDeputados, List<String> partidos) {
+		if(projetos.get(codigo).getLocalAtual().equals("plenario"))
+			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao em comissao");
+		
+		validador.validaEntrada(codigo, "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
+		validador.validaEntrada(statusGovernista, "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
+		
+		if(politicos.isEmpty())
+			throw new IllegalArgumentException("Erro ao votar proposta: Deputados presentes nao pode ser vazio ou nulo");
+		
+	
+		if(!projetos.containsKey(codigo))
+			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
+		
+		return projetos.get(codigo).votarPlenario(statusGovernista, politicos, qntDeputados, partidos);
 	}
 	
 

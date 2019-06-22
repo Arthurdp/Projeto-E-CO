@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Date;
+import java.util.List;
 
 public class Validador {
 	
@@ -22,6 +23,7 @@ public class Validador {
 		if (parametro.trim().equals(""))
 			throw new IllegalArgumentException(mensagem);
 	}
+	
 	/**
 	 * verifica se o dni passado na construcao de uma nova pessoa eh valido.
 	 * @param dni dni a ser avaliado.

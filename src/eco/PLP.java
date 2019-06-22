@@ -1,4 +1,7 @@
 package eco;
+
+import java.util.List;
+
 /**
  * Representacao de um projeto de lei complementar(PLP).
  */
@@ -18,6 +21,34 @@ public class PLP extends ProjetosConstitucionais{
 		super(dni, ano, codigo, ementa, interesses, url, artigos);
 		super.turno = "1o turno";
 		super.tipo = "PLP";
+	}
+	
+	public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, int qntDeputados, List<String> partidos) {
+		
+		if(politicos.size() < Math.floor((qntDeputados / 2)) + 1)
+			throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
+		
+		if(getSituacaoAtual().equals("APROVADO") || getSituacaoAtual().equals("ARQUIVADO"))
+			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
+		
+		if(!getLocalAtual().equals("plenario"))
+			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao em comissao");
+		
+		int votosAprovar = contaVotos(estatusGovernista, politicos, partidos);
+		
+		if (votosAprovar >= Math.floor((qntDeputados / 2)) + 1) {
+			if(getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)"))
+				setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
+			else if(getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)")) {
+				setSituacaoAtual("APROVADO");
+				return true;
+			}
+			
+		}
+		else 
+			setSituacaoAtual("ARQUIVADO");
+		
+		return false;
 	}
 	
 	@Override

@@ -67,9 +67,9 @@ public class Facade {
 		
 	}
 	
-	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
-		return this.controllerGeral.votarComissao(codigo, statusGovernista, proximoLocal);
-	}
+//	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
+//		return this.controllerGeral.votarComissao(codigo, statusGovernista, proximoLocal);
+//	}
 	
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {	
 		return this.controllerGeral.votarPlenario(codigo, statusGovernista, presentes);

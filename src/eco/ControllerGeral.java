@@ -5,13 +5,13 @@ import java.util.List;
 
 public class ControllerGeral {
 	
-	ControllerComissoes controller;
+	ControllerComissoes controllerComissoes;
 	ControllerPessoa controllerPessoa;
 	ControllerProjeto controllerProjeto;
 	Validador validador;
 	
 	public ControllerGeral() {
-		this.controller = new ControllerComissoes();
+		this.controllerComissoes = new ControllerComissoes();
 		this.controllerPessoa = new ControllerPessoa();
 		this.controllerProjeto = new ControllerProjeto();
 		this.validador = new Validador();
@@ -30,7 +30,7 @@ public class ControllerGeral {
 	}
 	
 	public void cadastrarPartido(String partido) {
-		this.controller.cadastrarPartido(partido);
+		this.controllerComissoes.cadastrarPartido(partido);
 	}
 	
 	public String exibirPessoa(String DNI) {
@@ -38,13 +38,13 @@ public class ControllerGeral {
 	}
 	
 	public String exibirBase() {
-		return controller.exibirBase();
+		return controllerComissoes.exibirBase();
 	}
 	
 	public void cadastrarComissao(String tema, String politicos) {
 		validador.validaEntrada(tema, "Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo");
 		validador.validaEntrada(politicos, "Erro ao cadastrar comissao: lista de politicos nao pode ser vazio ou nulo");
-		if(controller.getComissoes().containsKey(tema))
+		if(controllerComissoes.getComissoes().containsKey(tema))
 			throw new IllegalArgumentException("Erro ao cadastrar comissao: tema existente");
 		String[] politics = politicos.split(",");
 		for(String dni : politics) {
@@ -54,7 +54,7 @@ public class ControllerGeral {
 			if(controllerPessoa.getPessoas().get(dni).getDeputado() == null)
 				throw new IllegalArgumentException("Erro ao cadastrar comissao: pessoa nao eh deputado");
 		}
-		this.controller.cadastrarComissao(tema, politicos);
+		this.controllerComissoes.cadastrarComissao(tema, politicos);
 	}
 	
 	public String cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo) {
@@ -115,7 +115,7 @@ public class ControllerGeral {
 	}
 	
 	public boolean eDaBase(String dni) {
-		for (String p : this.controller.getPartidos()) {
+		for (String p : this.controllerComissoes.getPartidos()) {
 			if (controllerPessoa.getPessoas().get(dni).getPartido().equals(p))
 				return true;
 		}
@@ -132,78 +132,27 @@ public class ControllerGeral {
 
 	
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
-		String presents[]  = presentes.split(",");
 		List<Pessoa> politicosPresentes = new ArrayList<>();
-		int deputados = 0;
+		
 		for(Pessoa p : controllerPessoa.getPessoas().values()) {
 			if(p.getDeputado() != null) {
 				politicosPresentes.add(p);
-				deputados += 1;
 			}
 		}
-		if (codigo.substring(0,3).equals("PL ") || (codigo.substring(0,3).equals("PLP"))) {
-			if(presents.length < Math.floor((deputados / 2)) + 1)
-				throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
-		}
-		if(codigo.substring(0,3).equals("PEC")) {
-			if(presents.length < Math.floor((3/5 * deputados)) + 1)
-				throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
-		}
-		if (controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("ARQUIVADO") || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("APROVADO"))
-			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
 
-		if(!controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("plenario"))
-			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao em comissao");
-		validador.validaEntrada(codigo, "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
-		validador.validaEntrada(statusGovernista, "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
-		validador.validaEntrada(presentes, "Erro ao votar proposta: Deputados presentes nao pode ser vazio ou nulo");
 		for(String dni : presentes.split(",")) {
 			validador.validaDni(dni, "Erro ao votar proposta: dni invalido");
 		}
-		if(!controllerProjeto.getProjetos().containsKey(codigo))
-			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
+		
 		for(String dni : presentes.split(",")) {
 			if(!controllerPessoa.getPessoas().containsKey(dni))
 				throw new IllegalArgumentException("Erro ao votar proposta: Deputado não cadastrado");
 		}
 		
-		int votosAprovar = controllerProjeto.getProjetos().get(codigo).contaVotos(codigo, statusGovernista, politicosPresentes, controller.getPartidos());
-
-		if (codigo.substring(0,3).equals("PL ")) {
-			if (votosAprovar >= Math.floor((presents.length / 2)) + 1) {
-				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("APROVADO");
-				controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
-				return true;
-			}else 
-				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
+		if(controllerProjeto.votarPlenario(codigo, statusGovernista, politicosPresentes, politicosPresentes.size(), controllerComissoes.getPartidos())) {
+			//aqui é para por algum algum metodo para caso a afirmacao anterior seja verdadeira adicionar um projeto de lei aprovado a determinado deputado.
 		}
-		
-		if (codigo.substring(0,3).equals("PLP")) {
-				if(votosAprovar  >= Math.floor((deputados / 2)) + 1) {
-					if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)"))
-						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
-					else if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)")) {
-						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("APROVADO");
-						controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
-					}
-					return true;
-				}
-				else 
-					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
-		}
-		if(codigo.substring(0,3).equals("PEC")) {
-			if(votosAprovar  >= Math.floor((3/5 * deputados)) + 1) {
-				if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)"))
-					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
-				else if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)")) {
-					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("APROVADO");
-					controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
-				}return true;
-			}
-			else 
-				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
-	}	
-		
+				
 		return false;
 	}
 	/**
@@ -214,110 +163,110 @@ public class ControllerGeral {
 	 * @param proximoLocal proximo local que sera votado.
 	 * @return retorna um valor booleano
 	 */
-	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
-		validador.validaEntrada(codigo, "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
-		validador.validaEntrada(statusGovernista, "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
-		validador.validaEntrada(proximoLocal, "Erro ao votar proposta: proximo local vazio");
-		if (!statusGovernista.equals("GOVERNISTA") && !statusGovernista.equals("LIVRE") && !statusGovernista.equals("OPOSICAO"))
-			throw new IllegalArgumentException("Erro ao votar proposta: status invalido");
-		if(!controllerProjeto.getProjetos().containsKey(codigo))
-			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
-		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("plenario")) 
-			throw new IllegalArgumentException("Erro ao votar proposta: proposta encaminhada ao plenario");
-		if ((controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("ARQUIVADO") || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("APROVADO")){
-			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
-		}
-		if(!controller.getComissoes().containsKey("CCJC"))
-			throw new IllegalArgumentException("Erro ao votar proposta: CCJC nao cadastrada");
-		
-		if (controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().contains(codigo)) 
-			throw new IllegalArgumentException("");
-		
-		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) 
-			throw new IllegalArgumentException("");
-		
-		List<Pessoa> deputados = new ArrayList<>();
-		String politicos[]  = controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getPoliticos().split(",");
-		for(String p : politicos) {
-			deputados.add(controllerPessoa.getPessoas().get(p));
-		}
-		int votosAprovados = controllerProjeto.getProjetos().get(codigo).contaVotos(codigo, statusGovernista, deputados, controller.getPartidos());
-		if (codigo.substring(0,3).equals("PL ")) {
-			PL projetoPL = (PL) controllerProjeto.getProjetos().get(codigo);
-			if (projetoPL.isTramitacaoConclusiva() == false) {
-				if (votosAprovados >= politicos.length / 2 + 1) {
-					controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
-					controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
-					if ("plenario".equals(proximoLocal)) {
-						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
-						return true;
-					}
-				
-					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
-					return true;
-				}
-			
-				if (proximoLocal.equals("plenario")) {
-					controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
-					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
-					controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
-					return false;
-				}
-				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
-				controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
-				controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
-				return false;
-			
-		}
-			else {
-				if (votosAprovados >= politicos.length / 2 + 1) {
-					controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
-					controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
-					if ("-".equals(proximoLocal)) {
-						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("APROVADO");
-						controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
-						return true;
-					}
-				
-					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
-					return true;
-				}
-			
-				if (proximoLocal.equals("-")) {
-					controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
-					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
-					controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
-					return false;
-				}
-				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
-				controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
-				controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
-				return false;
-			}
-	}else {
-		if (votosAprovados >= politicos.length / 2 + 1) {
-			controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
-			controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
-			if ("plenario".equals(proximoLocal)) {
-				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
-				return true;
-			}
-		
-			controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
-			return true;
-		}
-	
-		if (proximoLocal.equals("plenario")) {
-			controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
-			controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
-			controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
-			return false;
-		}
-		controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
-		controller.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
-		controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
-		return false;
-	}
-	}
+//	public boolean votarComissao(String codigo, String statusGovernista, String proximoLocal) {
+//		validador.validaEntrada(codigo, "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
+//		validador.validaEntrada(statusGovernista, "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
+//		validador.validaEntrada(proximoLocal, "Erro ao votar proposta: proximo local vazio");
+//		if (!statusGovernista.equals("GOVERNISTA") && !statusGovernista.equals("LIVRE") && !statusGovernista.equals("OPOSICAO"))
+//			throw new IllegalArgumentException("Erro ao votar proposta: status invalido");
+//		if(!controllerProjeto.getProjetos().containsKey(codigo))
+//			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
+//		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("plenario")) 
+//			throw new IllegalArgumentException("Erro ao votar proposta: proposta encaminhada ao plenario");
+//		if ((controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("ARQUIVADO") || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("APROVADO")){
+//			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
+//		}
+//		if(!controllerComissoes.getComissoes().containsKey("CCJC"))
+//			throw new IllegalArgumentException("Erro ao votar proposta: CCJC nao cadastrada");
+//		
+//		if (controllerComissoes.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().contains(codigo)) 
+//			throw new IllegalArgumentException("");
+//		
+//		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) 
+//			throw new IllegalArgumentException("");
+//		
+//		List<Pessoa> deputados = new ArrayList<>();
+//		String politicos[]  = controllerComissoes.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getPoliticos().split(",");
+//		for(String p : politicos) {
+//			deputados.add(controllerPessoa.getPessoas().get(p));
+//		}
+//		int votosAprovados = controllerProjeto.getProjetos().get(codigo).contaVotos(codigo, statusGovernista, deputados, controllerComissoes.getPartidos());
+//		if (codigo.substring(0,3).equals("PL ")) {
+//			PL projetoPL = (PL) controllerProjeto.getProjetos().get(codigo);
+//			if (projetoPL.isTramitacaoConclusiva() == false) {
+//				if (votosAprovados >= politicos.length / 2 + 1) {
+//					controllerComissoes.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+//					controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+//					if ("plenario".equals(proximoLocal)) {
+//						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
+//						return true;
+//					}
+//				
+//					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+//					return true;
+//				}
+//			
+//				if (proximoLocal.equals("plenario")) {
+//					controllerComissoes.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+//					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
+//					controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+//					return false;
+//				}
+//				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+//				controllerComissoes.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+//				controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+//				return false;
+//			
+//		}
+//			else {
+//				if (votosAprovados >= politicos.length / 2 + 1) {
+//					controllerComissoes.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+//					controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+//					if ("-".equals(proximoLocal)) {
+//						controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("APROVADO");
+//						controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
+//						return true;
+//					}
+//				
+//					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+//					return true;
+//				}
+//			
+//				if (proximoLocal.equals("-")) {
+//					controllerComissoes.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+//					controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
+//					controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+//					return false;
+//				}
+//				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("ARQUIVADO");
+//				controllerComissoes.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+//				controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+//				return false;
+//			}
+//	}else {
+//		if (votosAprovados >= politicos.length / 2 + 1) {
+//			controllerComissoes.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+//			controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+//			if ("plenario".equals(proximoLocal)) {
+//				controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
+//				return true;
+//			}
+//		
+//			controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+//			return true;
+//		}
+//	
+//		if (proximoLocal.equals("plenario")) {
+//			controllerComissoes.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+//			controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
+//			controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+//			return false;
+//		}
+//		controllerProjeto.getProjetos().get(codigo).setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+//		controllerComissoes.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getProjetosVotados().add(codigo);
+//		controllerProjeto.getProjetos().get(codigo).setLocalAtual(proximoLocal);
+//		return false;
+//	}
+//	}
 }
 

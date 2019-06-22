@@ -94,7 +94,7 @@ abstract class Projeto{
 		return false;
 	}
 	
-	public int contaVotos(String codigo, String statusGovernista, List<Pessoa> politicos, List<String> partidos) {
+	public int contaVotos(String statusGovernista, List<Pessoa> politicos, List<String> partidos) {
 		int votosAprovar = 0;
 		for (Pessoa politico : politicos){
 			if(statusGovernista.equals("GOVERNISTA")) {
@@ -112,4 +112,5 @@ abstract class Projeto{
 		return votosAprovar;
 	} 
 	
+	abstract boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, int qntDeputados, List<String> partidos);
 }
