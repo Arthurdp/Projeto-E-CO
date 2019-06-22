@@ -35,6 +35,8 @@ public class PL extends Projeto{
 		return false;
 	}
 	
+	//public boolean votarComissao(String estatusGovernista, List )
+	
 	@Override
 	public String toString() {
 		return (this.tramitacaoConclusiva == true) ? "Projeto de Lei - " + this.codigo + " - " + getAutor()  + " - " + getEmenta() + " - Conclusiva - " + 
