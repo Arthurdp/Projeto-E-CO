@@ -41,5 +41,5 @@ public class Comissao {
 	public Set<String> getProjetosVotados() {
 		return projetosVotados;
 	}
-	}
+}
 	

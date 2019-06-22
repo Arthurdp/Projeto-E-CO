@@ -113,4 +113,5 @@ abstract class Projeto{
 	} 
 	
 	abstract boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, int qntDeputados, List<String> partidos);
+	
 }

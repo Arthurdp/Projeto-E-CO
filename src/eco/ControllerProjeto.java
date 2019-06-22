@@ -29,22 +29,39 @@ public class ControllerProjeto {
 		return projetos;
 	}
 	
-	public boolean votarPlenario(String codigo, String statusGovernista, List<Pessoa> politicos, int qntDeputados, List<String> partidos) {
+	public boolean votarPlenario(String codigo, String estatusGovernista, List<Pessoa> politicos, int qntDeputados, List<String> partidos) {
 		if(projetos.get(codigo).getLocalAtual().equals("plenario"))
 			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao em comissao");
 		
 		validador.validaEntrada(codigo, "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
-		validador.validaEntrada(statusGovernista, "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
+		validador.validaEntrada(estatusGovernista, "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
 		
-		if(politicos.isEmpty())
+		if(politicos.isEmpty())//talvez possa estar gerando algum tipo de erro indesejado.
 			throw new IllegalArgumentException("Erro ao votar proposta: Deputados presentes nao pode ser vazio ou nulo");
 		
 	
 		if(!projetos.containsKey(codigo))
 			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
 		
-		return projetos.get(codigo).votarPlenario(statusGovernista, politicos, qntDeputados, partidos);
+		return projetos.get(codigo).votarPlenario(estatusGovernista, politicos, qntDeputados, partidos);
 	}
+	
+//	public boolean votarComissao(String codigo, String estatusGovernista) {
+//		if (!estatusGovernista.equals("GOVERNISTA") && !estatusGovernista.equals("LIVRE") && !estatusGovernista.equals("OPOSICAO"))
+//			throw new IllegalArgumentException("Erro ao votar proposta: status invalido");
+//		
+//		if(!projetos.containsKey(codigo))
+//			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
+//		
+//		if (projetos.get(codigo).getLocalAtual().equals("plenario")) 
+//			throw new IllegalArgumentException("Erro ao votar proposta: proposta encaminhada ao plenario");
+//		
+//		if ((projetos.get(codigo).getLocalAtual().equals("-")) || projetos.get(codigo).getSituacaoAtual().equals("ARQUIVADO") || projetos.get(codigo).getSituacaoAtual().equals("APROVADO"))
+//			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
+//		
+//		if (projetos.get(codigo).getLocalAtual().equals("-")) 
+//			throw new IllegalArgumentException("");
+//	}
 	
 
 	/**
