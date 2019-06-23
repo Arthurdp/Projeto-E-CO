@@ -47,8 +47,6 @@ public class ControllerProjeto {
 	}
 	
 	public boolean votarComissao(String codigo, String estatusGovernista, List<Pessoa> deputados, List<String> partidos, Map<String, Comissao> comissoes, String proximoLocal) {
-		if (!estatusGovernista.equals("GOVERNISTA") && !estatusGovernista.equals("LIVRE") && !estatusGovernista.equals("OPOSICAO"))
-			throw new IllegalArgumentException("Erro ao votar proposta: status invalido");
 		
 		if(!projetos.containsKey(codigo))
 			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
@@ -56,11 +54,10 @@ public class ControllerProjeto {
 		if (projetos.get(codigo).getLocalAtual().equals("plenario")) 
 			throw new IllegalArgumentException("Erro ao votar proposta: proposta encaminhada ao plenario");
 		
-		if ((projetos.get(codigo).getLocalAtual().equals("-")) || projetos.get(codigo).getSituacaoAtual().equals("ARQUIVADO") || projetos.get(codigo).getSituacaoAtual().equals("APROVADO"))
-			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
-		
 		if (projetos.get(codigo).getLocalAtual().equals("-")) 
 			throw new IllegalArgumentException("");
+		
+		
 		
 		if(comissoes.containsKey("CCJC"))
 			throw new IllegalArgumentException("Erro ao votar proposta: CCJC nao cadastrada");
