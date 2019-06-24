@@ -30,8 +30,7 @@ public class ControllerProjeto {
 	}
 	
 	public boolean votarPlenario(String codigo, String estatusGovernista, List<Pessoa> politicos, int qntDeputados, List<String> partidos) {
-		if(projetos.get(codigo).getLocalAtual().equals("plenario"))
-			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao em comissao");
+		
 		
 		validador.validaEntrada(codigo, "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
 		validador.validaEntrada(estatusGovernista, "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
@@ -42,6 +41,9 @@ public class ControllerProjeto {
 	
 		if(!projetos.containsKey(codigo))
 			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
+		
+		if(politicos.size() < Math.floor((qntDeputados / 2)) + 1)
+			throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
 		
 		return projetos.get(codigo).votarPlenario(estatusGovernista, politicos, qntDeputados, partidos);
 	}
