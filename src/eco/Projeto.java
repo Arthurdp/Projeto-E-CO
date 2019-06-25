@@ -92,6 +92,8 @@ abstract class Projeto{
 				if(interessesComuns(politico.getInteresses(), interesses))
 					votosAprovar += 1;
 			}
+			
+		
 		}
 		return votosAprovar;
 	} 

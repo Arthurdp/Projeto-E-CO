@@ -16,7 +16,7 @@ public class PL extends Projeto{
 	@Override
 	public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, int qntDeputados, List<String> partidos) {
 		
-		if(politicos.size() < Math.floor((qntDeputados / 2)) + 1)
+		if(qntDeputados < Math.floor(( politicos.size()/ 2)) + 1)
 			throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
 		
 		if(getSituacaoAtual().equals("APROVADO") || getSituacaoAtual().equals("ARQUIVADO"))
