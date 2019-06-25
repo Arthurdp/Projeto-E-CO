@@ -134,6 +134,7 @@ public class ControllerGeral {
 
 	
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
+		validador.validaEntrada(presentes, "Erro ao votar proposta: presentes nao pode ser vazio ou nulo");
 		List<Pessoa> politicosCadastrados = new ArrayList<>();
 		List<Pessoa> politicosPresentes = new ArrayList<>();
 		

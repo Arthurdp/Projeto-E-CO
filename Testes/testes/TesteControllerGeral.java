@@ -14,30 +14,68 @@ class TesteControllerGeral {
 	public TesteControllerGeral() {
 		this.controllerGeral = new ControllerGeral();
 	}
+	
+	@Test
+	void testVotarComissao() {
+		
+	}
+	
 	@Test
 	void testVotarPlenario() {
-		controllerGeral.cadastrarPessoa("Eu", "111111111-1", "PB", "desviar coisas", "PPP");
-		controllerGeral.cadastrarPessoa("Tu", "111111111-2", "RJ", "desviar coisas", "PPP");
+		controllerGeral.cadastrarPessoa("Eu", "111111111-1", "PB", "desviar coisas, assistir netflix, jogar lol, dormir", "PPP");
+		controllerGeral.cadastrarPessoa("Tu", "111111111-2", "RJ", "desviar coisas, dormir, assistir netflix", "PPP");
 		controllerGeral.cadastrarPessoa("nois", "111111111-3", "SP", "desviar coisas", "PPP");
-		controllerGeral.cadastrarPessoa("botanela", "111111111-4", "RN", "Nenhum", "PPL");
+		controllerGeral.cadastrarPessoa("botanela", "111111111-4", "RN", "assistir netflix", "PPP");
+		controllerGeral.cadastrarPessoa("o", "111111111-5", "RN", "desviar coisas, jogar lol", "PPP");
+		controllerGeral.cadastrarPessoa("bonde", "111111111-6", "MG", "jogar lol", "PPL");
+		controllerGeral.cadastrarPessoa("chegou", "111111111-7", "PE", "Nenhum", "PPL");
+		controllerGeral.cadastrarPessoa("eh", "111111111-8", "AM", "Nenhum", "PPL");
+		controllerGeral.cadastrarPessoa("os", "111111111-9", "PB", "Nenhum", "PPL");
+		controllerGeral.cadastrarPessoa("predador", "111111111-0", "SP", "Nenhum", "PPL");
+		
 		controllerGeral.cadastrarDeputado("111111111-1","03112012");
 		controllerGeral.cadastrarDeputado("111111111-2","12122012");
 		controllerGeral.cadastrarDeputado("111111111-3","05052005");
-		controllerGeral.cadastrarDeputado("111111111-4","02072006");
+		controllerGeral.cadastrarDeputado("111111111-4","28022006");
+		controllerGeral.cadastrarDeputado("111111111-5","02072006");
+		controllerGeral.cadastrarDeputado("111111111-6","02062010");
+		controllerGeral.cadastrarDeputado("111111111-7","25072006");
+		controllerGeral.cadastrarDeputado("111111111-8","19022015");
+		controllerGeral.cadastrarDeputado("111111111-9","01072016");
+		controllerGeral.cadastrarDeputado("111111111-0","30082008");
+		
+		controllerGeral.cadastrarPL("111111111-1", 2017, "Ementa PL conc", "desviar coisas, assistir netflix, jogar lol, dormir", "http://example.com/lol", true);
+		controllerGeral.cadastrarPL("111111111-0", 2017, "Ementa PL conc", "desviar coisas, assistir netflix, jogar lol", "http://example.com/sono", true);
+		controllerGeral.cadastrarPL("111111111-7", 2017, "Ementa PL conc", "desviar coisas, assistir netflix", "http://example.com/assistir", true);
+		controllerGeral.cadastrarPL("111111111-5", 2017, "Ementa PL conc", "desviar coisas", "http://example.com/desviamento", true);
+
+		controllerGeral.cadastrarPLP("111111111-4", 2017, "Ementa PL conc", "dormir", "http://example.com/desviamento", "157");
+		controllerGeral.cadastrarPEC("111111111-6", 2017, "Ementa PL conc", "jogar lol", "http://example.com/desviamento", "7,8");
+		
 		controllerGeral.cadastrarPartido("PPP");
-		controllerGeral.cadastrarPL("111111111-1", 2001, "nada nada nada", "desviar coisas", "https://example.net/jogos%40aposta", true);
+		controllerGeral.cadastrarComissao("CCJC", "111111111-1,111111111-2,111111111-3,111111111-4");
+		controllerGeral.cadastrarComissao("CTF", "111111111-1,111111111-2,111111111-3,111111111-4");
 		
-		boolean test = true;
-		boolean ver = controllerGeral.votarPlenario("PL 1/2001", "LIVRE", "111111111-1,111111111-2,111111111-3,111111111-4");
-		boolean ver1 = controllerGeral.votarPlenario("PL 1/2001", "GOVERNISTA", "111111111-1,111111111-2,111111111-3,111111111-4");
-		boolean ver2 = controllerGeral.votarPlenario("PL 1/2001", "OPOSICAO", "111111111-1,111111111-2,111111111-3,111111111-4");
-		assertEquals(test, ver);
-		assertEquals(test, ver1);
-		assertEquals(!test, ver2);
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("", "LIVRE", "CTF"), "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PL 1/2017", "", "CTF"), "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PL 1/2017", "LIVRE", ""), "Erro  ao votar proposta: proximo local vazio");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PL 1/2017", "LIVRE", ""), "Erro  ao votar proposta: presentes nao pode ser vazio ou nulo");
 		
-	}
-	@Test
-	void testVotarComissao() {
+		
+		controllerGeral.votarComissao("PL 1/2017", "LIVRE", "CTF");
+		controllerGeral.votarComissao("PL 2/2017", "OPOSICAO", "CTF");
+		controllerGeral.votarComissao("PL 3/2017", "GOVERNISTA", "CTF");
+		controllerGeral.votarComissao("PL 4/2017", "LIVRE", "CTF");
+		
+		
+		controllerGeral.votarComissao("PL 1/2017", "LIVRE", "plenario");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PL 2/2017", "LIVRE", "plenario"),"Erro ao votar proposta: tramitacao encerrada");
+		controllerGeral.votarComissao("PL 3/2017", "LIVRE", "plenario");
+		controllerGeral.votarComissao("PL 4/2017", "LIVRE", "plenario");
+		
+		assertTrue(controllerGeral.votarPlenario("PL 1/2017", "LIVRE", "111111111-1,111111111-2,111111111-3,111111111-4"));
+		assertFalse(controllerGeral.votarPlenario("PL 3/2017", "OPOSICAO", "111111111-1,111111111-2,111111111-3,111111111-4"));
+		assertTrue(controllerGeral.votarPlenario("PL 4/2017", "GOVERNISTA", "111111111-1,111111111-2,111111111-3,111111111-4"));
 		
 	}
 
