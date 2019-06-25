@@ -82,17 +82,15 @@ abstract class Projeto{
 		int votosAprovar = 0;
 		for (Pessoa politico : politicos){
 			if(statusGovernista.equals("GOVERNISTA")) {
-				for(String partido : partidos) {
-					if(partido.equals(politico.getPartido()))
+				if(partidos.contains(politico.getPartido()))
 						votosAprovar += 1;
-				}
+				
 			}
 			
 			if(statusGovernista.equals("OPOSICAO")) {
-				for(String partido : partidos) {
-					if(!partido.equals(politico.getPartido()))
-						votosAprovar += 1;
-				}
+				if(!partidos.contains(politico.getPartido()))
+					votosAprovar += 1;
+				
 			}
 			
 			if(statusGovernista.equals("LIVRE")){				
