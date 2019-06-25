@@ -70,8 +70,8 @@ public class PL extends Projeto{
 					for(Pessoa deputado : deputados) {
 						if(deputado.getDni().equals(getAutor()))
 							deputado.getDeputado().aprovouUmaLei();
-					return true;
 					}
+					return true;
 				}
 			
 				setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
