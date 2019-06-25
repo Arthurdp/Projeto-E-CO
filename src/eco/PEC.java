@@ -23,7 +23,7 @@ public class PEC extends ProjetosConstitucionais{
 		super.tipo = "PEC";
 	}
 
-public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, int qntDeputados, List<String> partidos) {
+public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, int qntDeputados, List<Pessoa> politicosPresentes, List<String> partidos) {
 		
 		if(qntDeputados < Math.floor((3/5 * politicos.size())) + 1)
 			throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");

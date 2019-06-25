@@ -23,7 +23,7 @@ public class PLP extends ProjetosConstitucionais{
 		super.tipo = "PLP";
 	}
 	
-	public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, int qntDeputados, List<String> partidos) {
+	public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, int qntDeputados, List<Pessoa> politicosPresentes, List<String> partidos) {
 		
 		if( qntDeputados < Math.floor((politicos.size() / 2)) + 1)
 			throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");

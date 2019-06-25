@@ -133,6 +133,7 @@ public class ControllerGeral {
 	
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
 		List<Pessoa> politicosCadastrados = new ArrayList<>();
+		List<Pessoa> politicosPresentes = new ArrayList<>();
 		
 		int numPresentes = 0;
 		
@@ -156,10 +157,14 @@ public class ControllerGeral {
 			if(controllerPessoa.getPessoas().get(deputado).getDeputado() != null)
 				numPresentes += 1;
 		}
+		
+		for(String dni : presentes.split(",")) {
+			politicosPresentes.add(controllerPessoa.getPessoas().get(dni));
+		}
 			
 		
 		
-		if(controllerProjeto.votarPlenario(codigo, statusGovernista, politicosCadastrados, numPresentes, controllerComissoes.getPartidos())) {
+		if(controllerProjeto.votarPlenario(codigo, statusGovernista, politicosCadastrados, numPresentes,politicosPresentes, controllerComissoes.getPartidos())) {
 			if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("APROVADO"))
 				controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
 			

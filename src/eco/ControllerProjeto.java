@@ -29,7 +29,7 @@ public class ControllerProjeto {
 		return projetos;
 	}
 	
-	public boolean votarPlenario(String codigo, String statusGovernista, List<Pessoa> politicos, int qntDeputados, List<String> partidos) {
+	public boolean votarPlenario(String codigo, String statusGovernista, List<Pessoa> politicos, int qntDeputados, List<Pessoa> politicosPresentes, List<String> partidos) {
 		
 		
 		validador.validaEntrada(codigo, "Erro ao votar proposta: codigo nao pode ser vazio ou nulo");
@@ -42,7 +42,7 @@ public class ControllerProjeto {
 		if(!projetos.containsKey(codigo))
 			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
 		
-		return projetos.get(codigo).votarPlenario(statusGovernista, politicos, qntDeputados, partidos);
+		return projetos.get(codigo).votarPlenario(statusGovernista, politicosPresentes, qntDeputados, politicosPresentes, partidos);
 	}
 	
 	public boolean votarComissao(String codigo, String estatusGovernista, List<Pessoa> deputados, List<String> partidos, Map<String, Comissao> comissoes, String proximoLocal) {

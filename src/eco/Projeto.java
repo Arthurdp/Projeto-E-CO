@@ -86,6 +86,10 @@ abstract class Projeto{
 						votosAprovar += 1;
 			}
 			
+			if(statusGovernista.equals("OPOSICAO")) {
+				if(!partidos.contains(politico.getPartido()))
+						votosAprovar += 1;
+			}
 			else if(statusGovernista.equals("LIVRE")){				
 				if(interessesComuns(politico.getInteresses(), interesses))
 					votosAprovar += 1;
@@ -96,7 +100,7 @@ abstract class Projeto{
 		return votosAprovar;
 	} 
 	
-	abstract boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, int qntDeputados, List<String> partidos);
+	abstract boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, int qntDeputados, List<Pessoa> politicosPresentes,List<String> partidos);
 	
 	abstract boolean votarComissao(String estatusGovernista, List<Pessoa> deputados, List<String> partidos, Map<String, Comissao> comissoes, String proximoLocal);
 }
