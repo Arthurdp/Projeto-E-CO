@@ -15,6 +15,7 @@ abstract class Projeto{
 	protected String turno;
 	protected String tipo;
 	private String localAtual;
+	protected String tramitacao;
 	
 	public Projeto(String autor, int ano, String codigo, String ementa, String interesses, String url) {
 		this.validador = new Validador();
@@ -26,6 +27,7 @@ abstract class Projeto{
 		this.situacaoAtual = "EM VOTACAO (CCJC)";
 		this.url = url;
 		this.localAtual = "CCJC";
+		this.tramitacao = "";
 	}
 	
 	public String getAutor() {
@@ -65,9 +67,13 @@ abstract class Projeto{
 		this.situacaoAtual = situacaoAtual;
 	}
 	
-	public boolean interessesComuns(String interesses1, String interesses2) {
+	public String getTramitacao() {
+		return tramitacao;
+	}
+
+	public boolean interessesComuns(String interesses1) {
 		String[] i1 = interesses1.split(",");
-		String[] i2 = interesses2.split(",");
+		String[] i2 = this.interesses.split(",");
 		
 		for (String i : i1) {
 			for(String j : i2) {
@@ -91,7 +97,7 @@ abstract class Projeto{
 						votosAprovar += 1;
 			}
 			else if(statusGovernista.equals("LIVRE")){				
-				if(interessesComuns(politico.getInteresses(), interesses))
+				if(interessesComuns(politico.getInteresses()))
 					votosAprovar += 1;
 			}
 			
