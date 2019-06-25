@@ -204,5 +204,9 @@ public class ControllerGeral {
 		
 		return controllerProjeto.getProjetos().get(codigo).votarComissao(statusGovernista, deputados, controllerComissoes.getPartidos(), controllerComissoes.getComissoes(), proximoLocal);
 	}
+	
+	public String exibirTramitacao(String codigo) {
+		return controllerProjeto.exibirTramitacao(codigo);
+	}
 }
 

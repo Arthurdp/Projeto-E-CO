@@ -15,6 +15,7 @@ abstract class Projeto{
 	protected String turno;
 	protected String tipo;
 	private String localAtual;
+	protected String PLsVotadas;
 	protected String tramitacao;
 	
 	public Projeto(String autor, int ano, String codigo, String ementa, String interesses, String url) {
@@ -27,7 +28,8 @@ abstract class Projeto{
 		this.situacaoAtual = "EM VOTACAO (CCJC)";
 		this.url = url;
 		this.localAtual = "CCJC";
-		this.tramitacao = "";
+		this.PLsVotadas = "";
+		this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 	}
 	
 	public String getAutor() {
@@ -68,7 +70,7 @@ abstract class Projeto{
 	}
 	
 	public String getTramitacao() {
-		return tramitacao;
+		return this.tramitacao;
 	}
 
 	public boolean interessesComuns(String interesses1) {

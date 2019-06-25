@@ -134,4 +134,8 @@ public class ControllerProjeto {
 	public String exibirProjeto(String codigo) {
 		return projetos.get(codigo).toString();
 	}
+	
+	public String exibirTramitacao(String codigo) {
+		return projetos.get(codigo).getTramitacao();
+	}
 }

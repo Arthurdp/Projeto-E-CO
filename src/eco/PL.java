@@ -28,12 +28,13 @@ public class PL extends Projeto{
 		int votosAprovar = contaVotos(estatusGovernista, politicos, partidos);
 		
 		if (votosAprovar >= Math.floor((politicosPresentes.size() / 2)) + 1) {
-			this.tramitacao += "APROVADO (" + getLocalAtual() + "), ";
+			this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
 			setSituacaoAtual("APROVADO");
 			return true;
-		}else 
+		}else { 
+			this.PLsVotadas += "REPROVADO (" + getLocalAtual() + "), ";
 			setSituacaoAtual("ARQUIVADO");
-		
+		}
 		return false;
 	}
 	
@@ -42,7 +43,7 @@ public class PL extends Projeto{
 		
 		if(!tramitacaoConclusiva) {
 			if (votosAprovados >= deputados.size() / 2 + 1) {
-				this.tramitacao += "APROVADO (" + getLocalAtual() + "), ";
+				this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
 				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 				setLocalAtual(proximoLocal);
 				
@@ -54,7 +55,7 @@ public class PL extends Projeto{
 				setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
 				return true;
 			}
-			this.tramitacao += "REPROVADO (" + getLocalAtual() + "), ";
+			this.PLsVotadas += "REPROVADO (" + getLocalAtual() + "), ";
 			if (proximoLocal.equals("plenario")) {
 				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 				setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
@@ -69,7 +70,7 @@ public class PL extends Projeto{
 		
 		else {
 			if (votosAprovados >= deputados.size() / 2 + 1) {
-				this.tramitacao += "APROVADO (" + getLocalAtual() + "), ";
+				this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
 				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 				setLocalAtual(proximoLocal);
 				if ("-".equals(proximoLocal)) {
@@ -84,7 +85,7 @@ public class PL extends Projeto{
 				setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
 				return true;
 			}
-			this.tramitacao += "REPROVADO (" + getLocalAtual() + "), ";
+			this.PLsVotadas += "REPROVADO (" + getLocalAtual() + "), ";
 			if (proximoLocal.equals("-")) {
 				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 				setSituacaoAtual("ARQUIVADO");

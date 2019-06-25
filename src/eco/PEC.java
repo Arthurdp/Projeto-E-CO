@@ -37,6 +37,7 @@ public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, L
 		int votosAprovar = contaVotos(estatusGovernista, politicosPresentes, partidos);
 		
 		if (votosAprovar >= Math.floor((politicosPresentes.size() / 2)) + 1) {
+			this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
 			if(getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)")) {
 				setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
 				return true;
@@ -45,9 +46,10 @@ public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, L
 				setSituacaoAtual("APROVADO");
 				return true;
 			}
-		}else 
+		}else {
+			this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
 			setSituacaoAtual("ARQUIVADO");
-		
+		}
 		return false;
 	}
 	

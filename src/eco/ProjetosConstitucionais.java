@@ -14,6 +14,7 @@ abstract class ProjetosConstitucionais extends Projeto {
 	public boolean votarComissao(String estatusGovernista, List<Pessoa> deputados, List<String> partidos, Map<String, Comissao> comissoes, String proximoLocal) {
 		int votosAprovados = contaVotos(estatusGovernista, deputados, partidos);
 		if (votosAprovados >= deputados.size() / 2 + 1) {
+			this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
 			comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 			setLocalAtual(proximoLocal);
 			if ("plenario".equals(proximoLocal)) {
@@ -24,7 +25,7 @@ abstract class ProjetosConstitucionais extends Projeto {
 			setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
 			return true;
 		}
-	
+		this.PLsVotadas += "REPROVADO (" + getLocalAtual() + "), ";
 		if (proximoLocal.equals("plenario")) {
 			comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 			setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");

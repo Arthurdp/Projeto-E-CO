@@ -79,7 +79,7 @@ public class Facade {
 	}
 	
 	public String exibirTramitacao(String codigo) {
-		return "";
+		return controllerGeral.exibirTramitacao(codigo);
 	}
 	
 
