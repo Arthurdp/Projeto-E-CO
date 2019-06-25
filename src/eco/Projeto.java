@@ -39,6 +39,14 @@ abstract class Projeto{
 	public String getEmenta() {
 		return ementa;
 	}
+	
+	public int getAno() {
+		return ano;
+	}
+	
+	public String getCodigo() {
+		return codigo;
+	}
 
 	public String getSituacaoAtual() {
 		return situacaoAtual;
@@ -73,8 +81,8 @@ abstract class Projeto{
 		return this.tramitacao;
 	}
 
-	public boolean interessesComuns(String interesses1) {
-		String[] i1 = interesses1.split(",");
+	public boolean interessesComuns(String interesses) {
+		String[] i1 = interesses.split(",");
 		String[] i2 = this.interesses.split(",");
 		
 		for (String i : i1) {
