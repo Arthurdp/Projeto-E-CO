@@ -38,6 +38,7 @@ public class PLP extends ProjetosConstitucionais{
 		
 		if (votosAprovar >= Math.floor((politicosPresentes.size() / 2)) + 1) {
 			this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
+			this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 			if(getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)")) {
 				setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
 				return true;
@@ -50,6 +51,7 @@ public class PLP extends ProjetosConstitucionais{
 		}
 		else {
 			this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
+			this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 			setSituacaoAtual("ARQUIVADO");
 		}
 		return false;

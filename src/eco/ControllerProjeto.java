@@ -136,6 +136,9 @@ public class ControllerProjeto {
 	}
 	
 	public String exibirTramitacao(String codigo) {
+		validador.validaEntrada(codigo, "Erro ao exibir tramitacao: codigo nao pode ser vazio ou nulo");
+		if(!projetos.containsKey(codigo))
+			throw new IllegalArgumentException("Erro ao exibir tramitacao: projeto inexistente");
 		return projetos.get(codigo).getTramitacao();
 	}
 }

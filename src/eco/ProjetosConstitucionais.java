@@ -15,6 +15,7 @@ abstract class ProjetosConstitucionais extends Projeto {
 		int votosAprovados = contaVotos(estatusGovernista, deputados, partidos);
 		if (votosAprovados >= deputados.size() / 2 + 1) {
 			this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
+			this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 			comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 			setLocalAtual(proximoLocal);
 			if ("plenario".equals(proximoLocal)) {
@@ -26,6 +27,7 @@ abstract class ProjetosConstitucionais extends Projeto {
 			return true;
 		}
 		this.PLsVotadas += "REPROVADO (" + getLocalAtual() + "), ";
+		this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 		if (proximoLocal.equals("plenario")) {
 			comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 			setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");

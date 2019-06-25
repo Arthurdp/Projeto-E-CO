@@ -29,10 +29,12 @@ public class PL extends Projeto{
 		
 		if (votosAprovar >= Math.floor((politicosPresentes.size() / 2)) + 1) {
 			this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
+			this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 			setSituacaoAtual("APROVADO");
 			return true;
 		}else { 
-			this.PLsVotadas += "REPROVADO (" + getLocalAtual() + "), ";
+			this.PLsVotadas += "REJEITADO (" + getLocalAtual() + "), ";
+			this.tramitacao = this.PLsVotadas.substring(0, PLsVotadas.length()-2);
 			setSituacaoAtual("ARQUIVADO");
 		}
 		return false;
@@ -44,6 +46,7 @@ public class PL extends Projeto{
 		if(!tramitacaoConclusiva) {
 			if (votosAprovados >= deputados.size() / 2 + 1) {
 				this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
+				this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 				setLocalAtual(proximoLocal);
 				
@@ -55,7 +58,8 @@ public class PL extends Projeto{
 				setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
 				return true;
 			}
-			this.PLsVotadas += "REPROVADO (" + getLocalAtual() + "), ";
+			this.PLsVotadas += "REJEITADO (" + getLocalAtual() + "), ";
+			this.tramitacao = this.PLsVotadas.substring(0, PLsVotadas.length()-2);
 			if (proximoLocal.equals("plenario")) {
 				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 				setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
@@ -71,6 +75,7 @@ public class PL extends Projeto{
 		else {
 			if (votosAprovados >= deputados.size() / 2 + 1) {
 				this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
+				this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 				setLocalAtual(proximoLocal);
 				if ("-".equals(proximoLocal)) {
@@ -85,7 +90,8 @@ public class PL extends Projeto{
 				setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
 				return true;
 			}
-			this.PLsVotadas += "REPROVADO (" + getLocalAtual() + "), ";
+			this.PLsVotadas += "REJEITADO (" + getLocalAtual() + "), ";
+			this.tramitacao = this.PLsVotadas.substring(0, PLsVotadas.length()-2);
 			if (proximoLocal.equals("-")) {
 				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 				setSituacaoAtual("ARQUIVADO");

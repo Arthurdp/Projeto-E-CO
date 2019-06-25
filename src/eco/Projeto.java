@@ -10,7 +10,7 @@ abstract class Projeto{
 	protected String codigo;
 	private String ementa;
 	private String interesses;
-	private String situacaoAtual;
+	protected String situacaoAtual;
 	private String url;
 	protected String turno;
 	protected String tipo;
@@ -29,7 +29,7 @@ abstract class Projeto{
 		this.url = url;
 		this.localAtual = "CCJC";
 		this.PLsVotadas = "";
-		this.tramitacao = this.PLsVotadas + this.situacaoAtual;
+		this.tramitacao = "";
 	}
 	
 	public String getAutor() {
