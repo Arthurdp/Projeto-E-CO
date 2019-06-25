@@ -161,9 +161,10 @@ public class ControllerGeral {
 		
 		if(controllerProjeto.votarPlenario(codigo, statusGovernista, politicosCadastrados, numPresentes, controllerComissoes.getPartidos())) {
 			controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
+			return true;
 		}
 				
-		return true;
+		return false;
 	}
 	/**
 	 * Simula um voto para uma comissao comecando pela CCJC e passando para o proximo local. recebo o codigo do projeto que sera votado, o status governista e o proximo local que sera votado.
