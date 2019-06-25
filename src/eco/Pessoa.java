@@ -175,6 +175,9 @@ public class Pessoa {
 		case "APROVACAO":
 			this.estrategia = new OrdenaPelaAprovacao();
 			break;
+			
+		default:
+			throw new IllegalArgumentException("Erro ao configurar estrategia: estrategia invalida");
 		}
 	}
 }

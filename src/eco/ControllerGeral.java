@@ -220,7 +220,7 @@ public class ControllerGeral {
 	public String pegarPropostaRelacionada(String dni) {
 		List<Projeto> lista = controllerProjeto.retornaProjetosRelacionados(controllerPessoa.retornaPessoa(dni).getInteresses());
 		Collections.sort(lista, controllerPessoa.retornaPessoa(dni).getEstrategia());
-		return lista.get(0).toString();
+		return lista.get(0).getCodigo();
 	}
 	
 }

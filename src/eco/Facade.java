@@ -82,5 +82,11 @@ public class Facade {
 		return controllerGeral.exibirTramitacao(codigo);
 	}
 	
-
+	public void configurarEstrategiaPropostaRelacionada(String dni, String estrategia) {
+		controllerGeral.configurarEstrategiaPropostaRelacionada(dni, estrategia);
+	}
+	
+	public String pegarPropostaRelacionada(String dni) {
+		return controllerGeral.pegarPropostaRelacionada(dni);
+	}
 }
