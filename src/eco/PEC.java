@@ -41,16 +41,22 @@ public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, L
 			this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 			if(getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)")) {
 				setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
+				setConclusoes();
+				setAprovacoes();
 				return true;
 			}
 			else if(getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)")) {
 				setSituacaoAtual("APROVADO");
+				setConclusoes();
+				setAprovacoes();
 				return true;
 			}
 		}else {
 			this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
 			this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 			setSituacaoAtual("ARQUIVADO");
+			setConclusoes();
+			
 		}
 		return false;
 	}
