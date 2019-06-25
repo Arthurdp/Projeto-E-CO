@@ -78,5 +78,9 @@ public class Facade {
 		
 	}
 	
+	public String exibirTramitacao(String codigo) {
+		return "";
+	}
+	
 
 }
