@@ -23,9 +23,9 @@ public class PLP extends ProjetosConstitucionais{
 		super.tipo = "PLP";
 	}
 	
-	public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, int qntDeputados, List<Pessoa> politicosPresentes, List<String> partidos) {
+	public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, List<Pessoa> politicosPresentes, List<String> partidos) {
 		
-		if( qntDeputados < Math.floor((politicos.size() / 2)) + 1)
+		if( politicosPresentes.size() <= Math.floor((politicos.size() / 2)) + 1)
 			throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
 		
 		if(getSituacaoAtual().equals("APROVADO") || getSituacaoAtual().equals("ARQUIVADO"))
@@ -34,9 +34,9 @@ public class PLP extends ProjetosConstitucionais{
 		if(!getLocalAtual().equals("plenario"))
 			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao em comissao");
 		
-		int votosAprovar = contaVotos(estatusGovernista, politicos, partidos);
+		int votosAprovar = contaVotos(estatusGovernista, politicosPresentes, partidos);
 		
-		if (votosAprovar >= Math.floor((qntDeputados / 2)) + 1) {
+		if (votosAprovar >= Math.floor((politicosPresentes.size() / 2)) + 1) {
 			if(getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)")) {
 				setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
 				return true;
