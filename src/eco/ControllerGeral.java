@@ -160,7 +160,9 @@ public class ControllerGeral {
 		
 		
 		if(controllerProjeto.votarPlenario(codigo, statusGovernista, politicosCadastrados, numPresentes, controllerComissoes.getPartidos())) {
-			controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
+			if(controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("APROVADO"))
+				controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
+			
 			return true;
 		}
 				

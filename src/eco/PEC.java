@@ -37,8 +37,10 @@ public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, i
 		int votosAprovar = contaVotos(estatusGovernista, politicos, partidos);
 		
 		if (votosAprovar >= Math.floor((qntDeputados / 2)) + 1) {
-			if(getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)"))
+			if(getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)")) {
 				setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
+				return true;
+			}
 			else if(getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)")) {
 				setSituacaoAtual("APROVADO");
 				return true;
