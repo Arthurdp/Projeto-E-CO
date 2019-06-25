@@ -132,11 +132,13 @@ public class ControllerGeral {
 
 	
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
-		List<Pessoa> politicosPresentes = new ArrayList<>();
+		List<Pessoa> politicosCadastrados = new ArrayList<>();
+		
 		int numPresentes = 0;
+		
 		for(Pessoa p : controllerPessoa.getPessoas().values()) {
 			if(p.getDeputado() != null) {
-				politicosPresentes.add(p);
+				politicosCadastrados.add(p);
 			}
 		}
 
@@ -145,15 +147,19 @@ public class ControllerGeral {
 		}
 		
 		for(String dni : presentes.split(",")) {
-			if(!controllerPessoa.getPessoas().containsKey(dni)) {
+			if(!controllerPessoa.getPessoas().containsKey(dni)) 
 				throw new IllegalArgumentException("Erro ao votar proposta: Deputado não cadastrado");
-			}else {
-				numPresentes +=1;
-			}
+			
 		}
 		
+		for(String deputado : presentes.split(",") ) {
+			if(controllerPessoa.getPessoas().get(deputado).getDeputado() != null)
+				numPresentes += 1;
+		}
+			
 		
-		if(controllerProjeto.votarPlenario(codigo, statusGovernista, politicosPresentes, numPresentes, controllerComissoes.getPartidos())) {
+		
+		if(controllerProjeto.votarPlenario(codigo, statusGovernista, politicosCadastrados, numPresentes, controllerComissoes.getPartidos())) {
 			controllerPessoa.getPessoas().get(controllerProjeto.getProjetos().get(codigo).getAutor()).getDeputado().aprovouUmaLei();
 		}
 				
@@ -178,14 +184,16 @@ public class ControllerGeral {
 		if(!controllerProjeto.getProjetos().containsKey(codigo))
 			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
 		
+		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("plenario")) 
+			throw new IllegalArgumentException("Erro ao votar proposta: proposta encaminhada ao plenario");
+		
 		if ((controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("-")) || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("ARQUIVADO") || controllerProjeto.getProjetos().get(codigo).getSituacaoAtual().equals("APROVADO"))
 			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao encerrada");
 		
 		if(!controllerComissoes.getComissoes().containsKey("CCJC"))
 			throw new IllegalArgumentException("Erro ao votar proposta: CCJC nao cadastrada");
 		
-		if (controllerProjeto.getProjetos().get(codigo).getLocalAtual().equals("plenario")) 
-			throw new IllegalArgumentException("Erro ao votar proposta: proposta encaminhada ao plenario");
+		
 		
 		List<Pessoa> deputados = new ArrayList<>();
 		String politicos[] = controllerComissoes.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getPoliticos().split(",");
