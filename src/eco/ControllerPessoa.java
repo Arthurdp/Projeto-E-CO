@@ -51,6 +51,10 @@ public class ControllerPessoa {
 		pessoas.put(dni, nova);
 	}
 	
+	public Pessoa retornaPessoa(String dni) {
+		return pessoas.get(dni);
+	}
+	
 	/**
 	 * inicia a vida publica de uma pessoa, tornando a mesma em um deputado.
 	 * @param dni da pessoa que vai se tornar um deputado.
@@ -83,6 +87,10 @@ public class ControllerPessoa {
 			throw new IllegalArgumentException("Erro ao exibir pessoa: pessoa nao encontrada");
 		}
 		return pessoas.get(dni).exibirPessoa();
+	}
+	
+	public void configurarEstrategiaPropostaRelacionada(String dni, String estrategia) {
+		pessoas.get(dni).configurarEstrategiaPropostaRelacionada(estrategia);
 	}
 	
 }

@@ -1,4 +1,7 @@
 package eco;
+
+import java.util.Comparator;
+
 /**
  * classe que representa uma pessoa no sistema.
  * responsavel por seus atributos e metodos.
@@ -33,6 +36,8 @@ public class Pessoa {
 	 */
 	private Deputado deputado;
 	
+	private Comparator<Projeto> estrategia;
+	
 	/**
 	 * Constroi uma nova pessoa que nao esteja filiada a nenhum partido.
 	 * @param nome nome da nova pessoa.
@@ -49,6 +54,7 @@ public class Pessoa {
 		this.dni = dni;
 		this.estado = estado;
 		this.interesses = interesses;
+		this.estrategia = new OrdenaConstitucionalmente();
 	}
 	
 	/**
@@ -69,6 +75,7 @@ public class Pessoa {
 		this.estado = estado;
 		this.interesses = interesses;
 		this.partido = partido;
+		this.estrategia = new OrdenaConstitucionalmente();
 	}
 	
 	/**
@@ -149,6 +156,26 @@ public class Pessoa {
 	
 	public String getDni() {
 		return this.dni;
+	}
+	
+	public Comparator<Projeto> getEstrategia(){
+		return this.estrategia;
+	}
+	
+	public void configurarEstrategiaPropostaRelacionada(String estrategia) {
+		switch(estrategia) {
+		case "CONSTITUCIONAL":
+			this.estrategia = new OrdenaConstitucionalmente();
+			break;
+		
+		case "CONCLUSAO":
+			this.estrategia = new OrdenaPelaConclusao();
+			break;
+			
+		case "APROVACAO":
+			this.estrategia = new OrdenaPelaAprovacao();
+			break;
+		}
 	}
 }
 

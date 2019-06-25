@@ -2,7 +2,7 @@ package eco;
 
 import java.util.Comparator;
 
-public class ordenaPelaConclusao implements Comparator<Projeto>{
+public class OrdenaPelaConclusao implements Comparator<Projeto>{
 	public int compare(Projeto projeto1, Projeto projeto2) {
 		if(projeto1.getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)") && !projeto2.getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)"))
 			return -1;

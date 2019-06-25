@@ -1,5 +1,6 @@
 package eco;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -140,5 +141,14 @@ public class ControllerProjeto {
 		if(!projetos.containsKey(codigo))
 			throw new IllegalArgumentException("Erro ao exibir tramitacao: projeto inexistente");
 		return projetos.get(codigo).getTramitacao();
+	}
+	
+	public List<Projeto> retornaProjetosRelacionados(String interessesDaPessoa){
+		List<Projeto> lista = new ArrayList<>();
+		for(Projeto projeto : projetos.values()) {
+			if(projeto.interessesComuns(interessesDaPessoa))
+				lista.add(projeto);
+		}
+		return lista;
 	}
 }

@@ -34,7 +34,6 @@ public class OrdenaPelaAprovacao implements Comparator<Projeto>{
 				 
 				 else
 					 throw new IllegalArgumentException("Nao era para estar lancando esse erro, fale com o tecnico a respeito desse bug");
-		
 			}
 		}
 	}

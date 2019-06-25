@@ -1,6 +1,7 @@
 package eco;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ControllerGeral {
@@ -210,6 +211,16 @@ public class ControllerGeral {
 	
 	public String exibirTramitacao(String codigo) {
 		return controllerProjeto.exibirTramitacao(codigo);
+	}
+	
+	public void configurarEstrategiaPropostaRelacionada(String dni, String estrategia) {
+		controllerPessoa.configurarEstrategiaPropostaRelacionada(dni, estrategia);
+	}
+	
+	public String pegarPropostaRelacionada(String dni) {
+		List<Projeto> lista = controllerProjeto.retornaProjetosRelacionados(controllerPessoa.retornaPessoa(dni).getInteresses());
+		Collections.sort(lista, controllerPessoa.retornaPessoa(dni).getEstrategia());
+		return lista.get(0).toString();
 	}
 	
 }
