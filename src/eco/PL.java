@@ -12,7 +12,7 @@ public class PL extends Projeto{
 		super(autor, ano, codigo, ementa, interesses, url);
 		this.tramitacaoConclusiva = conclusivo;
 		super.tipo = "PL";
-		this.tramitacao = "EM VOTACAO (CCJC)";
+		this.tramitacao = this.situacaoAtual;
 	}
 	@Override
 	public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos,List<Pessoa> politicosPresentes, List<String> partidos) {

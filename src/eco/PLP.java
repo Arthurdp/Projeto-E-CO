@@ -21,6 +21,7 @@ public class PLP extends ProjetosConstitucionais{
 		super(dni, ano, codigo, ementa, interesses, url, artigos);
 		super.turno = "1o turno";
 		super.tipo = "PLP";
+		this.tramitacao = this.situacaoAtual;
 	}
 	
 	public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, List<Pessoa> politicosPresentes, List<String> partidos) {
@@ -37,15 +38,16 @@ public class PLP extends ProjetosConstitucionais{
 		int votosAprovar = contaVotos(estatusGovernista, politicosPresentes, partidos);
 		
 		if (votosAprovar >= Math.floor((politicosPresentes.size() / 2)) + 1) {
-			this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
-			this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 			if(getSituacaoAtual().equals("EM VOTACAO (Plenario - 1o turno)")) {
 				setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
+				this.PLsVotadas += "APROVADO (Plenario - 1o turno), ";
+				this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 				setConclusoes();
 				setAprovacoes();
 				return true;
 			}
 			else if(getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)")) {
+				this.tramitacao = this.PLsVotadas + "APROVADO (Plenario - 2o turno)";
 				setSituacaoAtual("APROVADO");
 				setConclusoes();
 				setAprovacoes();
@@ -54,8 +56,9 @@ public class PLP extends ProjetosConstitucionais{
 			
 		}
 		else {
-			this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
-			this.tramitacao = this.PLsVotadas + this.situacaoAtual;
+			this.PLsVotadas += "REJEITADO (Plenario - 1o turno)";
+			this.tramitacao = this.PLsVotadas;
+			
 			setSituacaoAtual("ARQUIVADO");
 			setConclusoes();
 		}
