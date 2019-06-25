@@ -17,6 +17,8 @@ abstract class Projeto{
 	private String localAtual;
 	protected String PLsVotadas;
 	protected String tramitacao;
+	public int conclusoes;
+	public int aprovacoes;
 	
 	public Projeto(String autor, int ano, String codigo, String ementa, String interesses, String url) {
 		this.validador = new Validador();
@@ -30,6 +32,8 @@ abstract class Projeto{
 		this.localAtual = "CCJC";
 		this.PLsVotadas = "";
 		this.tramitacao = "";
+		this.conclusoes = 0;
+		this.aprovacoes = 0;
 	}
 	
 	public String getAutor() {
@@ -55,6 +59,14 @@ abstract class Projeto{
 	public String getInteresses() {
 		return interesses;
 	}
+	
+	public int getConclusoes() {
+		return conclusoes;
+	}
+	
+	public int getAprovacoes() {
+		return aprovacoes;
+	}
 
 	/**
 	 * @return the localAtual
@@ -75,6 +87,14 @@ abstract class Projeto{
 	 */
 	public void setSituacaoAtual(String situacaoAtual) {
 		this.situacaoAtual = situacaoAtual;
+	}
+	
+	public void setConclusoes() {
+		this.conclusoes++;
+	}
+	
+	public void setAprovacoes() {
+		this.aprovacoes ++;
 	}
 	
 	public String getTramitacao() {
