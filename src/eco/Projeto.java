@@ -88,6 +88,13 @@ abstract class Projeto{
 				}
 			}
 			
+			if(statusGovernista.equals("OPOSICAO")) {
+				for(String partido : partidos) {
+					if(!partido.equals(politico.getPartido()))
+						votosAprovar += 1;
+				}
+			}
+			
 			if(statusGovernista.equals("LIVRE")){				
 				if(interessesComuns(politico.getInteresses(), interesses))
 					votosAprovar += 1;
