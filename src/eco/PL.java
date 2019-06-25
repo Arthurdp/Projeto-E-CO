@@ -12,6 +12,7 @@ public class PL extends Projeto{
 		super(autor, ano, codigo, ementa, interesses, url);
 		this.tramitacaoConclusiva = conclusivo;
 		super.tipo = "PL";
+		this.tramitacao = "EM VOTACAO (CCJC)";
 	}
 	@Override
 	public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos,List<Pessoa> politicosPresentes, List<String> partidos) {
@@ -28,38 +29,46 @@ public class PL extends Projeto{
 		int votosAprovar = contaVotos(estatusGovernista, politicos, partidos);
 		
 		if (votosAprovar >= Math.floor((politicosPresentes.size() / 2)) + 1) {
-			this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
+			this.PLsVotadas += "APROVADO (Plenario), ";
 			this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 			setSituacaoAtual("APROVADO");
+			setConclusoes();
+			setAprovacoes();
 			return true;
 		}else { 
-			this.PLsVotadas += "REJEITADO (" + getLocalAtual() + "), ";
-			this.tramitacao = this.PLsVotadas.substring(0, PLsVotadas.length()-2);
+			this.PLsVotadas += "REJEITADO (Plenario)";
+			this.tramitacao = this.PLsVotadas;
 			setSituacaoAtual("ARQUIVADO");
+			setConclusoes();
 		}
 		return false;
 	}
 	
 	public boolean votarComissao(String estatusGovernista, List<Pessoa> deputados, List<String> partidos, Map<String, Comissao> comissoes, String proximoLocal) {
 		int votosAprovados = contaVotos(estatusGovernista, deputados, partidos);
-		
 		if(!tramitacaoConclusiva) {
+			
 			if (votosAprovados >= deputados.size() / 2 + 1) {
 				this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
 				this.tramitacao = this.PLsVotadas + this.situacaoAtual;
+					
+				
 				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 				setLocalAtual(proximoLocal);
 				
 				if ("plenario".equals(proximoLocal)) {
 					setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
+					this.tramitacao = this.PLsVotadas + this.situacaoAtual.substring(0, PLsVotadas.length()-14) + ")";
 					return true;
 				}
 			
 				setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
+				setConclusoes();
+				setAprovacoes();
 				return true;
 			}
 			this.PLsVotadas += "REJEITADO (" + getLocalAtual() + "), ";
-			this.tramitacao = this.PLsVotadas.substring(0, PLsVotadas.length()-2);
+			this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 			if (proximoLocal.equals("plenario")) {
 				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 				setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
@@ -69,15 +78,18 @@ public class PL extends Projeto{
 			setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
 			comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 			setLocalAtual(proximoLocal);
+			setConclusoes();
 			return false;
 		}
 		
 		else {
 			if (votosAprovados >= deputados.size() / 2 + 1) {
 				this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
-				this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 				setLocalAtual(proximoLocal);
+				this.tramitacao = this.PLsVotadas.substring(0, PLsVotadas.length()-2);
+				
+				
 				if ("-".equals(proximoLocal)) {
 					setSituacaoAtual("APROVADO");
 					for(Pessoa deputado : deputados) {
@@ -86,12 +98,13 @@ public class PL extends Projeto{
 					}
 					return true;
 				}
-			
+				setConclusoes();
+				setAprovacoes();
 				setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
 				return true;
 			}
-			this.PLsVotadas += "REJEITADO (" + getLocalAtual() + "), ";
-			this.tramitacao = this.PLsVotadas.substring(0, PLsVotadas.length()-2);
+			this.PLsVotadas += "REJEITADO (" + getLocalAtual() + ")";
+			this.tramitacao = this.PLsVotadas;
 			if (proximoLocal.equals("-")) {
 				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 				setSituacaoAtual("ARQUIVADO");
@@ -101,6 +114,7 @@ public class PL extends Projeto{
 			setSituacaoAtual("ARQUIVADO");
 			comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 			setLocalAtual(proximoLocal);
+			setConclusoes();
 			return false;
 		}
 		
