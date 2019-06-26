@@ -21,12 +21,12 @@ public class Constitucional implements Estrategia {
 	   		else if(projetos.get(i).getAno() == projetos.get(j).getAno()) {
 				 String[] array = projetos.get(i).getCodigo().split(" ");
 				 String[] array2 = projetos.get(j).getCodigo().split(" ");
-				 char numero = array[1].charAt(0);
-				 char numero2 = array2[1].charAt(0);
+				 int numero = Integer.parseInt(array[1].split("")[0]);
+				 int numero2 = Integer.parseInt(array2[1].split("")[0]);
 			   		 
-				 if(numero > numero2) {
-					 maisVelho = projetos.get(j);
+				 if(numero < numero2) {
 					 i = j;
+					 maisVelho = projetos.get(j);
 		   		 }
 		   	 }
 	   	}

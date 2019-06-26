@@ -218,10 +218,22 @@ public class ControllerGeral {
 	}
 	
 	public void configurarEstrategiaPropostaRelacionada(String dni, String estrategia) {
+		validador.validaEntrada(dni, "Erro ao configurar estrategia: pessoa nao pode ser vazia ou nula");
+		validador.validaDni(dni, "Erro ao configurar estrategia: dni invalido");
+		validador.validaEntrada(estrategia, "Erro ao configurar estrategia: estrategia vazia");
+		
+		if(!estrategia.equals("APROVACAO") && !estrategia.equals("CONSTITUCIONAL") && !estrategia.equals("CONCLUSAO") )
+			throw new IllegalArgumentException("Erro ao configurar estrategia: estrategia invalida");
+		if(!controllerPessoa.getPessoas().containsKey(dni))
+			throw new IllegalArgumentException("Erro ao configurar estrategia: pessoa inexistente");
+		
+		
 		controllerPessoa.configurarEstrategiaPropostaRelacionada(dni, estrategia);
 	}
 	
 	public String pegarPropostaRelacionada(String dni) {
+		validador.validaEntrada(dni, "Erro ao pegar proposta relacionada: pessoa nao pode ser vazia ou nula");
+		validador.validaDni(dni, "Erro ao pegar proposta relacionada: dni invalido");
 		List<Projeto> lista = new ArrayList<>();
 			for(Projeto projeto : controllerProjeto.retornaProjetosRelacionados(controllerPessoa.retornaPessoa(dni).getInteresses())) {
 				if(!(projeto.getLocalAtual().equals("-")) && !projeto.getSituacaoAtual().equals("ARQUIVADO") && !projeto.getSituacaoAtual().equals("APROVADO"))
