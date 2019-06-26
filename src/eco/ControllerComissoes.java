@@ -17,7 +17,13 @@ public class ControllerComissoes {
 	 * inicia um novo validador;
 	 */
 	private Validador validador = new Validador();
+	/**
+	 * Lista contendo os partidos cadastrados que formam a base governista.
+	 */
 	private List<String> partidos;
+	/**
+	 * mapa contendo todas as comissoes cadastradas.
+	 */
 	private HashMap<String, Comissao> comissoes;
 	
 	

@@ -11,6 +11,9 @@ public class ControllerPessoa {
 	 * mapa de pessoas cadastradas.
 	 */
 	private HashMap<String, Pessoa> pessoas;
+	/**
+	 *  inicia um novo validador;
+	 */
 	private Validador validador;
 	
 	public ControllerPessoa() {
