@@ -222,8 +222,13 @@ public class ControllerGeral {
 	}
 	
 	public String pegarPropostaRelacionada(String dni) {
-		List<Projeto> lista = controllerProjeto.retornaProjetosRelacionados(controllerPessoa.retornaPessoa(dni).getInteresses());
-		return controllerPessoa.retornaPessoa(dni).getEstrategia().prioridade(lista);
+		List<Projeto> lista = new ArrayList<>();
+			for(Projeto projeto : controllerProjeto.retornaProjetosRelacionados(controllerPessoa.retornaPessoa(dni).getInteresses())) {
+				if(!(projeto.getLocalAtual().equals("-")) && !projeto.getSituacaoAtual().equals("ARQUIVADO") && !projeto.getSituacaoAtual().equals("APROVADO"))
+					lista.add(projeto);
+			}
+				
+			return controllerPessoa.retornaPessoa(dni).getEstrategia().prioridade(lista);
 	}
 	
 }
