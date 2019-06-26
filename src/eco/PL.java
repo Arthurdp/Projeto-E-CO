@@ -56,7 +56,7 @@ public class PL extends Projeto{
 				
 				if ("plenario".equals(proximoLocal)) {
 					setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
-					this.tramitacao = this.PLsVotadas + this.situacaoAtual.substring(0, PLsVotadas.length()-14) + ")";
+					this.tramitacao = this.PLsVotadas + "EM VOTACAO (Plenario)";
 					setConclusoes(500);
 					return true;
 				}
