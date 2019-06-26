@@ -1,6 +1,5 @@
 package eco;
 
-import java.util.Comparator;
 
 /**
  * classe que representa uma pessoa no sistema.

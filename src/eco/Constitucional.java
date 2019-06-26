@@ -15,7 +15,5 @@ public String prioridade(List<Projeto> projetos) {
 		
 		else 
 			return Collections.min(projetos, new ComparaConstitucional()).getCodigo();
-	}
-	
-	
+	}	
 }

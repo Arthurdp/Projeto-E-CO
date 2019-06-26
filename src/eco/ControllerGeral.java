@@ -1,7 +1,6 @@
 package eco;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ControllerGeral {
@@ -239,7 +238,7 @@ public class ControllerGeral {
 				if(!(projeto.getLocalAtual().equals("-")) && !projeto.getSituacaoAtual().equals("ARQUIVADO") && !projeto.getSituacaoAtual().equals("APROVADO"))
 					lista.add(projeto);
 			}
-				
+
 			return controllerPessoa.retornaPessoa(dni).getEstrategia().prioridade(lista);
 	}
 	
