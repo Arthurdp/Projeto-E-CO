@@ -4,8 +4,14 @@ import java.util.Comparator;
 
 public class ComparaConclusao implements Comparator<Projeto>{
 	public int compare(Projeto projeto1, Projeto projeto2) {
-		if(projeto1.getConclusoes() - projeto2.getConclusoes() != 0)
-			return projeto1.getConclusoes() - projeto2.getConclusoes();
+		if(projeto1.getConclusoes() - projeto2.getConclusoes() != 0) {
+			if(projeto1.getConclusoes() < projeto2.getConclusoes())
+				return 1;
+		}else if(projeto1.getConclusoes() > projeto2.getConclusoes()) {
+			return -1;
+		}
+				
+			
 		else {
 			if(projeto1.getAno() - projeto2.getAno() != 0)
 				return projeto1.getAno() - projeto2.getAno();
@@ -20,5 +26,6 @@ public class ComparaConclusao implements Comparator<Projeto>{
 			}
 				
 		}
+		return 0;
 	}
 }
