@@ -17,7 +17,7 @@ public class PL extends Projeto{
 	@Override
 	public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos,List<Pessoa> politicosPresentes, List<String> partidos) {
 		
-		if( politicosPresentes.size() <= Math.floor((politicos.size() / 2)) + 1)
+		if( politicosPresentes.size() < Math.floor((politicos.size() / 2)) + 1)
 			throw new IllegalArgumentException("Erro ao votar proposta: quorum invalido");
 		
 		if(getSituacaoAtual().equals("APROVADO") || getSituacaoAtual().equals("ARQUIVADO"))
@@ -26,7 +26,7 @@ public class PL extends Projeto{
 		if(!getLocalAtual().equals("plenario"))
 			throw new IllegalArgumentException("Erro ao votar proposta: tramitacao em comissao");
 		
-		int votosAprovar = contaVotos(estatusGovernista, politicos, partidos);
+		int votosAprovar = contaVotos(estatusGovernista, politicosPresentes, partidos);
 		
 		if (votosAprovar >= Math.floor((politicosPresentes.size() / 2)) + 1) {
 			this.PLsVotadas += "APROVADO (Plenario), ";
