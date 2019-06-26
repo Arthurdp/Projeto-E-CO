@@ -68,7 +68,7 @@ class TesteControllerGeral {
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("pl kk", "LIVRE", "CTF"), "Erro ao votar proposta: projeto inexistente");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PL 1/2017", "", "CTF"), "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PL 1/2017", "LIVRE", ""), "Erro  ao votar proposta: proximo local vazio");
-		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("pl hahaha", "LIVRE", "111111111-1,111111111-2,111111111-3,111111111-4"), "Erro  ao votar proposta: projeto inexistente");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("pl hahaha", "LIVRE", "111111111-1,111111111-2,111111111-3,111111111-4,111111111-5,111111111-6"), "Erro  ao votar proposta: projeto inexistente");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PL 1/2017", "LIVRE", ""), "Erro  ao votar proposta: presentes nao pode ser vazio ou nulo");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PL 1/2017", "LIVRE", "abc abc abc"), "Erro  ao votar proposta: dni invalido");
 		
@@ -76,7 +76,7 @@ class TesteControllerGeral {
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("plp kkk", "LIVRE", "CTF"), "Erro ao votar proposta: projeto inexistente");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PLP 1/2017", "", "CTF"), "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PLP 1/2017", "LIVRE", ""), "Erro  ao votar proposta: proximo local vazio");
-		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("plp hahaha", "LIVRE", "111111111-1,111111111-2,111111111-3,111111111-4"), "Erro  ao votar proposta: projeto inexistente");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("plp hahaha", "LIVRE", "111111111-1,111111111-2,111111111-3,111111111-4,111111111-5,111111111-6"), "Erro  ao votar proposta: projeto inexistente");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PLP 1/2017", "LIVRE", ""), "Erro  ao votar proposta: presentes nao pode ser vazio ou nulo");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PLP 1/2017", "LIVRE", "abc abc abc"), "Erro  ao votar proposta: dni invalido");
 		
@@ -84,7 +84,7 @@ class TesteControllerGeral {
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("pec kk", "LIVRE", "CTF"), "Erro ao votar proposta: projeto inexistente");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PEC 1/2017", "", "CTF"), "Erro ao votar proposta: status governista nao pode ser vazio ou nulo");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PEC 1/2017", "LIVRE", ""), "Erro  ao votar proposta: proximo local vazio");
-		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("pec hahaha", "LIVRE", "111111111-1,111111111-2,111111111-3,111111111-4"), "Erro  ao votar proposta: projeto inexistente");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("pec hahaha", "LIVRE", "111111111-1,111111111-2,111111111-3,111111111-4,111111111-5,111111111-6"), "Erro  ao votar proposta: projeto inexistente");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PEC 1/2017", "LIVRE", ""), "Erro  ao votar proposta: presentes nao pode ser vazio ou nulo");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PEC 1/2017", "LIVRE", "abc abc abc"), "Erro  ao votar proposta: dni invalido");
 		
@@ -109,11 +109,11 @@ class TesteControllerGeral {
 		controllerGeral.votarComissao("PL 3/2017", "LIVRE", "plenario");
 		controllerGeral.votarComissao("PL 4/2017", "LIVRE", "plenario");
 		
-		assertTrue(controllerGeral.votarPlenario("PL 1/2017", "LIVRE", "111111111-1,111111111-2,111111111-3,111111111-4"));
-		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PLP 1/2017", "LIVRE", "111111111-1,111111111-2,111111111-3,111111112-4"), "Erro ao votar proposta: deputado nao cadastrado");
-		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PEC 1/2017", "LIVRE", "111111111-1,111111111-2,111111111-3,111111112-4"), "Erro ao votar proposta: deputado nao cadastrado");
-		assertFalse(controllerGeral.votarPlenario("PL 3/2017", "OPOSICAO", "111111111-1,111111111-2,111111111-3,111111111-4"));
-		assertTrue(controllerGeral.votarPlenario("PL 4/2017", "GOVERNISTA", "111111111-1,111111111-2,111111111-3,111111111-4"));
+		assertTrue(controllerGeral.votarPlenario("PL 1/2017", "LIVRE", "111111111-1,111111111-2,111111111-3,111111111-4,111111111-5,111111111-6,111111111-7"));
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PLP 1/2017", "LIVRE", "111111111-1,111111111-2,111111111-3,111111112-4,111111111-5,111111111-6"), "Erro ao votar proposta: deputado nao cadastrado");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PEC 1/2017", "LIVRE", "111111111-1,111111111-2,111111111-3,111111112-4,111111111-5,111111111-6"), "Erro ao votar proposta: deputado nao cadastrado");
+		assertTrue(controllerGeral.votarPlenario("PL 3/2017", "OPOSICAO", "111111111-1,111111111-2,111111111-3,111111111-4,111111111-5,111111111-6,111111111-7"));
+		assertTrue(controllerGeral.votarPlenario("PL 4/2017", "GOVERNISTA", "111111111-1,111111111-2,111111111-3,111111111-4,111111111-5,111111111-6,111111111-7"));
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PL 1/2017", "LIVRE", "CTF"),"Erro ao votar proposta: proposta encaminhada ao plenario");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PEC 1/2017", "LIVRE", ""),"Erro ao votar proposta: presentes vazio");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PEC 1/2017", "LIVRE", "111111111-1"), "Erro ao votar proposta: quorum invalido");

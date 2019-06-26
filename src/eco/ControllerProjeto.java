@@ -43,7 +43,7 @@ public class ControllerProjeto {
 		if(!projetos.containsKey(codigo))
 			throw new IllegalArgumentException("Erro ao votar proposta: projeto inexistente");
 		
-		return projetos.get(codigo).votarPlenario(statusGovernista, politicosPresentes, politicosPresentes, partidos);
+		return projetos.get(codigo).votarPlenario(statusGovernista, politicos, politicosPresentes, partidos);
 	}
 	
 	public boolean votarComissao(String codigo, String estatusGovernista, List<Pessoa> deputados, List<String> partidos, Map<String, Comissao> comissoes, String proximoLocal) {
