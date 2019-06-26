@@ -21,11 +21,11 @@ abstract class ProjetosConstitucionais extends Projeto {
 			if ("plenario".equals(proximoLocal)) {
 				setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
 				this.tramitacao = this.PLsVotadas + this.situacaoAtual;
-				setConclusoes();
+				setConclusoes(500);
 				setAprovacoes();
 				return true;
 			}
-			setConclusoes();
+			setConclusoes(1);
 			setAprovacoes();
 			setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
 			this.tramitacao = this.PLsVotadas + this.situacaoAtual;
@@ -37,13 +37,13 @@ abstract class ProjetosConstitucionais extends Projeto {
 			comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 			setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
 			setLocalAtual(proximoLocal);
-			setConclusoes();
+			setConclusoes(500);
 			return false;
 		}
 		setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
 		comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 		setLocalAtual(proximoLocal);
-		setConclusoes();
+		setConclusoes(1);
 		return false;
 	}
 	

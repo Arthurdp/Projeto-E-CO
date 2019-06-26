@@ -32,14 +32,12 @@ public class PL extends Projeto{
 			this.PLsVotadas += "APROVADO (Plenario), ";
 			this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 			setSituacaoAtual("APROVADO");
-			setConclusoes();
 			setAprovacoes();
 			return true;
 		}else { 
 			this.PLsVotadas += "REJEITADO (Plenario)";
 			this.tramitacao = this.PLsVotadas;
 			setSituacaoAtual("ARQUIVADO");
-			setConclusoes();
 		}
 		return false;
 	}
@@ -59,11 +57,12 @@ public class PL extends Projeto{
 				if ("plenario".equals(proximoLocal)) {
 					setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
 					this.tramitacao = this.PLsVotadas + this.situacaoAtual.substring(0, PLsVotadas.length()-14) + ")";
+					setConclusoes(500);
 					return true;
 				}
 			
 				setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
-				setConclusoes();
+				setConclusoes(1);
 				setAprovacoes();
 				return true;
 			}
@@ -73,12 +72,13 @@ public class PL extends Projeto{
 				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 				setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
 				setLocalAtual(proximoLocal);
+				setConclusoes(500);
 				return false;
 			}
 			setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
 			comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 			setLocalAtual(proximoLocal);
-			setConclusoes();
+			setConclusoes(1);
 			return false;
 		}
 		
@@ -98,7 +98,7 @@ public class PL extends Projeto{
 					}
 					return true;
 				}
-				setConclusoes();
+				setConclusoes(1);
 				setAprovacoes();
 				setSituacaoAtual("EM VOTACAO (" + proximoLocal + ")");
 				return true;
@@ -114,7 +114,6 @@ public class PL extends Projeto{
 			setSituacaoAtual("ARQUIVADO");
 			comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 			setLocalAtual(proximoLocal);
-			setConclusoes();
 			return false;
 		}
 		

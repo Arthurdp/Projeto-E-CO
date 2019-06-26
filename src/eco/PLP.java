@@ -42,14 +42,13 @@ public class PLP extends ProjetosConstitucionais{
 				setSituacaoAtual("EM VOTACAO (Plenario - 2o turno)");
 				this.PLsVotadas += "APROVADO (Plenario - 1o turno), ";
 				this.tramitacao = this.PLsVotadas + this.situacaoAtual;
-				setConclusoes();
+				setConclusoes(1000);
 				setAprovacoes();
 				return true;
 			}
 			else if(getSituacaoAtual().equals("EM VOTACAO (Plenario - 2o turno)")) {
 				this.tramitacao = this.PLsVotadas + "APROVADO (Plenario - 2o turno)";
 				setSituacaoAtual("APROVADO");
-				setConclusoes();
 				setAprovacoes();
 				return true;
 			}
@@ -60,7 +59,6 @@ public class PLP extends ProjetosConstitucionais{
 			this.tramitacao = this.PLsVotadas;
 			
 			setSituacaoAtual("ARQUIVADO");
-			setConclusoes();
 		}
 		return false;
 	}

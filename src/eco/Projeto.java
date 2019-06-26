@@ -95,8 +95,8 @@ abstract class Projeto{
 		this.situacaoAtual = situacaoAtual;
 	}
 	
-	public void setConclusoes() {
-		this.conclusoes++;
+	public void setConclusoes(int n) {
+		this.conclusoes += n;
 	}
 	
 	public void setAprovacoes() {
