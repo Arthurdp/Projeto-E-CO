@@ -68,7 +68,7 @@ public class PL extends Projeto{
 			}
 			this.PLsVotadas += "REJEITADO (" + getLocalAtual() + "), ";
 			this.tramitacao = this.PLsVotadas + this.situacaoAtual;
-			if (proximoLocal.equals("plenario")) {
+			if (proximoLocal.equals("plenario")) { 
 				comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);
 				setSituacaoAtual("EM VOTACAO (Plenario - 1o turno)");
 				setLocalAtual(proximoLocal);
