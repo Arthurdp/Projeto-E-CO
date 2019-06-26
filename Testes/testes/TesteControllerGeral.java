@@ -118,7 +118,7 @@ class TesteControllerGeral {
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PEC 1/2017", "LIVRE", ""),"Erro ao votar proposta: presentes vazio");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PL 1/2017", "GOVERNISTA", "111111111-1,111111111-2,111111111-3,111111111-4,111111111-5"),"Erro ao votar proposta: quorum invalido");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PLP 1/2017", "GOVERNISTA", "111111111-1,111111111-2,111111111-3,111111111-4,111111111-5"),"Erro ao votar proposta: quorum invalido");
-		//assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PEC 1/2017", "GOVERNISTA", "111111111-1,111111111-2,111111111-3,111111111-4,111111111-5"),"Erro ao votar proposta: quorum invalido");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarPlenario("PEC 1/2017", "GOVERNISTA", "111111111-1,111111111-2,111111111-3,111111111-4,111111111-5"),"Erro ao votar proposta: quorum invalido");
 	}
 
 }
