@@ -151,7 +151,7 @@ public class ControllerGeral {
 		
 		for(String dni : presentes.split(",")) {
 			if(!controllerPessoa.getPessoas().containsKey(dni)) 
-				throw new IllegalArgumentException("Erro ao votar proposta: Deputado não cadastrado");
+				throw new IllegalArgumentException("Erro ao votar proposta: Deputado nao cadastrado");
 			
 		}
 		
@@ -198,7 +198,11 @@ public class ControllerGeral {
 		if(!controllerComissoes.getComissoes().containsKey("CCJC"))
 			throw new IllegalArgumentException("Erro ao votar proposta: CCJC nao cadastrada");
 		
+		if(!controllerComissoes.getComissoes().containsKey(controllerProjeto.retornaLocalAtual(codigo)))
+			throw new IllegalArgumentException("Erro ao votar proposta: comissao nao cadastrada");
 		
+		if(proximoLocal.equals(controllerProjeto.retornaLocalAtual(codigo)))
+			throw new IllegalArgumentException("Erro ao votar proposta: proposta ja votada nessa comicao");
 		
 		List<Pessoa> deputados = new ArrayList<>();
 		String politicos[] = controllerComissoes.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getPoliticos().split(",");

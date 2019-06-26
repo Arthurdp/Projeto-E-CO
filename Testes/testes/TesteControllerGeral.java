@@ -95,12 +95,13 @@ class TesteControllerGeral {
 		controllerGeral.votarComissao("PEC 1/2017", "LIVRE", "plenario");
 		
 		controllerGeral.votarComissao("PL 1/2017", "LIVRE", "CTF");
-		controllerGeral.votarComissao("PL 1/2017", "LIVRE", "CTF");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PL 1/2017", "LIVRE", "CTF"), "Erro ao votar proposta: proposta ja votada nessa comicao");
 		controllerGeral.votarComissao("PL 1/2017", "LIVRE", "plenario");
 		controllerGeral.votarComissao("PL 2/2017", "OPOSICAO", "CTF");
 		controllerGeral.votarComissao("PL 3/2017", "GOVERNISTA", "CTF");
 		controllerGeral.votarComissao("PL 4/2017", "LIVRE", "CTF");
 		
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PL 1/2017", "LIVRE", "CTTT"),"Erro ao votar proposta: comissao nao cadastrada");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PL 1/2017", "LIVRE", "CTF"),"Erro ao votar proposta: proposta encaminhada ao plenario");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PLP 1/2017", "LIVRE", "CTF"),"Erro ao votar proposta: proposta encaminhada ao plenario");
 		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.votarComissao("PEC 1/2017", "LIVRE", "CTF"),"Erro ao votar proposta: proposta encaminhada ao plenario");

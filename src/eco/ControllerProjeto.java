@@ -151,4 +151,8 @@ public class ControllerProjeto {
 		}
 		return lista;
 	}
+	
+	public String retornaLocalAtual(String codigo) {
+		return projetos.get(codigo).getLocalAtual();
+	}
 }
