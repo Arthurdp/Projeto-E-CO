@@ -9,7 +9,7 @@ public class PL extends Projeto{
 
 	public PL(String autor, int ano, String codigo, String ementa, String interesses,
 			String url, boolean conclusivo) {
-		super(autor, ano, codigo, ementa, interesses, url);
+		super(autor, ano, codigo, ementa, interesses, url, 5);
 		this.tramitacaoConclusiva = conclusivo;
 		super.tipo = "PL";
 		this.tramitacao = this.situacaoAtual;
@@ -48,7 +48,7 @@ public class PL extends Projeto{
 		int votosAprovados = contaVotos(estatusGovernista, deputados, partidos);
 		if(!tramitacaoConclusiva) {
 			
-			if (votosAprovados >= deputados.size() / 2 + 1) {
+			if (votosAprovados >= Math.floor((deputados.size() / 2)) + 1) {
 				this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
 				this.tramitacao = this.PLsVotadas + this.situacaoAtual;
 					

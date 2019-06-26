@@ -3,8 +3,7 @@ package eco;
 import java.util.Collections;
 import java.util.List;
 
-public class Constitucional implements Estrategia {
-	
+public class PorAprovacao implements Estrategia{
 	public Projeto oMaisVelho(List<Projeto> projetos) {
 	   	Projeto maisVelho = projetos.get(0);
 		int i = 0;
@@ -33,7 +32,7 @@ public class Constitucional implements Estrategia {
 		return maisVelho;
     }
 	
-public String prioridade(List<Projeto> projetos) {
+	public String prioridade(List<Projeto> projetos) {
 		
 		if(projetos.size() == 0)
 			return "";
@@ -42,8 +41,6 @@ public String prioridade(List<Projeto> projetos) {
 			return projetos.get(0).getCodigo();
 		
 		else 
-			return Collections.min(projetos, new ComparaConstitucional()).getCodigo();
+			return Collections.min(projetos, new ComparaAprovacao()).getCodigo();
 	}
-	
-	
 }

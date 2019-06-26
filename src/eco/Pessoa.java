@@ -36,7 +36,7 @@ public class Pessoa {
 	 */
 	private Deputado deputado;
 	
-	private Comparator<Projeto> estrategia;
+	private Estrategia estrategia;
 	
 	/**
 	 * Constroi uma nova pessoa que nao esteja filiada a nenhum partido.
@@ -54,7 +54,7 @@ public class Pessoa {
 		this.dni = dni;
 		this.estado = estado;
 		this.interesses = interesses;
-		this.estrategia = new OrdenaConstitucionalmente();
+		this.estrategia = new Constitucional();
 	}
 	
 	/**
@@ -75,7 +75,7 @@ public class Pessoa {
 		this.estado = estado;
 		this.interesses = interesses;
 		this.partido = partido;
-		this.estrategia = new OrdenaConstitucionalmente();
+		this.estrategia = new Constitucional();
 	}
 	
 	/**
@@ -158,22 +158,22 @@ public class Pessoa {
 		return this.dni;
 	}
 	
-	public Comparator<Projeto> getEstrategia(){
+	public Estrategia getEstrategia(){
 		return this.estrategia;
 	}
 	
 	public void configurarEstrategiaPropostaRelacionada(String estrategia) {
 		switch(estrategia) {
 		case "CONSTITUCIONAL":
-			this.estrategia = new OrdenaConstitucionalmente();
+			this.estrategia = new Constitucional();
 			break;
 		
 		case "CONCLUSAO":
-			this.estrategia = new OrdenaPelaConclusao();
+			this.estrategia = new PorConclusao();
 			break;
 			
 		case "APROVACAO":
-			this.estrategia = new OrdenaPelaAprovacao();
+			this.estrategia = new PorAprovacao();
 			break;
 			
 		default:

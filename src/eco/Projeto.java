@@ -17,10 +17,11 @@ abstract class Projeto{
 	private String localAtual;
 	protected String PLsVotadas;
 	protected String tramitacao;
-	public int conclusoes;
-	public int aprovacoes;
+	private int conclusoes;
+	private int aprovacoes;
+	private int prioridade;
 	
-	public Projeto(String autor, int ano, String codigo, String ementa, String interesses, String url) {
+	public Projeto(String autor, int ano, String codigo, String ementa, String interesses, String url, int prioridade) {
 		this.validador = new Validador();
 		this.autor = autor;
 		this.ano = ano;
@@ -34,6 +35,7 @@ abstract class Projeto{
 		this.tramitacao = "";
 		this.conclusoes = 0;
 		this.aprovacoes = 0;
+		this.prioridade = prioridade;
 	}
 	
 	public String getAutor() {
@@ -66,6 +68,10 @@ abstract class Projeto{
 	
 	public int getAprovacoes() {
 		return aprovacoes;
+	}
+	
+	public int getPrioridade() {
+		return this.prioridade;
 	}
 
 	/**

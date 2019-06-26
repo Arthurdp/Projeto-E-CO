@@ -223,8 +223,7 @@ public class ControllerGeral {
 	
 	public String pegarPropostaRelacionada(String dni) {
 		List<Projeto> lista = controllerProjeto.retornaProjetosRelacionados(controllerPessoa.retornaPessoa(dni).getInteresses());
-		Collections.sort(lista, controllerPessoa.retornaPessoa(dni).getEstrategia());
-		return lista.get(0).getCodigo();
+		return controllerPessoa.retornaPessoa(dni).getEstrategia().prioridade(lista);
 	}
 	
 }

@@ -6,14 +6,14 @@ import java.util.Map;
 abstract class ProjetosConstitucionais extends Projeto {
 	private String artigos;
 	public ProjetosConstitucionais(String dni, int ano, String codigo, String ementa, String interesses,
-			String url, String artigos) {
-		super(dni, ano, codigo, ementa, interesses, url);
+			String url, int prioridade, String artigos) {
+		super(dni, ano, codigo, ementa, interesses, url, prioridade);
 		this.artigos = artigos;
 	}
 	
 	public boolean votarComissao(String estatusGovernista, List<Pessoa> deputados, List<String> partidos, Map<String, Comissao> comissoes, String proximoLocal) {
 		int votosAprovados = contaVotos(estatusGovernista, deputados, partidos);
-		if (votosAprovados >= deputados.size() / 2 + 1) {
+		if (votosAprovados >= Math.floor((deputados.size() / 2)) + 1) {
 			this.PLsVotadas += "APROVADO (" + getLocalAtual() + "), ";
 			
 			comissoes.get(getLocalAtual()).getProjetosVotados().add(codigo);

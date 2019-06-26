@@ -6,6 +6,7 @@ import java.util.List;
  * Representacao de um projeto de Emenda Constitucional(PEC).
  */
 public class PEC extends ProjetosConstitucionais{
+	private int prioridade;
 	/**
 	 * constroi um novo Projeto de Emenda Constitucional, criando o objeto PEC.
 	 * @param dni dni do autor da PEC
@@ -18,7 +19,7 @@ public class PEC extends ProjetosConstitucionais{
 	 */
 	public PEC(String dni, int ano, String codigo, String ementa, String interesses,
 			String url, String artigos) {
-		super(dni, ano, codigo, ementa, interesses, url, artigos);
+		super(dni, ano, codigo, ementa, interesses, url, 15, artigos);
 		super.turno = "1o turno";
 		super.tipo = "PEC";
 	}
@@ -62,6 +63,9 @@ public boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, L
 		return false;
 	}
 	
+	public int getPrioridade() {
+		return this.prioridade;
+	}
 	@Override
 	/**
 	 * Representacao  de uma PEC no formato String.
