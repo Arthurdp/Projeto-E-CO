@@ -9,14 +9,12 @@ public class ControllerGeral {
 	ControllerPessoa controllerPessoa;
 	ControllerProjeto controllerProjeto;
 	Validador validador;
-	String estrategia;
 	
 	public ControllerGeral() {
 		this.controllerComissoes = new ControllerComissoes();
 		this.controllerPessoa = new ControllerPessoa();
 		this.controllerProjeto = new ControllerProjeto();
 		this.validador = new Validador();
-		this.estrategia = "CONSTITUCIONAL";
 	}
 	
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {

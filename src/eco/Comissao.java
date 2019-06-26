@@ -42,4 +42,3 @@ public class Comissao {
 		return projetosVotados;
 	}
 }
-	
