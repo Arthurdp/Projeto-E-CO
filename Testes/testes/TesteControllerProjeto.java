@@ -92,7 +92,4 @@ class TesteControllerProjeto {
 		assertEquals("Projeto de Lei Complementar - PLP 1/2016 - 111111111-1 - feriadaum de 6 meses - 200 - EM VOTACAO (CCJC)", controllerGeral.exibirProjeto("PLP 1/2016"));
 		assertEquals("Projeto de Emenda Constitucional - PEC 1/2012 - 111111111-1 - Permite o aluno faltar em dias de chuva sem levar falta - 900, 901, 902 - EM VOTACAO (CCJC)", controllerGeral.exibirProjeto("PEC 1/2012"));
 	}
-	
-
-	
 }

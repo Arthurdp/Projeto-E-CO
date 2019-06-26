@@ -9,13 +9,13 @@ import eco.ControllerGeral;
 import eco.ControllerPessoa;
 import eco.ControllerProjeto;
 
-class TesteController {
+class TesteControllerComissoes {
 	
 	
 	ControllerComissoes controller;
 	ControllerGeral controllerGeral;
 	
-	public TesteController() {
+	public TesteControllerComissoes() {
 		this.controller = new ControllerComissoes();
 		this.controllerGeral = new ControllerGeral();
 	}
