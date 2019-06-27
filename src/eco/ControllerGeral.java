@@ -239,6 +239,24 @@ public class ControllerGeral {
 
 			return controllerPessoa.retornaPessoa(dni).getEstrategia().prioridade(lista);
 	}
+
+	public void salvarSistema() {
+		controllerPessoa.salvarSistema();
+		controllerProjeto.salvarSistema();
+		controllerComissoes.salvarSistema();
+	}
+
+	public void carregaSistema() {
+		controllerPessoa.carregarSistema();
+		controllerProjeto.carregarSistema();
+		controllerComissoes.carregarSistema();		
+	}
+
+	public void limpaSistema() {
+		controllerPessoa.limparSistema();
+		controllerProjeto.limparSistema();
+		controllerComissoes.limparSistema();		
+	}
 	
 }
 

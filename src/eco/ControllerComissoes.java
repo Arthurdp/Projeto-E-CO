@@ -1,5 +1,10 @@
 package eco;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,7 +16,7 @@ import java.util.List;
  *
  */
 public class ControllerComissoes {
-	
+
 	/**
 	 * inicia um novo validador;
 	 */
@@ -24,15 +29,15 @@ public class ControllerComissoes {
 	 * mapa contendo todas as comissoes cadastradas.
 	 */
 	private HashMap<String, Comissao> comissoes;
-	
-	
+
+
 	public ControllerComissoes() {
 		this.validador = new Validador();
 		this.comissoes = new HashMap<>();
 		this.partidos = new ArrayList<>();
-		
+
 	}
-	
+
 	public HashMap<String, Comissao> getComissoes() {
 		return comissoes;
 	}
@@ -41,7 +46,7 @@ public class ControllerComissoes {
 		return partidos;
 	}
 
-	
+
 	/**
 	 * cadastra um partido no sistema, adicionando uma string na lista de partidos.
 	 * @param partido sigla do partido a ser cadastrado.
@@ -50,7 +55,7 @@ public class ControllerComissoes {
 		validador.validaEntrada(partido,"Erro ao cadastrar partido: partido nao pode ser vazio ou nulo");
 		this.partidos.add(partido);
 	}
-	
+
 	/** 
 	 * exibe todos os partidos cadastrados, em ordem lexicografica.
 	 * @return as strings que representam os partidos cadastrados.
@@ -74,7 +79,52 @@ public class ControllerComissoes {
 	public void cadastrarComissao(String tema, String politicos){
 		Comissao nova = new Comissao(tema, politicos);
 		comissoes.put(tema, nova);
-		
+
+	}
+
+	public void salvarSistema() {
+		try {			
+			FileOutputStream arq = new FileOutputStream("comissoes.arq");
+			ObjectOutputStream obj = new ObjectOutputStream(arq);
+			obj.write(this.comissoes);
+			obj.flush();
+			FileOutputStream arq1 = new FileOutputStream("partidos.arq");
+			ObjectOutputStream obj1 = new ObjectOutputStream(arq1);
+			obj1.write(this.partidos);
+			obj1.flush();
+			
+			obj.close();
+			obj1.close();
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Erro ao salvar comissoes ou partidos");					
+		}		
+	}
+
+	public void carregarSistema() {
+		try {			
+			FileInputStream arq = new FileInputStream("comissoes.arq");
+			ObjectInputStream obj = new ObjectInputStream(arq);
+			this.comissoes = (HashMap<String, Comissao>) obj.readObject();
+			FileInputStream arq1 = new FileInputStream("partidos.arq");
+			ObjectInputStream obj1 = new ObjectInputStream(arq1);
+			this.partidos = (List<String>) obj1.readObject();
+			
+			obj.close();
+			obj1.close();
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Erro ao carregar comissoes ou partidos");					
+		}			
+	}
+
+	public void limparSistema() {
+		File teste = new File("comissoes.arq");
+		if (teste.exists()) {
+			teste.delete();
+		}
+		File teste1 = new File("partidos.arq");
+		if (teste1.exists()) {
+			teste1.delete();
+		}
 	}
 }
 

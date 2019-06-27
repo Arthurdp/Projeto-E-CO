@@ -1,9 +1,10 @@
 package eco;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Comissao {
+public class Comissao implements Serializable{
 	
 	private Validador validador = new Validador();
 	/**

@@ -9,15 +9,15 @@ public class Facade {
 	}
 	
 	public void limparSistema() {
-		
+		controllerGeral.limpaSistema();
 	}
 	
 	public void salvarSistema() {
-		
+		controllerGeral.salvarSistema();
 	}
 	
 	public void carregarSistema() {
-		
+		controllerGeral.carregaSistema();
 	}
 	
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {
