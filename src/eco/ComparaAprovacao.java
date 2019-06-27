@@ -4,11 +4,8 @@ import java.util.Comparator;
 
 public class ComparaAprovacao implements Comparator<Projeto>{
 	public int compare(Projeto projeto1, Projeto projeto2) {
-		if(projeto1.getAprovacoes() < projeto2.getAprovacoes()) 
-			return 1;
-		
-		else if(projeto1.getAprovacoes() > projeto2.getAprovacoes())
-				return -1;
+		if(projeto1.getAprovacoes() - projeto2.getAprovacoes() != 0) 
+			return (projeto1.getAprovacoes() - projeto2.getAprovacoes()) * -1;
 		
 		else {
 			if(projeto1.getAno() - projeto2.getAno() != 0)

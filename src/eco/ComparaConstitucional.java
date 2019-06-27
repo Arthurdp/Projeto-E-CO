@@ -4,14 +4,9 @@ import java.util.Comparator;
 
 public class ComparaConstitucional implements Comparator<Projeto>{
 	public int compare(Projeto projeto1, Projeto projeto2) {
-		if(projeto1.getPrioridade() - projeto2.getPrioridade() != 0) {
-			
-			if(projeto1.getPrioridade() < projeto2.getPrioridade()) {
-				return -1;
-			}else if(projeto1.getPrioridade() > projeto2.getPrioridade()) {
-				return 1;
-			}
-		}
+		if(projeto1.getPrioridade() - projeto2.getPrioridade() != 0)
+			return projeto1.getPrioridade() - projeto2.getPrioridade();
+		
 			
 		else {
 			if(projeto1.getAno() - projeto2.getAno() != 0)
@@ -27,6 +22,5 @@ public class ComparaConstitucional implements Comparator<Projeto>{
 			}
 				
 		}
-		return 0;
 	}
 }
