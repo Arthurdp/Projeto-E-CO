@@ -160,47 +160,51 @@ public class ControllerProjeto {
 	public String retornaLocalAtual(String codigo) {
 		return projetos.get(codigo).getLocalAtual();
 	}
-
+	/**
+	 * Salva os dados do sistema em um diretorio separado na pasta arquivos.
+	 */
 	public void salvarSistema() {
 		try {
-			FileOutputStream arq = new FileOutputStream("projetos.arq");
+			FileOutputStream arq = new FileOutputStream("arquivos/projetos.arq");
 			ObjectOutputStream obj = new ObjectOutputStream(arq);
-			obj.write(this.projetos);
-			obj.flush();
-			FileOutputStream arq1 = new FileOutputStream("registradosPL.arq");
+			obj.writeObject(this.projetos);
+			
+			FileOutputStream arq1 = new FileOutputStream("arquivos/registradosPL.arq");
 			ObjectOutputStream obj1 = new ObjectOutputStream(arq1);
-			obj1.write(this.registradosPL);
-			obj1.flush();
-			FileOutputStream arq2 = new FileOutputStream("registradosPLP.arq");
+			obj1.writeObject(this.registradosPL);
+			
+			FileOutputStream arq2 = new FileOutputStream("arquivos/registradosPLP.arq");
 			ObjectOutputStream obj2 = new ObjectOutputStream(arq2);
-			obj2.write(this.registradosPLP);
-			obj2.flush();
-			FileOutputStream arq3 = new FileOutputStream("registradosPEC.arq");
+			obj2.writeObject(this.registradosPLP);
+			
+			FileOutputStream arq3 = new FileOutputStream("arquivos/registradosPEC.arq");
 			ObjectOutputStream obj3 = new ObjectOutputStream(arq3);
-			obj3.write(this.registradosPEC);
-			obj3.flush();
+			obj3.writeObject(this.registradosPEC);
+			
 
 			obj.close();
 			obj1.close();
 			obj2.close();
 			obj3.close();
 		} catch (Exception e) {
-			throw new IllegalArgumentException("Erro ao salvar projetos");					
+						
 		}		
 	}
-
+	/**
+	 * Carrega os dados do sistema, que estao em um diretorio separado na pasta arquivos.
+	 */
 	public void carregarSistema() {
 		try {
-			FileInputStream arq = new FileInputStream("projetos.arq");
+			FileInputStream arq = new FileInputStream("arquivos/projetos.arq");
 			ObjectInputStream obj = new ObjectInputStream(arq);
 			this.projetos = (Map<String, Projeto>) obj.readObject();
-			FileInputStream arq1 = new FileInputStream("registradosPL.arq");
+			FileInputStream arq1 = new FileInputStream("arquivos/registradosPL.arq");
 			ObjectInputStream obj1 = new ObjectInputStream(arq1);
 			this.registradosPL = (Map<Integer, Integer>) obj1.readObject();
-			FileInputStream arq2 = new FileInputStream("registradosPLP.arq");
+			FileInputStream arq2 = new FileInputStream("arquivos/registradosPLP.arq");
 			ObjectInputStream obj2 = new ObjectInputStream(arq2);
 			this.registradosPLP = (Map<Integer, Integer>) obj2.readObject();
-			FileInputStream arq3 = new FileInputStream("registradosPEC.arq");
+			FileInputStream arq3 = new FileInputStream("arquivos/registradosPEC.arq");
 			ObjectInputStream obj3 = new ObjectInputStream(arq3);
 			this.registradosPEC = (Map<Integer, Integer>) obj3.readObject();
 
@@ -209,22 +213,28 @@ public class ControllerProjeto {
 			obj2.close();
 			obj3.close();
 		} catch (Exception e) {
-			throw new IllegalArgumentException("Erro ao carregar projetos");					
+								
 		}		
 	}
-
+	/**
+	 * Limpa os dados do sistema, que estao em um diretorio separado na pasta arquivos.
+	 */
 	public void limparSistema() {
-		File teste = new File("projetos.arq");
-		if (teste.exists()) 
-			teste.delete();			
-		File teste1 = new File("registradosPL.arq");
-		if (teste1.exists()) 
-			teste1.delete();		
-		File teste2 = new File("registradosPLP.arq");
-		if (teste2.exists()) 		
-			teste2.delete();		
-		File teste3 = new File("registradosPEC.arq");
-		if (teste3.exists()) 
-			teste3.delete();	
+		projetos.clear();			
+		registradosPL.clear();		
+		registradosPLP.clear();		
+		registradosPEC.clear();	
+		try {
+			File arq = new File("arquivos/projetos.arq");
+			arq.delete();
+			File arq1 = new File("arquivos/registradosPL.arq");
+			arq1.delete();
+			File arq2 = new File("arquivos/registradosPLP.arq");
+			arq2.delete();
+			File arq3 = new File("arquivos/registradosPEC.arq");
+			arq3.delete();
+		} catch (Exception e) {	
+			
+		}
 	}
 }

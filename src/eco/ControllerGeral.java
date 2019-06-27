@@ -239,19 +239,25 @@ public class ControllerGeral {
 
 			return controllerPessoa.retornaPessoa(dni).getEstrategia().prioridade(lista);
 	}
-
+	/**
+	 * Salva os dados do sistema em um diretorio separado na pasta arquivos.
+	 */
 	public void salvarSistema() {
 		controllerPessoa.salvarSistema();
 		controllerProjeto.salvarSistema();
 		controllerComissoes.salvarSistema();
 	}
-
+	/**
+	 * Carrega os dados do sistema, que estao em um diretorio separado na pasta arquivos.
+	 */
 	public void carregaSistema() {
 		controllerPessoa.carregarSistema();
 		controllerProjeto.carregarSistema();
 		controllerComissoes.carregarSistema();		
 	}
-
+	/**
+	 * Limpa os dados do sistema, que estao em um diretorio separado na pasta arquivos.
+	 */
 	public void limpaSistema() {
 		controllerPessoa.limparSistema();
 		controllerProjeto.limparSistema();

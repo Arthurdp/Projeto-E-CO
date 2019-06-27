@@ -81,49 +81,58 @@ public class ControllerComissoes {
 		comissoes.put(tema, nova);
 
 	}
-
+	/**
+	 * Salva os dados do sistema em um diretorio separado na pasta arquivos.
+	 */
 	public void salvarSistema() {
 		try {			
-			FileOutputStream arq = new FileOutputStream("comissoes.arq");
+			FileOutputStream arq = new FileOutputStream("arquivos/comissoes.arq");
 			ObjectOutputStream obj = new ObjectOutputStream(arq);
-			obj.write(this.comissoes);
-			obj.flush();
-			FileOutputStream arq1 = new FileOutputStream("partidos.arq");
+			obj.writeObject(this.comissoes);
+			
+			FileOutputStream arq1 = new FileOutputStream("arquivos/partidos.arq");
 			ObjectOutputStream obj1 = new ObjectOutputStream(arq1);
-			obj1.write(this.partidos);
-			obj1.flush();
+			obj1.writeObject(this.partidos);
+			
 			
 			obj.close();
 			obj1.close();
 		} catch (Exception e) {
-			throw new IllegalArgumentException("Erro ao salvar comissoes ou partidos");					
+							
 		}		
 	}
-
+	/**
+	 * Carrega os dados do sistema, que estao em um diretorio separado na pasta arquivos.
+	 */
 	public void carregarSistema() {
 		try {			
-			FileInputStream arq = new FileInputStream("comissoes.arq");
+			FileInputStream arq = new FileInputStream("arquivos/comissoes.arq");
 			ObjectInputStream obj = new ObjectInputStream(arq);
 			this.comissoes = (HashMap<String, Comissao>) obj.readObject();
-			FileInputStream arq1 = new FileInputStream("partidos.arq");
+			FileInputStream arq1 = new FileInputStream("arquivos/partidos.arq");
 			ObjectInputStream obj1 = new ObjectInputStream(arq1);
 			this.partidos = (List<String>) obj1.readObject();
 			
 			obj.close();
 			obj1.close();
 		} catch (Exception e) {
-			throw new IllegalArgumentException("Erro ao carregar comissoes ou partidos");					
+								
 		}			
 	}
-
+	/**
+	 * Limpa os dados do sistema, que estao em um diretorio separado na pasta arquivos.
+	 */
 	public void limparSistema() {
-		File teste = new File("comissoes.arq");
-		if (teste.exists()) {
-			teste.delete();
-		}
-		File teste1 = new File("partidos.arq");
-		if (teste1.exists()) {
-			teste1.delete();
+		comissoes.clear();
+		partidos.clear();
+		try {
+			File arq = new File("arquivos/comissoes.arq");
+			arq.delete();
+			File arq1 = new File("arquivos/partidos.arq");
+			arq1.delete();
+			
+		} catch (Exception e) {	
+			
 		}
 	}
 }

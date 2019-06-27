@@ -1,5 +1,6 @@
 package eco;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,7 +10,7 @@ import java.util.Date;
  * responsavel por seus atributos e metodos.
  *
  */
-public class Deputado{
+public class Deputado implements Serializable{
 	/**
 	 * inicia um novo validador;
 	 */

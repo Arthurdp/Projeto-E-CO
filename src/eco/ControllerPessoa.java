@@ -12,7 +12,7 @@ import java.util.HashMap;
  * classe responsavel por controlar metodos e armazenar pessoas no sistema.
  * controla o cadastro de pessoas e deputados.
  */
-public class ControllerPessoa implements Serializable{
+public class ControllerPessoa {
 
 	/**
 	 * mapa de pessoas cadastradas.
@@ -102,39 +102,50 @@ public class ControllerPessoa implements Serializable{
 	public void configurarEstrategiaPropostaRelacionada(String dni, String estrategia) {
 		pessoas.get(dni).configurarEstrategiaPropostaRelacionada(estrategia);
 	}
-
+	/**
+	 * Salva os dados do sistema em um diretorio separado na pasta arquivos.
+	 */
 	public void salvarSistema() {
 		try {
-			FileOutputStream arq = new FileOutputStream("pessoas.arq");
+			FileOutputStream arq = new FileOutputStream("arquivos/pessoas.arq");
 			ObjectOutputStream obj = new ObjectOutputStream(arq);
-			obj.write(this.pessoas);
-			obj.flush();
+			obj.writeObject(this.pessoas);
+			
 			
 			obj.close();
-			arq.close();
+			
 		} catch (Exception e) {
-			throw new IllegalArgumentException("Erro ao salvar pessoas");					
+								
 		}
 	}
-
+	/**
+	 * Carrega os dados do sistema, que estao em um diretorio separado na pasta arquivos.
+	 */
 	public void carregarSistema() {
 		try {
-			FileInputStream arq = new FileInputStream("pessoas.arq");
+		
+			FileInputStream arq = new FileInputStream("arquivos/pessoas.arq");
 			ObjectInputStream obj = new ObjectInputStream(arq);
 			this.pessoas = (HashMap<String, Pessoa>) obj.readObject();
 			
 			obj.close();
-			arq.close();
+			
 		} catch (Exception e) {
-			throw new IllegalArgumentException("Erro ao carregar pessoas");					
+							
 		}
 	}
-
+	/**
+	 * Limpa os dados do sistema, que estao em um diretorio separado na pasta arquivos.
+	 */
 	public void limparSistema() {
-		File teste = new File("pessoas.arq");
-		if (teste.exists()) 
-			teste.delete();
-		
+		pessoas.clear();
+		try {
+			File arq = new File("arquivos/pessoas.arq");
+			arq.delete();
+			
+		} catch (Exception e) {	
+			
+		}
 	}
 
 }
