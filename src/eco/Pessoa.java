@@ -1,12 +1,10 @@
 package eco;
 
-import java.io.Serializable;
-
 /**
  * classe que representa uma pessoa no sistema.
  * responsavel por seus atributos e metodos.
  */
-public class Pessoa implements Serializable{
+public class Pessoa{
 	/**
 	 * inicia um novo validador;
 	 */

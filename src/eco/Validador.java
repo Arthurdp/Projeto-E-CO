@@ -1,6 +1,5 @@
 package eco;
 
-import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -9,7 +8,7 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Date;
 
-public class Validador implements Serializable{
+public class Validador{
 	
 	/**
 	 * verifica se a entrada eh vazia ou nula.

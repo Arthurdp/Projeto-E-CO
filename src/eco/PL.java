@@ -9,7 +9,7 @@ public class PL extends Projeto{
 
 	public PL(String autor, int ano, String codigo, String ementa, String interesses,
 			String url, boolean conclusivo) {
-		super(autor, ano, codigo, ementa, interesses, url, 5);
+		super(autor, ano, codigo, ementa, interesses, url, 15);
 		this.tramitacaoConclusiva = conclusivo;
 		super.tipo = "PL";
 		this.tramitacao = this.situacaoAtual;
