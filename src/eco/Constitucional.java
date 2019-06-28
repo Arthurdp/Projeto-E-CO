@@ -1,10 +1,9 @@
 package eco;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
-public class Constitucional implements Estrategia, Serializable {
+public class Constitucional implements Estrategia {
 	
 public String prioridade(List<Projeto> projetos) {
 		

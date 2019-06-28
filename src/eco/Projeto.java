@@ -1,11 +1,9 @@
 package eco;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-abstract class Projeto implements Serializable{
-	private Validador validador;
+abstract class Projeto{
 	private String autor;
 	private int ano;
 	protected String codigo;
@@ -23,7 +21,6 @@ abstract class Projeto implements Serializable{
 	private int prioridade;
 	
 	public Projeto(String autor, int ano, String codigo, String ementa, String interesses, String url, int prioridade) {
-		this.validador = new Validador();
 		this.autor = autor;
 		this.ano = ano;
 		this.codigo = codigo;
