@@ -7,7 +7,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Date;
-
+/**
+ * Classe que realiza a verificacao e valida um determinado parametro passado ao mesmo
+ * de acordo com o modo de verificacao desejado.
+ *
+ */
 public class Validador{
 	
 	/**

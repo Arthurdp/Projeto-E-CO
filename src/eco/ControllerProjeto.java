@@ -9,14 +9,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * Classe responsavel por executar todas as acoes sobre objetos do tipo Projeto
+ * controla o cadastro de projetos assim como seu armazenamento.
+ *
+ */
 public class ControllerProjeto {
 
 	/**
 	 * Mapa contendo todos os projetos cadastrados.
 	 */
 	private Map<String, Projeto> projetos;
-
+	/**
+	  * inicia um novo validador;
+	 */
 	private Validador validador;
 	private Map<Integer, Integer> registradosPL;
 	private Map<Integer, Integer> registradosPLP;
@@ -34,7 +40,15 @@ public class ControllerProjeto {
 	public Map<String, Projeto> getProjetos() {
 		return projetos;
 	}
-
+	/**
+	 * Realiza a votacao de um projeto de lei pelo plenario
+	 * @param codigo codigo do projeto de lei a ser votado
+	 * @param statusGovernista status governista do projeto de lei
+	 * @param politicos lista de politicos cadastrados
+	 * @param politicosPresentes lista de politicos presentes no plenario
+	 * @param partidos lista de partidos cadastrados
+	 * @return retorna um booleano, true se aprovada e false se reprovada
+	 */
 	public boolean votarPlenario(String codigo, String statusGovernista, List<Pessoa> politicos, List<Pessoa> politicosPresentes, List<String> partidos) {
 
 
@@ -50,7 +64,17 @@ public class ControllerProjeto {
 
 		return projetos.get(codigo).votarPlenario(statusGovernista, politicos, politicosPresentes, partidos);
 	}
-
+	/**
+	 * Realiza a votação de um projeto de lei em uma commisao, sendo obrigatoria a votacao do projeto primeiramente
+	 * pela CCJC, podendo ou nao seguir para outras comissoes.
+	 * @param codigo odigo do projeto de lei a ser votado
+	 * @param estatusGovernista status governista do projeto de lei
+	 * @param deputados lista de deputados que compoem a comissao
+	 * @param partidos lista de partidos cadastrados
+	 * @param comissoes lista de commisoes cadastradas
+	 * @param proximoLocal proximo local em que o projeto de lei sera votado
+	 * @return retorna um booleano, true se aprovada e false se reprovada
+	 */
 	public boolean votarComissao(String codigo, String estatusGovernista, List<Pessoa> deputados, List<String> partidos, Map<String, Comissao> comissoes, String proximoLocal) {
 
 		if(!projetos.containsKey(codigo))
@@ -140,14 +164,24 @@ public class ControllerProjeto {
 	public String exibirProjeto(String codigo) {
 		return projetos.get(codigo).toString();
 	}
-
+	/**
+	 * Exibe a tramitacao de um projeto de lei, informando os locais onde 
+	 * ja foi votado e se foi aprovado ou nao nos locais, exibe tambem a situacao
+	 * atual do projeto caso ainda nao tenha sido encerrado
+	 * @param codigo codigo do projeto a ser exibido
+	 * @return String contendo a tramitacao do projeto
+	 */
 	public String exibirTramitacao(String codigo) {
 		validador.validaEntrada(codigo, "Erro ao exibir tramitacao: codigo nao pode ser vazio ou nulo");
 		if(!projetos.containsKey(codigo))
 			throw new IllegalArgumentException("Erro ao exibir tramitacao: projeto inexistente");
 		return projetos.get(codigo).getTramitacao();
 	}
-
+	/**
+	 * Retorna uma lista com as propostas mais relacionadas auma pessoa de acordo com seus interesses.
+	 * @param interessesDaPessoa interesses da pessoa 
+	 * @return lista de projetos mais relacionados
+	 */
 	public List<Projeto> retornaProjetosRelacionados(String interessesDaPessoa){
 		List<Projeto> lista = new ArrayList<>();
 		for(Projeto projeto : projetos.values()) {
@@ -156,7 +190,11 @@ public class ControllerProjeto {
 		}
 		return lista;
 	}
-
+/**
+ * Retorna o local onde o  projeto de lei se encontra atualmente
+ * @param codigo codigo do projeto de lei
+ * @return local atual do projeto
+ */
 	public String retornaLocalAtual(String codigo) {
 		return projetos.get(codigo).getLocalAtual();
 	}

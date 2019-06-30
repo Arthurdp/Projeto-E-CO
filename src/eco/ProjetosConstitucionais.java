@@ -2,9 +2,16 @@ package eco;
 
 import java.util.List;
 import java.util.Map;
-
+/**
+ * Classe abstrata que representas os projetos de lei considerados constitucionais, sendo eles PEC e PLP.
+ *
+ */
 abstract class ProjetosConstitucionais extends Projeto {
+	/**
+	 * Artigos da constituicao relacionados ao projeto de lei constitucional
+	 */
 	private String artigos;
+	
 	public ProjetosConstitucionais(String dni, int ano, String codigo, String ementa, String interesses,
 			String url, int prioridade, String artigos) {
 		super(dni, ano, codigo, ementa, interesses, url, prioridade);

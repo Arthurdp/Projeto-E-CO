@@ -35,7 +35,7 @@ public class Deputado{
 		try {
 			this.data = sdf.parse(data);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		this.leisAprovadas = 0;

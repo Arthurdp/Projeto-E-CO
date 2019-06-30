@@ -117,7 +117,14 @@ abstract class Projeto{
 		}
 		return false;
 	}
-	
+	/**
+	 * Conta os votos que foram aprovados recebendo status e uma lista contendo os politicos cadastrados e uma lista de partidos.
+	 * Retorna um inteiro que representa a quantidade de votos aprovados.
+	 @param statusGovernista status GOVERNISTA, LIVRE OU OPOSICAO
+	 * @param politicos lista de todos os politicos cadastrados
+	 * @param partidos lista de todos os partidos cadastrados
+	 * @return retorna um inteiro
+	 */
 	public int contaVotos(String statusGovernista, List<Pessoa> politicos, List<String> partidos) {
 		int votosAprovar = 0;
 		for (Pessoa politico : politicos){
@@ -139,8 +146,23 @@ abstract class Projeto{
 		}
 		return votosAprovar;
 	} 
-	
+	/**
+	 * Realiza a votacao de um projeto de lei pelo plenario
+	 @param statusGovernista status governista do projeto de lei
+	 * @param politicos lista de politicos cadastrados
+	 * @param politicosPresentes lista de politicos presentes no plenario
+	 * @param partidos lista de partidos cadastrados
+	 * @return retorna um booleano, true se aprovada e false se reprovada
+	 */
 	abstract boolean votarPlenario(String estatusGovernista, List<Pessoa> politicos, List<Pessoa> politicosPresentes,List<String> partidos);
-	
+	/**Realiza a votação de um projeto de lei em uma commisao, sendo obrigatoria a votacao do projeto primeiramente
+	 * pela CCJC, podendo ou nao seguir para outras comissoes.
+	 * @param estatusGovernista status governista do projeto de lei
+	 * @param deputados lista de deputados que compoem a comissao
+	 * @param partidos lista de partidos cadastrados
+	 * @param comissoes mapa de commisoes cadastradas
+	 * @param proximoLocal proximo local em que o projeto de lei sera votado
+	 * @return retorna um booleano, true se aprovada e false se reprovada
+	 */
 	abstract boolean votarComissao(String estatusGovernista, List<Pessoa> deputados, List<String> partidos, Map<String, Comissao> comissoes, String proximoLocal);
 }

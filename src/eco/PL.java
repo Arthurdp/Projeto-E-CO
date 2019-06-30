@@ -2,11 +2,25 @@ package eco;
 
 import java.util.List;
 import java.util.Map;
-
+/**
+ * Representacao de um projeto de lei(PL).
+ *
+ */
 public class PL extends Projeto{
-	
+	/**
+	 * booleano que informa se a PL eh conclusiva ou nao conclusiva
+	 */
 	private boolean tramitacaoConclusiva;
-
+	/**
+	 * constroi um novo Projeto de lei, criando o objeto PL
+	 * @param autor Dni do deputado autor da PL
+	 * @param ano Ano de criacao da PL
+	 * @param codigo Codigo do PL
+	 * @param ementa descricao do objetivo da PL
+	 * @param interesses ineresses relacionados a PL criada
+	 * @param url endereco eletronico da PL
+	 * @param conclusivo informa se a PL eh conclusiva ou nao
+	 */
 	public PL(String autor, int ano, String codigo, String ementa, String interesses,
 			String url, boolean conclusivo) {
 		super(autor, ano, codigo, ementa, interesses, url, 15);

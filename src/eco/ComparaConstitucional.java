@@ -2,6 +2,12 @@ package eco;
 
 import java.util.Comparator;
 
+/**
+ * Classe que implementa a interface comparator para 
+ * permitir a comparacao de dois projetos pela
+ * constitucionalidade, sendo a ordem de prioridade:
+ * PEC, PLP e PL
+ */
 public class ComparaConstitucional implements Comparator<Projeto>{
 	public int compare(Projeto projeto1, Projeto projeto2) {
 		if(projeto1.getPrioridade() - projeto2.getPrioridade() != 0)

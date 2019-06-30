@@ -121,16 +121,7 @@ public class ControllerGeral {
 		}
 		return false;
 	}
-	/**
-	 * Conta os votos que foram aprovados recebendo um codigo de um projeto, um status e uma String com os dnis dos politicos.
-	 * Retorna um inteiro que representa a quantidade de votos aprovados.
-	 * @param codigo codigo de um projeto
-	 * @param statusGovernista status GOVERNISTA, LIVRE OU OPOSICAO
-	 * @param politicos String com dnis de politicos separados por virgula.
-	 * @return retorna um inteiro
-	 */
 
-	
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
 		validador.validaEntrada(presentes, "Erro ao votar proposta: presentes nao pode ser vazio ou nulo");
 		List<Pessoa> politicosCadastrados = new ArrayList<>();

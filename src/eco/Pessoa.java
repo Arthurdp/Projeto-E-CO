@@ -33,7 +33,9 @@ public class Pessoa{
 	 * cargo exercido pela pessoa.
 	 */
 	private Deputado deputado;
-	
+	/**
+	 * Tipo de estrategia adotada pela pessoa para a exibicao de propostas relacionadas
+	 */
 	private Estrategia estrategia;
 	
 	/**
@@ -159,7 +161,10 @@ public class Pessoa{
 	public Estrategia getEstrategia(){
 		return this.estrategia;
 	}
-	
+/**
+ * Configura a estrategia que a pessoa deseja utilizar na exibicao de propostas relacionadas a mesma.
+ * @param estrategia estrategia desejada
+ */
 	public void configurarEstrategiaPropostaRelacionada(String estrategia) {
 		switch(estrategia) {
 		case "CONSTITUCIONAL":

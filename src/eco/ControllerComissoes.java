@@ -11,8 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * classe responsavel por controlar todo o sistema. controla o cadastro de pessoas,
- * deputados e partidos, e as representacoes de pessoas e partidos cadastrados.
+ * classe responsavel por controlar as acoes executadas nos partidos e nas comissoes cadastradas.
  *
  */
 public class ControllerComissoes {

@@ -6,6 +6,9 @@ import java.util.List;
  * Representacao de um projeto de Emenda Constitucional(PEC).
  */
 public class PEC extends ProjetosConstitucionais{
+	/**
+	 * inteiro que representa a prioridade de exibicao de uma PEC
+	 */
 	private int prioridade;
 	/**
 	 * constroi um novo Projeto de Emenda Constitucional, criando o objeto PEC.

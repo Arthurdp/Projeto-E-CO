@@ -1,7 +1,11 @@
 package eco;
 
 import java.util.Comparator;
-
+/**
+ * Classe que implementa a interface comparator para 
+ * permitir a comparacao de dois projetos pela
+ * quantidade de aprovacoes
+ */
 public class ComparaAprovacao implements Comparator<Projeto>{
 	public int compare(Projeto projeto1, Projeto projeto2) {
 		if(projeto1.getAprovacoes() - projeto2.getAprovacoes() != 0) 

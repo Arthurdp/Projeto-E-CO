@@ -58,7 +58,11 @@ public class ControllerPessoa {
 			throw new IllegalArgumentException("Erro ao cadastrar pessoa: dni ja cadastrado");
 		pessoas.put(dni, nova);
 	}
-
+	/**
+	 * Retorna uma pessoa cadastrada no mapa de pessoas, indentificada pelo seu respectivo dni.
+	 * @param dni dni da pessoa desejada
+	 * @return uma pessoa do mapa de pessoas
+	 */
 	public Pessoa retornaPessoa(String dni) {
 		return pessoas.get(dni);
 	}
@@ -96,7 +100,11 @@ public class ControllerPessoa {
 		}
 		return pessoas.get(dni).exibirPessoa();
 	}
-
+	/**
+	 * Configura a estrategia que a pessoa deseja utilizar na exibicao de propostas relacionadas a mesma.
+	 * @param dni Dni da pessoa
+	 * @param estrategia estrategia desejada
+	 */
 	public void configurarEstrategiaPropostaRelacionada(String dni, String estrategia) {
 		pessoas.get(dni).configurarEstrategiaPropostaRelacionada(estrategia);
 	}
