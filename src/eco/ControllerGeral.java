@@ -49,9 +49,9 @@ public class ControllerGeral {
 		String[] politics = politicos.split(",");
 		for(String dni : politics) {
 			validador.validaDni(dni, "Erro ao cadastrar comissao: dni invalido");
-			if(!controllerPessoa.getPessoas().containsKey(dni)) 
+			if(controllerPessoa.retornaPessoa(dni) == null) 
 				throw new NullPointerException("Erro ao cadastrar comissao: pessoa inexistente");
-			if(controllerPessoa.getPessoas().get(dni).getDeputado() == null)
+			if(controllerPessoa.retornaPessoa(dni).getDeputado() == null)
 				throw new IllegalArgumentException("Erro ao cadastrar comissao: pessoa nao eh deputado");
 		}
 		this.controllerComissoes.cadastrarComissao(tema, politicos);
@@ -63,9 +63,9 @@ public class ControllerGeral {
 		validador.validaEntrada(interesses, "Erro ao cadastrar projeto: interesse nao pode ser vazio ou nulo");
 		validador.validaEntrada(url, "Erro ao cadastrar projeto: url nao pode ser vazio ou nulo");
 		validador.validaDni(dni, "Erro ao cadastrar projeto: dni invalido");
-		if(!controllerPessoa.getPessoas().containsKey(dni)) 
+		if(controllerPessoa.retornaPessoa(dni) == null) 
 			throw new NullPointerException("Erro ao cadastrar projeto: pessoa inexistente");
-		if(controllerPessoa.getPessoas().get(dni).getDeputado() == null)
+		if(controllerPessoa.retornaPessoa(dni).getDeputado() == null)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: pessoa nao eh deputado");
 		if(ano < 1988)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
@@ -81,9 +81,9 @@ public class ControllerGeral {
 		validador.validaEntrada(url, "Erro ao cadastrar projeto: url nao pode ser vazio ou nulo");
 		validador.validaEntrada(artigos, "Erro ao cadastrar projeto: artigo nao pode ser vazio ou nulo");
 		validador.validaDni(dni, "Erro ao cadastrar projeto: dni invalido");
-		if(!controllerPessoa.getPessoas().containsKey(dni)) 
+		if(controllerPessoa.retornaPessoa(dni) == null) 
 			throw new NullPointerException("Erro ao cadastrar projeto: pessoa inexistente");
-		if(controllerPessoa.getPessoas().get(dni).getDeputado() == null)
+		if(controllerPessoa.retornaPessoa(dni).getDeputado() == null)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: pessoa nao eh deputado");
 		if(ano < 1988)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
@@ -99,9 +99,9 @@ public class ControllerGeral {
 		validador.validaEntrada(url, "Erro ao cadastrar projeto: url nao pode ser vazio ou nulo");
 		validador.validaEntrada(artigos, "Erro ao cadastrar projeto: artigo nao pode ser vazio ou nulo");
 		validador.validaDni(dni, "Erro ao cadastrar projeto: dni invalido");
-		if(!controllerPessoa.getPessoas().containsKey(dni))
+		if(controllerPessoa.retornaPessoa(dni) == null)
 			throw new NullPointerException("Erro ao cadastrar projeto: pessoa inexistente");
-		if(controllerPessoa.getPessoas().get(dni).getDeputado() == null)
+		if(controllerPessoa.retornaPessoa(dni).getDeputado() == null)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: pessoa nao eh deputado");
 		if(ano < 1988)
 			throw new IllegalArgumentException("Erro ao cadastrar projeto: ano anterior a 1988");
@@ -147,13 +147,13 @@ public class ControllerGeral {
 		}
 		
 		for(String dni : presentes.split(",")) {
-			if(!controllerPessoa.getPessoas().containsKey(dni)) 
+			if(controllerPessoa.retornaPessoa(dni) == null) 
 				throw new IllegalArgumentException("Erro ao votar proposta: Deputado nao cadastrado");
 			
 		}
 		
 		for(String dni : presentes.split(",")) {
-			politicosPresentes.add(controllerPessoa.getPessoas().get(dni));
+			politicosPresentes.add(controllerPessoa.retornaPessoa(dni));
 		}
 			
 		
@@ -204,7 +204,7 @@ public class ControllerGeral {
 		List<Pessoa> deputados = new ArrayList<>();
 		String politicos[] = controllerComissoes.getComissoes().get(controllerProjeto.getProjetos().get(codigo).getLocalAtual()).getPoliticos().split(",");
 		for(String p : politicos) {
-			deputados.add(controllerPessoa.getPessoas().get(p));
+			deputados.add(controllerPessoa.retornaPessoa(p));
 		}
 		
 		return controllerProjeto.getProjetos().get(codigo).votarComissao(statusGovernista, deputados, controllerComissoes.getPartidos(), controllerComissoes.getComissoes(), proximoLocal);
@@ -221,7 +221,7 @@ public class ControllerGeral {
 		
 		if(!estrategia.equals("APROVACAO") && !estrategia.equals("CONSTITUCIONAL") && !estrategia.equals("CONCLUSAO") )
 			throw new IllegalArgumentException("Erro ao configurar estrategia: estrategia invalida");
-		if(!controllerPessoa.getPessoas().containsKey(dni))
+		if(controllerPessoa.retornaPessoa(dni) == null)
 			throw new IllegalArgumentException("Erro ao configurar estrategia: pessoa inexistente");
 		
 		
