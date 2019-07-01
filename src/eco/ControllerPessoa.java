@@ -51,6 +51,7 @@ public class ControllerPessoa {
 	 * @param dni dni da pessoa que sera adicionada.
 	 * @param estado estado da pessoa que sera adicionada.
 	 * @param interesses interesses da pessoa que sera adicionada.
+	 * @param partido e o partido que a pessoa e filiada
 	 */
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses, String partido) {
 		Pessoa nova = new Pessoa(nome, dni, estado, interesses, partido);

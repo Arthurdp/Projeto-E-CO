@@ -3,6 +3,11 @@ package eco;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * controller que contem os demais controllers, com a finalidade de facilitar a troca de informacoes entre os objetos
+ * e generalizar mais o codigo.
+ *
+ */
 public class ControllerGeral {
 	
 	ControllerComissoes controllerComissoes;
@@ -17,30 +22,68 @@ public class ControllerGeral {
 		this.validador = new Validador();
 	}
 	
+	/**
+	 * cadastra uma nova pessoa sem partido no sistema, adicionando um objeto do tipo pessoa no mapa de pessoas.
+	 * @param nome nome da pessoa que sera adicionada.
+	 * @param dni dni da pessoa que sera adicionada.
+	 * @param estado estado da pessoa que sera adicionada.
+	 * @param interesses interesses da pessoa que sera adicionada.
+	 */
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses) {
 		controllerPessoa.cadastrarPessoa(nome, dni, estado, interesses);
 	}
 	
+	/**
+	 * cadastra uma nova pessoa com partido no sistema, adicionando um objeto do tipo pessoa no mapa de pessoas dentro do ControllerPessoa.
+	 * @param nome nome da pessoa que sera adicionada.
+	 * @param dni dni da pessoa que sera adicionada.
+	 * @param estado estado da pessoa que sera adicionada.
+	 * @param interesses interesses da pessoa que sera adicionada.
+	 * @param partido e o partido que a pessoa e filiada
+	 */
 	public void cadastrarPessoa(String nome, String dni, String estado, String interesses, String partido) {
 		controllerPessoa.cadastrarPessoa(nome, dni, estado, interesses, partido);
 	}
-	
+
+	/**
+	 * inicia a vida publica de uma pessoa, tornando a mesma em um deputado.
+	 * @param dni da pessoa que vai se tornar um deputado.
+	 * @param data data do momento em que a pessoa se tornou deputado.
+	 */
 	public void cadastrarDeputado(String DNI, String dataDeInicio) {
 		controllerPessoa.cadastraDeputado(DNI, dataDeInicio);
 	}
 	
+	/**
+	 * cadastra um partido no sistema, adicionando uma string na lista de partidos.
+	 * @param partido sigla do partido a ser cadastrado.
+	 */
 	public void cadastrarPartido(String partido) {
 		this.controllerComissoes.cadastrarPartido(partido);
 	}
 	
+	/**
+	 * exibe dados de uma pessoa cadastrada no sistema determinada pelo seu dni. 
+	 * @param dni dni da pessoa a ser exibida;
+	 * @return a representacao textual de uma pessoa cadastrada.
+	 */
 	public String exibirPessoa(String DNI) {
 		return controllerPessoa.exibirPessoa(DNI);
 	}
 	
+	/** 
+	 * exibe todos os partidos cadastrados, em ordem lexicografica.
+	 * @return as strings que representam os partidos cadastrados.
+	 */
 	public String exibirBase() {
 		return controllerComissoes.exibirBase();
 	}
 	
+	/**
+	 * Cadastra uma nova comissao inserindo-a no mapa de comissoes dentro do controllerComissao
+	 * @param tema tema da comissao
+	 * @param politicos string contendo os dni dos politicos participantes da comissao
+	 */
 	public void cadastrarComissao(String tema, String politicos) {
 		validador.validaEntrada(tema, "Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo");
 		validador.validaEntrada(politicos, "Erro ao cadastrar comissao: lista de politicos nao pode ser vazio ou nulo");
@@ -57,6 +100,15 @@ public class ControllerGeral {
 		this.controllerComissoes.cadastrarComissao(tema, politicos);
 	}
 	
+	/**
+	 * Cadastra um novo projeto de lei criando o objeto PL e adicionando-o ao mapa de projetos dentro de controllerProjetos.
+	 * @param dni dni do autor do projeto
+	 * @param ano ano de criacaoo do projeto
+	 * @param ementa descricao do objetivo do projeto
+	 * @param interesses ineresses relacionados ao projeto criado
+	 * @param url endereco eletronico do projeto
+	 * @param conclusivo informa se o projeto eh conclusivo ou nao
+	 */
 	public String cadastrarPL(String dni, int ano, String ementa, String interesses, String url, boolean conclusivo) {
 		validador.validaEntrada(dni, "Erro ao cadastrar projeto: autor nao pode ser vazio ou nulo");
 		validador.validaEntrada(ementa, "Erro ao cadastrar projeto: ementa nao pode ser vazia ou nula");
@@ -74,6 +126,16 @@ public class ControllerGeral {
 		return this.controllerProjeto.cadastrarPL(dni, ano, ementa, interesses, url, conclusivo);
 	}
 	
+	/**
+	 * cadastra no sistema um projeto do tipo PLP
+	 * @param dni e o dni do politico que criou o projeto
+	 * @param ano ano de inicio do projeto
+	 * @param ementa descricao do objetivo do projeto
+	 * @param interesses sao os interesses sociais relacionados ao projeto
+	 * @param url e o endereco digital do projeto
+	 * @param artigos sao os artigos da constituicao sendo ementados
+	 * @return
+	 */
 	public String cadastrarPLP(String dni, int ano, String ementa, String interesses, String url, String artigos) {
 		validador.validaEntrada(dni, "Erro ao cadastrar projeto: autor nao pode ser vazio ou nulo");
 		validador.validaEntrada(ementa, "Erro ao cadastrar projeto: ementa nao pode ser vazia ou nula");
@@ -92,6 +154,16 @@ public class ControllerGeral {
 		return this.controllerProjeto.cadastrarPLP(dni, ano, ementa, interesses, url, artigos);
 	}
 	
+	/**
+	 * cadastra no sistema um projeto do tipo PEC
+	 * @param dni e o dni do politico que criou o projeto
+	 * @param ano ano de inicio do projeto
+	 * @param ementa descricao do objetivo do projeto
+	 * @param interesses sao os interesses sociais relacionados ao projeto
+	 * @param url e o endereco digital do projeto
+	 * @param artigos sao os artigos da constituicao sendo ementados
+	 * @return
+	 */
 	public String cadastrarPEC(String dni, int ano, String ementa, String interesses, String url, String artigos) {
 		validador.validaEntrada(dni, "Erro ao cadastrar projeto: autor nao pode ser vazio ou nulo");
 		validador.validaEntrada(ementa, "Erro ao cadastrar projeto: ementa nao pode ser vazia ou nula");
@@ -110,18 +182,23 @@ public class ControllerGeral {
 		return this.controllerProjeto.cadastrarPEC(dni, ano, ementa, interesses, url, artigos);
 	}
 	
+	/**
+	 * exibe a representacao em String do projeto (toString)
+	 * @param codigo do projeto que sera selecionado
+	 * @return retorna o valor do metodo toString de Projeto
+	 */
 	public String exibirProjeto(String codigo) {
 		return this.controllerProjeto.exibirProjeto(codigo);
 	}
 	
-	public boolean eDaBase(String dni) {
-		for (String p : this.controllerComissoes.getPartidos()) {
-			if (controllerPessoa.getPessoas().get(dni).getPartido().equals(p))
-				return true;
-		}
-		return false;
-	}
-
+	/**
+	 * este metodo vai definir se um projeto de lei que esta no plenario sera aprovado ou nao
+	 * com base no statusGovernista e nos politicos presentes
+	 * @param codigo e o codigo que referencia o projeto
+	 * @param statusGovernista e se o criterio utilizado para que o voto seja a favor ou nao com base no partido dos politicos
+	 * @param presentes sao os politicos que estao presentes para a referida votacao
+	 * @return retorna um booleano com base no resultado da votacao
+	 */
 	public boolean votarPlenario(String codigo, String statusGovernista, String presentes) {
 		validador.validaEntrada(presentes, "Erro ao votar proposta: presentes nao pode ser vazio ou nulo");
 		List<Pessoa> politicosCadastrados = new ArrayList<>();
@@ -201,10 +278,22 @@ public class ControllerGeral {
 		return controllerProjeto.getProjetos().get(codigo).votarComissao(statusGovernista, deputados, controllerComissoes.getPartidos(), controllerComissoes.getComissoes(), proximoLocal);
 	}
 	
+	/**
+	 * Exibe a tramitacao de um projeto de lei, informando os locais onde 
+	 * ja foi votado e se foi aprovado ou nao nos locais, exibe tambem a situacao
+	 * atual do projeto caso ainda nao tenha sido encerrado
+	 * @param codigo codigo do projeto a ser exibido
+	 * @return String contendo a tramitacao do projeto
+	 */
 	public String exibirTramitacao(String codigo) {
 		return controllerProjeto.exibirTramitacao(codigo);
 	}
 	
+	/**
+	 * altera a estrategia utilizada pela pessoa, no metodo "pegarPropostaRelacionada" 
+	 * @param dni pessoa que tera sua estrategia de seleçao alterada
+	 * @param estrategia nome da estrategia que sera usada (guardada no objeto pessoa)
+	 */
 	public void configurarEstrategiaPropostaRelacionada(String dni, String estrategia) {
 		validador.validaEntrada(dni, "Erro ao configurar estrategia: pessoa nao pode ser vazia ou nula");
 		validador.validaDni(dni, "Erro ao configurar estrategia: dni invalido");
@@ -219,6 +308,13 @@ public class ControllerGeral {
 		controllerPessoa.configurarEstrategiaPropostaRelacionada(dni, estrategia);
 	}
 	
+	/**
+	 * pega um projeto de lei que ainda nao foi finalizado e que tenha interesses em comum com o cliente referenciado pelo dni
+	 * passado com paramentro. Caso haja mais de um projeto de lei relacionado a pessoa, uma estrategia, dentre tres, sera utilizada
+	 * para selecionar qual projeto sera retornado. 
+	 * @param dni e o meio pelo qual a pessoa sera identificada e selecionada
+	 * @return o codigo do projeto de lei (String)
+	 */
 	public String pegarPropostaRelacionada(String dni) {
 		validador.validaEntrada(dni, "Erro ao pegar proposta relacionada: pessoa nao pode ser vazia ou nula");
 		validador.validaDni(dni, "Erro ao pegar proposta relacionada: dni invalido");

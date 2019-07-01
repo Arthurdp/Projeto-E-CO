@@ -3,6 +3,9 @@ package eco;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * classe abstrata que dara origem (classe mae) as classes de projetos especificos
+ */
 abstract class Projeto{
 	/**
 	 * dni que representa o deputado autor do projeto
@@ -151,8 +154,8 @@ abstract class Projeto{
 	}
 	/**
 	 * compara duas listas de interesses.
-	 * @param interesses
-	 * @return
+	 * @param interesses e uma string cujo os interesses estao separados por virgula
+	 * @return um booleano se houver ao menos um interesse em comum.
 	 */
 	public boolean interessesComuns(String interesses) {
 		String[] i1 = interesses.split(",");
