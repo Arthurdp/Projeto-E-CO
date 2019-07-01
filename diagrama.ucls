@@ -1,388 +1,295 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="eco.ClasseMainUS7" project="Projeto" file="/Projeto/src/eco/ClasseMainUS7.java" 
+  <class id="1" language="java" name="eco.ComparaAprovacao" project="Projeto-E-CO" 
+    file="/Projeto-E-CO/src/eco/ComparaAprovacao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="162" x="131" y="115"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="eco.Deputado" project="Projeto-E-CO" file="/Projeto-E-CO/src/eco/Deputado.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="115" x="726" y="-40"/>    
+    <position height="185" width="136" x="1338" y="2257"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="eco.Constitucional" project="Projeto" file="/Projeto/src/eco/Constitucional.java" 
+  <class id="3" language="java" name="eco.PorAprovacao" project="Projeto-E-CO" 
+    file="/Projeto-E-CO/src/eco/PorAprovacao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="176" x="690" y="1528"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="eco.ControllerProjeto" project="Projeto-E-CO" 
+    file="/Projeto-E-CO/src/eco/ControllerProjeto.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="383" width="484" x="-30" y="1105"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="eco.Comissao" project="Projeto-E-CO" file="/Projeto-E-CO/src/eco/Comissao.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="175" x="600" y="1235"/>    
+    <position height="167" width="187" x="463" y="1528"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="eco.Validador" project="Projeto" file="/Projeto/src/eco/Validador.java" 
+  <class id="6" language="java" name="eco.Pessoa" project="Projeto-E-CO" file="/Projeto-E-CO/src/eco/Pessoa.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="169" width="197" x="2029" y="2175"/>    
+    <position height="383" width="287" x="1338" y="1528"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="eco.ClasseMain" project="Projeto" file="/Projeto/src/eco/ClasseMain.java" 
+  <class id="7" language="java" name="eco.PLP" project="Projeto-E-CO" file="/Projeto-E-CO/src/eco/PLP.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="113" x="1008" y="-40"/>    
+    <position height="113" width="365" x="260" y="2482"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="eco.PEC" project="Projeto" file="/Projeto/src/eco/PEC.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="151" width="357" x="617" y="2175"/>    
+  <class id="8" language="java" name="eco.ControllerGeral" project="Projeto-E-CO" 
+    file="/Projeto-E-CO/src/eco/ControllerGeral.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="455" width="318" x="494" y="610"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="eco.PL" project="Projeto" file="/Projeto/src/eco/PL.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="169" width="444" x="1299" y="1966"/>    
+  <class id="9" language="java" name="eco.ControllerComissoes" project="Projeto-E-CO" 
+    file="/Projeto-E-CO/src/eco/ControllerComissoes.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="257" width="246" x="494" y="1105"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="eco.Projeto" project="Projeto" file="/Projeto/src/eco/Projeto.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="691" width="444" x="1300" y="1235"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="eco.ComparaConstitucional" project="Projeto" 
-    file="/Projeto/src/eco/ComparaConstitucional.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="161" x="1289" y="-40"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="eco.ComparaConclusao" project="Projeto" 
-    file="/Projeto/src/eco/ComparaConclusao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="161" x="1618" y="-40"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="10" language="java" name="eco.ControllerPessoa" project="Projeto" 
-    file="/Projeto/src/eco/ControllerPessoa.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="205" width="313" x="1815" y="882"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="eco.ProjetosConstitucionais" project="Projeto" 
-    file="/Projeto/src/eco/ProjetosConstitucionais.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="133" width="444" x="815" y="1966"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="12" language="java" name="eco.Facade" project="Projeto" file="/Projeto/src/eco/Facade.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="457" width="313" x="1948" y="-40"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="13" language="java" name="eco.Pessoa" project="Projeto" file="/Projeto/src/eco/Pessoa.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="367" width="282" x="1825" y="1235"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="14" language="java" name="eco.Comissao" project="Projeto" file="/Projeto/src/eco/Comissao.java" 
+  <class id="10" language="java" name="eco.Facade" project="Projeto-E-CO" file="/Projeto-E-CO/src/eco/Facade.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="169" width="185" x="2189" y="1966"/>    
+    <position height="455" width="318" x="494" y="115"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="eco.PorAprovacao" project="Projeto" file="/Projeto/src/eco/PorAprovacao.java" 
+  <class id="11" language="java" name="eco.PEC" project="Projeto-E-CO" file="/Projeto-E-CO/src/eco/PEC.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="175" x="815" y="1235"/>    
+    <position height="149" width="365" x="665" y="2482"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="eco.ComparaAprovacao" project="Projeto" 
-    file="/Projeto/src/eco/ComparaAprovacao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="161" x="2301" y="-40"/>    
+  <class id="12" language="java" name="eco.ComparaConstitucional" project="Projeto-E-CO" 
+    file="/Projeto-E-CO/src/eco/ComparaConstitucional.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="162" x="915" y="115"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="eco.ControllerProjeto" project="Projeto" 
-    file="/Projeto/src/eco/ControllerProjeto.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="313" width="475" x="1300" y="882"/>    
+  <class id="13" language="java" name="eco.ControllerPessoa" project="Projeto-E-CO" 
+    file="/Projeto-E-CO/src/eco/ControllerPessoa.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="275" width="318" x="916" y="1105"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="eco.Deputado" project="Projeto" file="/Projeto/src/eco/Deputado.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="169" width="133" x="1825" y="1966"/>    
+  <class id="14" language="java" name="eco.Constitucional" project="Projeto-E-CO" 
+    file="/Projeto-E-CO/src/eco/Constitucional.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="176" x="906" y="1528"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="eco.ControllerComissoes" project="Projeto" 
-    file="/Projeto/src/eco/ControllerComissoes.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="187" width="240" x="2189" y="1235"/>    
+  <class id="15" language="java" name="eco.PorConclusao" project="Projeto-E-CO" 
+    file="/Projeto-E-CO/src/eco/PorConclusao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="176" x="1122" y="1528"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="20" language="java" name="eco.Estrategia" project="Projeto" file="/Projeto/src/eco/Estrategia.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="79" width="175" x="600" y="1966"/>    
+  <class id="16" language="java" name="eco.ProjetosConstitucionais" project="Projeto-E-CO" 
+    file="/Projeto-E-CO/src/eco/ProjetosConstitucionais.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="131" width="453" x="463" y="2257"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="17" language="java" name="eco.Estrategia" project="Projeto-E-CO" 
+    file="/Projeto-E-CO/src/eco/Estrategia.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="77" width="176" x="1014" y="2257"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="21" language="java" name="eco.PorConclusao" project="Projeto" file="/Projeto/src/eco/PorConclusao.java" 
+  <class id="18" language="java" name="eco.PL" project="Projeto-E-CO" file="/Projeto-E-CO/src/eco/PL.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="175" x="1030" y="1235"/>    
+    <position height="167" width="453" x="-30" y="2257"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="eco.ControllerGeral" project="Projeto" 
-    file="/Projeto/src/eco/ControllerGeral.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="385" width="313" x="2149" y="457"/>    
+  <class id="19" language="java" name="eco.ComparaConclusao" project="Projeto-E-CO" 
+    file="/Projeto-E-CO/src/eco/ComparaConclusao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="162" x="1180" y="115"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="eco.PLP" project="Projeto" file="/Projeto/src/eco/PLP.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="115" width="357" x="1014" y="2175"/>    
+  <class id="20" language="java" name="eco.Projeto" project="Projeto-E-CO" file="/Projeto-E-CO/src/eco/Projeto.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="689" width="453" x="-30" y="1528"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="24">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="25" name="deputado"/>      
-      <multiplicity id="26" minimum="0" maximum="1"/>    
+  <class id="21" language="java" name="eco.ClasseMain" project="Projeto-E-CO" 
+    file="/Projeto-E-CO/src/eco/ClasseMain.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="114" x="1446" y="115"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="22">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="23" name="controllerGeral"/>      
+      <multiplicity id="24" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="27">    
-    <bendpoint x="2404" y="1966"/>    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="28" name="validador"/>      
-      <multiplicity id="29" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="30">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="31" name="projetos"/>      
-      <multiplicity id="32" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="33">    
-    <bendpoint x="2158" y="882"/>    
-    <bendpoint x="2158" y="1235"/>    
-    <bendpoint x="2158" y="1966"/>    
-    <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="34" name="validador"/>      
-      <multiplicity id="35" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="36">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="37" name="validador"/>      
-      <multiplicity id="38" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="39">    
-    <bendpoint x="1773" y="1966"/>    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="40" name="validador"/>      
-      <multiplicity id="41" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="42">    
-    <bendpoint x="1794" y="1235"/>    
-    <bendpoint x="1794" y="1966"/>    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="43" name="validador"/>      
-      <multiplicity id="44" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="45">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="46" name="controllerGeral"/>      
-      <multiplicity id="47" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="22" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="48">    
+  <realization id="25">    
     <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="20"/>  
+    <end type="TARGET" refId="17"/>  
   </realization>  
-  <generalization id="49">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <association id="50">    
-    <bendpoint x="2137" y="1235"/>    
-    <bendpoint x="2137" y="1966"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="51" name="validador"/>      
-      <multiplicity id="52" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="53">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <association id="54">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="55" name="pessoas"/>      
-      <multiplicity id="56" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="57">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="20"/>  
-  </realization>  
-  <association id="58">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="59" name="estrategia"/>      
-      <multiplicity id="60" minimum="0" maximum="1"/>    
+  <association id="26">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="27" name="projetos"/>      
+      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="61">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="7"/>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="16"/>  
   </generalization>  
-  <association id="62">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="63" name="comissoes"/>      
-      <multiplicity id="64" minimum="0" maximum="2147483647"/>    
+  <association id="30">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="31" name="controllerPessoa"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
+    <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="65">    
-    <bendpoint x="1988" y="1966"/>    
+  <association id="33">    
     <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="66" name="validador"/>      
-      <multiplicity id="67" minimum="0" maximum="1"/>    
+      <attribute id="34" name="pessoas"/>      
+      <multiplicity id="35" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="68">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="11"/>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="16"/>  
   </generalization>  
-  <association id="69">    
-    <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="70" name="controllerProjeto"/>      
-      <multiplicity id="71" minimum="0" maximum="1"/>    
+  <association id="37">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="38" name="deputado"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="40">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="41" name="controllerProjeto"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="43">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="44" name="comissoes"/>      
+      <multiplicity id="45" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="46">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <association id="47">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="48" name="controllerComissoes"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="50">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <association id="51">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="52" name="estrategia"/>      
+      <multiplicity id="53" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="72">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="73" name="validador"/>      
-      <multiplicity id="74" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="75">    
-    <end type="SOURCE" refId="21"/>    
+  <generalization id="54">    
+    <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <realization id="55">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="17"/>  
   </realization>  
-  <association id="76">    
-    <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="77" name="controllerPessoa"/>      
-      <multiplicity id="78" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="79">    
-    <bendpoint x="2179" y="882"/>    
-    <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="80" name="controllerComissoes"/>      
-      <multiplicity id="81" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
