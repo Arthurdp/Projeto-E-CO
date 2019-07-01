@@ -48,13 +48,13 @@ class TesteControllerComissoes {
 		controllerGeral.cadastrarDeputado("111111111-2","12122012");
 		controllerGeral.cadastrarDeputado("111111111-3","05052005");
 		
-		controller.cadastrarComissao("bonde", "111111111-1,111111111-2,111111111-3");
-		assertThrows(IllegalArgumentException.class, ()-> controller.cadastrarComissao("", "111111111-1,111111111-2,111111111-3"),"Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo");
-		assertThrows(IllegalArgumentException.class, ()-> controller.cadastrarComissao("bonde1", ""),"Erro ao cadastrar comissao: lista de politicos nao pode ser vazio ou nulo");
-		assertThrows(IllegalArgumentException.class, ()-> controller.cadastrarComissao("bonde", "111111111-1,111111111-2,111111111-3"),"Erro ao cadastrar comissao: tema existente");
-		assertThrows(IllegalArgumentException.class, ()-> controller.cadastrarComissao("bonde2", "111111111-1,1111h1111-2,111111111-3"),"Erro ao cadastrar comissao: dni invalido");
-		assertThrows(NullPointerException.class, ()-> controller.cadastrarComissao("bonde3", "111111111-1,111111111-2,111111111-9"),"Erro ao cadastrar comissao: pessoa inexistente");
-		assertThrows(IllegalArgumentException.class, ()-> controller.cadastrarComissao("bonde4", "111111111-1,111111111-2,111111111-4"),"Erro ao cadastrar comissao: pessoa nao eh deputado");
+		controllerGeral.cadastrarComissao("bonde", "111111111-1,111111111-2,111111111-3");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.cadastrarComissao("", "111111111-1,111111111-2,111111111-3"),"Erro ao cadastrar comissao: tema nao pode ser vazio ou nulo");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.cadastrarComissao("bonde1", ""),"Erro ao cadastrar comissao: lista de politicos nao pode ser vazio ou nulo");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.cadastrarComissao("bonde", "111111111-1,111111111-2,111111111-3"),"Erro ao cadastrar comissao: tema existente");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.cadastrarComissao("bonde2", "111111111-1,1111h1111-2,111111111-3"),"Erro ao cadastrar comissao: dni invalido");
+		assertThrows(NullPointerException.class, ()-> controllerGeral.cadastrarComissao("bonde3", "111111111-1,111111111-2,111111111-9"),"Erro ao cadastrar comissao: pessoa inexistente");
+		assertThrows(IllegalArgumentException.class, ()-> controllerGeral.cadastrarComissao("bonde4", "111111111-1,111111111-2,111111111-4"),"Erro ao cadastrar comissao: pessoa nao eh deputado");
 
 		
 	}

@@ -4,20 +4,65 @@ import java.util.List;
 import java.util.Map;
 
 abstract class Projeto{
+	/**
+	 * dni que representa o deputado autor do projeto
+	 */
 	private String autor;
+	/**
+	 * ano de criação do projeto
+	 */
 	private int ano;
+	/**
+	 * codigo de identificaçãodo projeto
+	 */
 	protected String codigo;
+	/**
+	 * descricao do objetivo do projeto
+	 */
 	private String ementa;
+	/**
+	 * interesses relacionados ao projeto
+	 */
 	private String interesses;
+	/**
+	 * situação atual de votação do projeto
+	 */
 	protected String situacaoAtual;
+	/**
+	 * endereço eletronico do projeto
+	 */
 	private String url;
+	/**
+	 * turno que o projeto se encontra no plenario
+	 */
 	protected String turno;
+	/**
+	 * tipo do projeto
+	 */
 	protected String tipo;
+	/**
+	 * local onde o projeto se enconta atualmente
+	 */
 	private String localAtual;
+	/**
+	 * locais onde o projeto já foi votado
+	 */
 	protected String PLsVotadas;
+	/**
+	 * tramitação do projeto, onde ele já passou e sua situação atual
+	 */
 	protected String tramitacao;
+	/**
+	 * numero de conclusãoes de votações do projeto 
+	 */
 	private int conclusoes;
+	/**
+	 * numero de aprovações do projeto em votações
+	 */
 	private int aprovacoes;
+	/**
+	 * numero que indica o nivel de prioridade de exibição do projeto
+	 */
 	private int prioridade;
 	
 	public Projeto(String autor, int ano, String codigo, String ementa, String interesses, String url, int prioridade) {
@@ -104,7 +149,11 @@ abstract class Projeto{
 	public String getTramitacao() {
 		return this.tramitacao;
 	}
-
+	/**
+	 * compara duas listas de interesses.
+	 * @param interesses
+	 * @return
+	 */
 	public boolean interessesComuns(String interesses) {
 		String[] i1 = interesses.split(",");
 		String[] i2 = this.interesses.split(",");
